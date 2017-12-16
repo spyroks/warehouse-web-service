@@ -30,7 +30,7 @@ public class WarehouseService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://macbook-pro-denis.local:8080/Warehouse/WarehouseService?wsdl");
+            url = new URL("http://macbook-pro-denis.local:8080/WarehouseWebApplication/WarehouseService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

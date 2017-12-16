@@ -36,7 +36,7 @@ public class WarehouseApplication {
         String code;
         String composition;
         String durability;
-        int id;
+        String id;
         boolean isDone = true;
 
         System.out.println("Possible operations to choose");
@@ -60,13 +60,13 @@ public class WarehouseApplication {
             switch (number) {
                 case "1":
                     System.out.println("Enter material name: ");
-                    name = scanner.next();
+                    name = scanner.nextLine();
                     System.out.println("Enter material code: ");
-                    code = scanner.next();    
+                    code = scanner.nextLine();    
                     System.out.println("Enter material composition (glass, metal, wood, plastic): ");
-                    composition = scanner.next();
+                    composition = scanner.nextLine();
                     System.out.println("Enter material durability (low/medium/high): ");
-                    durability = scanner.next();
+                    durability = scanner.nextLine();
                     AddMaterialRequest amr = new AddMaterialRequest();
                     amr.setToken(API_TOKEN);
                     amr.setName(name);
@@ -79,22 +79,26 @@ public class WarehouseApplication {
                     break;
                 case "2":
                     System.out.println("Enter material id: ");
-                    id = scanner.nextInt();
-                    GetMaterialRequest gmr = new GetMaterialRequest();
-                    gmr.setToken(API_TOKEN);
-                    gmr.setId(BigInteger.valueOf(id));
-                    MaterialType mt = getMaterial(gmr);
-                    if (mt != null) {
-                    System.out.println("Material id: " + mt.getId()
-                            + "\n Material name: " + mt.getName()
-                            + "\n Material code: " + mt.getCode()
-                            + "\n Material composition: " + mt.getComposition()
-                            + "\n Material durability: " + mt.getDurability());
-                    } else {
-                        System.out.println("Materail with such id does not exist.");
-                        isDone = false;
-                        break;
+                    String check = scanner.nextLine().trim();
+                    if (check != null && check.matches("[-+]?\\d*\\.?\\d+")) {
+                        id = check;
+                        GetMaterialRequest gmr = new GetMaterialRequest();
+                        gmr.setToken(API_TOKEN);
+                        gmr.setId(BigInteger.valueOf(Integer.valueOf(id)));
+                        MaterialType mt = getMaterial(gmr);
+                        if (mt != null) {
+                        System.out.println("Material id: " + mt.getId()
+                                + "\n Material name: " + mt.getName()
+                                + "\n Material code: " + mt.getCode()
+                                + "\n Material composition: " + mt.getComposition()
+                                + "\n Material durability: " + mt.getDurability());
+                        } else {
+                            System.out.println("Materail with such id does not exist.");
+                            isDone = false;
+                            break;
+                        }
                     }
+                    System.out.println("Invalid input!");
                     isDone = false;
                     break;
                 case "3":
