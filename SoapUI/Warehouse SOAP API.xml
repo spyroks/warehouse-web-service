@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="90bdd3e8-52d6-4cd2-8aea-b7000aa0df32" activeEnvironment="Default" name="Warehouse SOAP API" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="7e9233ed-c264-457c-963a-daf64591ba52" wsaVersion="NONE" name="WarehouseBinding" type="wsdl" bindingName="{http://www.ttu.ee/idu0075/warehouse}WarehouseBinding" soapVersion="1_1" anonymous="optional" definition="http://macbook-pro-denis.local:8080/Warehouse/WarehouseService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://macbook-pro-denis.local:8080/Warehouse/WarehouseService?wsdl"><con:part><con:url>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService?wsdl</con:url><con:content><![CDATA[<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown.-->
+<wsdl:definitions targetNamespace="http://www.ttu.ee/idu0075/warehouse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ttu.ee/idu0075/warehouse">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://www.ttu.ee/idu0075/warehouse" elementFormDefault="qualified">
+      <xs:complexType name="materialType">
+        <xs:sequence>
+          <xs:element name="id" type="xs:integer"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="code" type="xs:string"/>
+          <xs:element name="composition" type="xs:string"/>
+          <xs:element name="durability" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="warehouseMaterialType">
+        <xs:sequence>
+          <xs:element name="material" type="tns:materialType"/>
+          <xs:element name="quantity" type="xs:double"/>
+          <xs:element name="unitPrice" type="xs:double"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="warehouseMaterialListType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="warehouseMaterial" type="tns:warehouseMaterialType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="warehouseType">
+        <xs:sequence>
+          <xs:element name="id" type="xs:integer"/>
+          <xs:element name="warehouseName" type="xs:string"/>
+          <xs:element name="warehouseAddress" type="xs:string"/>
+          <xs:element name="warehouseCapacity" type="xs:double"/>
+          <xs:element name="warehouseArea" type="xs:double"/>
+          <xs:element name="warehouseMaterialList" type="tns:warehouseMaterialListType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getMaterialRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="id" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMaterialResponse" type="tns:materialType"/>
+      <xs:element name="addMaterialRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="composition" type="xs:string"/>
+            <xs:element name="durability" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addMaterialResponse" type="tns:materialType"/>
+      <xs:element name="getMaterialListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMaterialListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="material" type="tns:materialType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getWarehouseRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="id" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getWarehouseResponse" type="tns:warehouseType"/>
+      <xs:element name="addWarehouseRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="warehouseName" type="xs:string"/>
+            <xs:element name="warehouseAddress" type="xs:string"/>
+            <xs:element name="warehouseCapacity" type="xs:double"/>
+            <xs:element name="warehouseArea" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addWarehouseResponse" type="tns:warehouseType"/>
+      <xs:element name="getWarehouseListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="warehouseName" type="xs:string"/>
+            <xs:element name="warehouseAddress" type="xs:string"/>
+            <xs:element minOccurs="0" name="hasRelatedMaterials">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:pattern value="jah|ei"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getWarehouseListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="warehouse" type="tns:warehouseType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getWarehouseMaterialListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="warehouseId" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getWarehouseMaterialListResponse" type="tns:warehouseMaterialListType"/>
+      <xs:element name="addWarehouseMaterialRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="warehouseId" type="xs:integer"/>
+            <xs:element name="materialId" type="xs:integer"/>
+            <xs:element name="quantity" type="xs:double"/>
+            <xs:element name="unitPrice" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addWarehouseMaterialResponse" type="tns:warehouseMaterialType"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getMaterialMessageRequest">
+    <wsdl:part name="parameter" element="tns:getMaterialRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getMaterialMessageResponse">
+    <wsdl:part name="parameter" element="tns:getMaterialResponse"/>
+  </wsdl:message>
+  <wsdl:message name="addMaterialMessageRequest">
+    <wsdl:part name="parameter" element="tns:addMaterialRequest"/>
+  </wsdl:message>
+  <wsdl:message name="addMaterialMessageResponse">
+    <wsdl:part name="parameter" element="tns:addMaterialResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getMaterialListMessageRequest">
+    <wsdl:part name="parameter" element="tns:getMaterialListRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getMaterialListMessageResponse">
+    <wsdl:part name="parameter" element="tns:getMaterialListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getWarehouseMessageRequest">
+    <wsdl:part name="parameter" element="tns:getWarehouseRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getWarehouseMessageResponse">
+    <wsdl:part name="parameter" element="tns:getWarehouseResponse"/>
+  </wsdl:message>
+  <wsdl:message name="addWarehouseMessageRequest">
+    <wsdl:part name="parameter" element="tns:addWarehouseRequest"/>
+  </wsdl:message>
+  <wsdl:message name="addWarehouseMessageResponse">
+    <wsdl:part name="parameter" element="tns:addWarehouseResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getWarehouseListMessageRequest">
+    <wsdl:part name="parameter" element="tns:getWarehouseListRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getWarehouseListMessageResponse">
+    <wsdl:part name="parameter" element="tns:getWarehouseListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getWarehouseMaterialListMessageRequest">
+    <wsdl:part name="parameter" element="tns:getWarehouseMaterialListRequest"/>
+  </wsdl:message>
+  <wsdl:message name="getWarehouseMaterialListMessageResponse">
+    <wsdl:part name="parameter" element="tns:getWarehouseMaterialListResponse"/>
+  </wsdl:message>
+  <wsdl:message name="addWarehouseMaterialMessageRequest">
+    <wsdl:part name="parameter" element="tns:addWarehouseMaterialRequest"/>
+  </wsdl:message>
+  <wsdl:message name="addWarehouseMaterialMessageResponse">
+    <wsdl:part name="parameter" element="tns:addWarehouseMaterialResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="WarehousePortType">
+    <wsdl:operation name="getMaterial">
+      <wsdl:input message="tns:getMaterialMessageRequest"/>
+      <wsdl:output message="tns:getMaterialMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="addMaterial">
+      <wsdl:input message="tns:addMaterialMessageRequest"/>
+      <wsdl:output message="tns:addMaterialMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialList">
+      <wsdl:input message="tns:getMaterialListMessageRequest"/>
+      <wsdl:output message="tns:getMaterialListMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getWarehouse">
+      <wsdl:input message="tns:getWarehouseMessageRequest"/>
+      <wsdl:output message="tns:getWarehouseMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="addWarehouse">
+      <wsdl:input message="tns:addWarehouseMessageRequest"/>
+      <wsdl:output message="tns:addWarehouseMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getWarehouseList">
+      <wsdl:input message="tns:getWarehouseListMessageRequest"/>
+      <wsdl:output message="tns:getWarehouseListMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getWarehouseMaterialList">
+      <wsdl:input message="tns:getWarehouseMaterialListMessageRequest"/>
+      <wsdl:output message="tns:getWarehouseMaterialListMessageResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="addWarehouseMaterial">
+      <wsdl:input message="tns:addWarehouseMaterialMessageRequest"/>
+      <wsdl:output message="tns:addWarehouseMaterialMessageResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WarehouseBinding" type="tns:WarehousePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getMaterial">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addMaterial">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMaterialList">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWarehouse">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addWarehouse">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWarehouseList">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWarehouseMaterialList">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addWarehouseMaterial">
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WarehouseService">
+    <wsdl:port name="WarehousePort" binding="tns:WarehouseBinding">
+      <soap:address location="http://macbook-pro-denis.local:8080/Warehouse/WarehouseService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://MacBook-Pro-Denis.local:8088/mockWarehouseBinding</con:endpoint><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint></con:endpoints><con:operation id="f714d07b-dd7f-4df4-98aa-3f40a92741cf" isOneWay="false" action="" name="addMaterial" bindingOperationName="addMaterial" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3d4afecd-a2ab-443e-9b11-a9a95c152801" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:name>Window</war:name>
+         <war:code>WIN0001TLN20LDU</war:code>
+         <war:composition>Glass, plastic</war:composition>
+         <war:durability>Low</war:durability>
+      </war:addMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/addMaterialRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="3ba0a951-858b-4936-9254-de916e2d0197" isOneWay="false" action="" name="addWarehouse" bindingOperationName="addWarehouse" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7cc0317d-2b2c-4f70-be92-864c84e522a9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addWarehouseRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseName>Tallinn Ladu</war:warehouseName>
+         <war:warehouseAddress>Kalmistu tee 26</war:warehouseAddress>
+         <war:warehouseCapacity>500</war:warehouseCapacity>
+         <war:warehouseArea>1000</war:warehouseArea>
+      </war:addWarehouseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/addWarehouseRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="667fb2b3-fcb2-4466-8bf3-4af6a76fc1cf" isOneWay="false" action="" name="addWarehouseMaterial" bindingOperationName="addWarehouseMaterial" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c1c8f749-1448-493c-8c13-e8e9769397f6" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addWarehouseMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseId>1</war:warehouseId>
+         <war:materialId>1</war:materialId>
+         <war:quantity>20.50</war:quantity>
+         <war:unitPrice>33.33</war:unitPrice>
+      </war:addWarehouseMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/addWarehouseMaterialRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ef684f56-5315-479b-8b30-fcd1394300fc" isOneWay="false" action="" name="getMaterial" bindingOperationName="getMaterial" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7b63520e-a23b-4bf2-998d-cd83e4ce3201" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:id>1</war:id>
+      </war:getMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getMaterialRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="a9961787-131b-4b59-aa24-5dcf87f9bc1a" isOneWay="false" action="" name="getMaterialList" bindingOperationName="getMaterialList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f4730b9e-2c3f-4def-86fe-51fde0a10eae" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getMaterialListRequest>
+         <war:token>salajane</war:token>
+      </war:getMaterialListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getMaterialListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d3db1ec5-7134-4ddb-bfe7-7922a5f74371" isOneWay="false" action="" name="getWarehouse" bindingOperationName="getWarehouse" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="df608334-ac2f-4a7e-945a-300bd4875a39" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseRequest>
+         <war:token>salajane</war:token>
+         <war:id>1</war:id>
+      </war:getWarehouseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getWarehouseRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="53f9c8a8-de4e-4148-8303-7c891e1a0984" isOneWay="false" action="" name="getWarehouseList" bindingOperationName="getWarehouseList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4a69a90a-f4db-4dd2-8585-724cef8bdd15" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseListRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseName>Tallinn Ladu</war:warehouseName>
+         <war:warehouseAddress>Kalmistu tee 26</war:warehouseAddress>
+         <!--Optional:-->
+         <war:hasRelatedMaterials>jah</war:hasRelatedMaterials>
+      </war:getWarehouseListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getWarehouseListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5f06b5ef-5968-41ab-a2c1-40edc11fd73e" isOneWay="false" action="" name="getWarehouseMaterialList" bindingOperationName="getWarehouseMaterialList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="82228dce-1352-45bc-8a8b-e07407dbf244" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseMaterialListRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseId>1</war:warehouseId>
+      </war:getWarehouseMaterialListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getWarehouseMaterialListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="ef54502e-dbc0-483a-8f77-4544ed31519a" name="WarehouseBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="e10d292b-4183-4ca8-988f-38219582072a" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addMaterial TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="ee8acbec-96dd-4494-8d7d-5b754bcf77aa" name="addMaterial"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WarehouseBinding</con:interface><con:operation>addMaterial</con:operation><con:request name="addMaterial" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="8eadc887-2b99-4fbc-b3e1-2b91a097db8a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:name>Window</war:name>
+         <war:code>WIN0001TLN20LDU</war:code>
+         <war:composition>Glass, plastic</war:composition>
+         <war:durability>Low</war:durability>
+      </war:addMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="9af9db27-29db-45d8-a7ba-6f587db0f00b" name="SOAP Response"/><con:assertion type="Schema Compliance" id="4aec40da-d7f1-493d-a1d1-ed7abba4742a" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="7dd7da25-98ca-4b8a-a3ee-f19f4b190e92" name="XPath Match name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:name</path><content>Window</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="99c16665-fa16-4797-a403-0543d23107b8" name="XPath Match code"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:code</path><content>WIN0001TLN20LDU</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="2ca14e59-9c2e-4c61-afcb-3bc493a2de5e" name="XPath Match composition"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:composition</path><content>Glass, plastic</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="d05384e6-4b83-4de8-a84f-408b9350341f" name="XPath Match durability"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:durability</path><content>Low</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/addMaterialRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="87b1b9e6-dbf9-4c96-8df1-b55946741496" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addWarehouse TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="a52303a7-1c6d-45cd-ab53-b592c82ed011" name="addWarehouse"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WarehouseBinding</con:interface><con:operation>addWarehouse</con:operation><con:request name="addWarehouse" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="df1f6943-7867-4fd7-99cb-f10969dfd35f"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addWarehouseRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseName>Tallinn Ladu</war:warehouseName>
+         <war:warehouseAddress>Kalmistu tee 26</war:warehouseAddress>
+         <war:warehouseCapacity>500</war:warehouseCapacity>
+         <war:warehouseArea>1000</war:warehouseArea>
+      </war:addWarehouseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="bd645d2b-0b7b-4f74-a889-5184a3ee2163" name="SOAP Response"/><con:assertion type="Schema Compliance" id="611cd9d2-5a19-48d9-94b8-ed4e5cd25482" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="c035dcfc-11dc-4c21-becd-1389a6294878" name="XPath Match warehouse name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseName</path><content>Tallinn Ladu</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="0606fb66-1270-499b-950e-ec5590744794" name="XPath Match warehouse address"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseAddress</path><content>Kalmistu tee 26</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="616534ba-e7c0-4394-9f96-385892c3bf58" name="XPath Match capacity"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseCapacity</path><content>500.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="0c893a04-7dfa-426e-b556-740eb5a48a1b" name="XPath Match area"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseArea</path><content>1000.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/addWarehouseRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="978773b6-cf34-4a04-8f8a-5da75441cb46" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addWarehouseMaterial TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="7d073fc8-4d12-4792-b66a-7029eac451fa" name="addWarehouseMaterial"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WarehouseBinding</con:interface><con:operation>addWarehouseMaterial</con:operation><con:request name="addWarehouseMaterial" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="8477e86b-9c7d-4799-b40e-ec83731971bc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addWarehouseMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseId>1</war:warehouseId>
+         <war:materialId>1</war:materialId>
+         <war:quantity>20.50</war:quantity>
+         <war:unitPrice>33.33</war:unitPrice>
+      </war:addWarehouseMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="cc14e7e7-2a95-49c4-aa3a-41c7a5bebda1" name="SOAP Response"/><con:assertion type="Schema Compliance" id="ec7daf68-5d0b-48ff-bc36-2c7bb41ef908" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="8e6ebef3-49f1-4279-996d-fe681a4bb0d9" name="XPath Match"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:id</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="5a86c44e-2c5d-4218-a54b-0f8e906d6868" name="XPath Match name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:name</path><content>Window</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="2fcb16bf-f30a-4331-bb44-f5df07c8f083" name="XPath Match code"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:code</path><content>WIN0001TLN20LDU</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="a6f61cba-a115-4daa-8239-44bca822c0c7" name="XPath Match composition"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:composition</path><content>Glass, plastic</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="689e19f4-6c46-4b39-9f68-0e0d5b612c14" name="XPath Match durability"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:durability</path><content>Low</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="53c06ca3-378a-48b5-94b0-088269e152f7" name="XPath Match quantity"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:quantity</path><content>20.5</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="db43305b-a96e-4233-981d-a1d8bcbf6241" name="XPath Match unit price"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:unitPrice</path><content>33.33</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/addWarehouseMaterialRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="66ec7246-fe3f-4f26-880c-cddfb4b8d3d8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getMaterial TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="1ef908a5-2434-4d25-9ed6-0f41d4bfbff6" name="getMaterial"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WarehouseBinding</con:interface><con:operation>getMaterial</con:operation><con:request name="getMaterial" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="06b60b05-9b37-4340-9a8b-cc963dcee330"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:id>1</war:id>
+      </war:getMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="85b2af36-32a0-4e24-89bf-730a66bdfdc1" name="SOAP Response"/><con:assertion type="Schema Compliance" id="f0269514-588d-4b96-a839-fc184d14ff31" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="b2a2fb7a-ba4c-467a-9260-9aed005c3e5d" name="XPath Match id"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:id</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="4507eba0-a7e8-4625-9c82-d0f1d2a2c227" name="XPath Match name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:name</path><content>Window</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="08120916-0d65-402e-bded-f885dee1d86c" name="XPath Match code"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:code</path><content>WIN0001TLN20LDU</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="bb01485d-623d-4f53-84b2-262a4e163b48" name="XPath Match composition"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:composition</path><content>Glass, plastic</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="c8c7fa53-ddde-4745-827d-e3ef0feeca06" name="XPath Match durability"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:durability</path><content>Low</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getMaterialRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="9ee021ea-acc7-482b-9263-517a5a75a6c0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getMaterialList TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="2c698430-532a-4714-9379-fef297dda695" name="getMaterialList"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WarehouseBinding</con:interface><con:operation>getMaterialList</con:operation><con:request name="getMaterialList" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="25d6900c-8f69-4f23-91c1-25ffe8ed29de"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getMaterialListRequest>
+         <war:token>salajane</war:token>
+      </war:getMaterialListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="37009273-bfe8-481f-b5ba-49047c059be8" name="SOAP Response"/><con:assertion type="Schema Compliance" id="91af4c9c-ee88-409d-96ed-71d1b552596b" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="26466d39-7d3e-4e10-82cb-448c06b2a6f3" name="XPath Match id"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:id</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="bb3eda8f-437b-4a76-88f1-d33ee82adac5" name="XPath Match name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:name</path><content>Window</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="91eb2279-d56b-4dca-9e1d-33df8f338055" name="XPath Match code"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:code</path><content>WIN0001TLN20LDU</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="091a53c8-c8e5-47be-acb7-1175211a4180" name="XPath Match composition"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:composition</path><content>Glass, plastic</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="c8299bab-e084-494c-9d57-7a0736b4390c" name="XPath durability"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:durability</path><content>Low</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getMaterialListRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="189f1f1c-f0bc-4f55-adeb-2bf229699028" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getWarehouse TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="7ce0d2aa-c497-49d3-b66f-85b0b9913d35" name="getWarehouse"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WarehouseBinding</con:interface><con:operation>getWarehouse</con:operation><con:request name="getWarehouse" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="ac67cedc-45cd-4680-ad0e-abed9d373994"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseRequest>
+         <war:token>salajane</war:token>
+         <war:id>1</war:id>
+      </war:getWarehouseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="ec19b10e-a583-420f-9630-de8e151d0128" name="SOAP Response"/><con:assertion type="Schema Compliance" id="ce20bde3-c269-44a5-a6bf-0bac6d9144b1" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="ea3fbef2-5822-4c4a-b081-9efa80b3e91b" name="XPath Match id"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:id</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="b1f4ef3d-834c-4c3a-b109-261cdb84da98" name="XPath Match warehouse name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseName</path><content>Tallinn Ladu</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="bc908fb0-e25a-4fde-8a41-03e5b20b4408" name="XPath Match warehouse address"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseAddress</path><content>Kalmistu tee 26</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="2a2c22ab-993d-4c4d-8566-5cde6d0eabe6" name="XPath Match capacity"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseCapacity</path><content>500.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="bd098394-5370-44f6-b59f-6aa087752b7f" name="XPath Match area"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseArea</path><content>1000.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getWarehouseRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="36cc7b26-ed50-4e9e-8699-e59f229d4395" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getWarehouseList TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="14deac56-6148-439a-9aa7-fbfa79d08ce4" name="getWarehouseList"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WarehouseBinding</con:interface><con:operation>getWarehouseList</con:operation><con:request name="getWarehouseList" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="ad6661b5-aeeb-4263-ad47-b9be04d72bdc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseListRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseName>Tallinn Ladu</war:warehouseName>
+         <war:warehouseAddress>Kalmistu tee 26</war:warehouseAddress>
+         <!--Optional:-->
+         <war:hasRelatedMaterials>ei</war:hasRelatedMaterials>
+      </war:getWarehouseListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="1d1ad69d-8c9e-4e8b-a984-cb0648753606" name="SOAP Response"/><con:assertion type="Schema Compliance" id="b4529deb-33a0-4d59-8dfe-6b54e02fd0da" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="f076bbfc-3d37-44da-871f-0b378aa9b952" name="XPath Match ei / id"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:id</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="d1faedf3-3599-4709-be2f-a98f1d16c956" name="XPath Match ei / warehouse name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseName</path><content>Tallinn Ladu</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="41a25072-f5e2-474f-b2c6-f10a93f5278e" name="XPath Match ei / capacity"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseCapacity</path><content>500.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="778b154b-5e5a-4c5f-ab2d-d6e28763e4eb" name="XPath Match ei / area"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:warehouseArea</path><content>1000.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getWarehouseListRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="5ff72f76-06f6-4c12-b3bf-e45f9b6e4c1f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getWarehouseMaterialList TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="71618e41-282e-47c3-b124-8416b2857b5d" name="getWarehouseMaterialList"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WarehouseBinding</con:interface><con:operation>getWarehouseMaterialList</con:operation><con:request name="getWarehouseMaterialList" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="c08ab5ce-e653-47c4-95ed-c90083ee03bc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/Warehouse/WarehouseService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseMaterialListRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseId>1</war:warehouseId>
+      </war:getWarehouseMaterialListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c3e6a150-c592-4c48-ac0b-3f62b3ab6add" name="SOAP Response"/><con:assertion type="Schema Compliance" id="36326686-61c8-492b-b9b1-8c042a46f955" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="b6078b9d-70b2-4322-aece-a71c30d20192" name="XPath Match id"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:id</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="057b1183-612e-4cbb-8127-e1d2473e7e81" name="XPath Match name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:name</path><content>Window</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="66d4c2df-4473-4ce3-bce4-eb8675329808" name="XPath Match code"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:code</path><content>WIN0001TLN20LDU</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="1b8132f8-aa44-47e4-bc3e-cf9e9e3da3bc" name="XPath Match composition"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:composition</path><content>Glass, plastic</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="b7118cc9-d004-43c2-b8fd-18cf7faee167" name="XPath Match durability"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:durability</path><content>Low</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="231a72ef-7bb4-43d4-bd72-3e59520a208b" name="XPath Match quantity"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:quantity</path><content>20.5</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="9b4290dd-bd08-4327-a604-2d071102e059" name="XPath Match unit price"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+//ware:unitPrice</path><content>33.33</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getWarehouseMaterialListRequest"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
