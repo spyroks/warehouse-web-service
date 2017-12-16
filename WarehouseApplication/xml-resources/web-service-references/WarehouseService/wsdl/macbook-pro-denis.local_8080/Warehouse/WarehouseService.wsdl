@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ttu.ee/idu0075/warehouse" targetNamespace="http://www.ttu.ee/idu0075/warehouse">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.ttu.ee/idu0075/warehouse" elementFormDefault="qualified">
+			<xs:complexType name="materialType">
+				<xs:sequence>
+					<xs:element name="id" type="xs:integer"/>
+					<xs:element name="name" type="xs:string"/>
+					<xs:element name="code" type="xs:string"/>
+					<xs:element name="composition" type="xs:string"/>
+					<xs:element name="durability" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="warehouseMaterialType">
+				<xs:sequence>
+					<xs:element name="material" type="tns:materialType"/>
+					<xs:element name="quantity" type="xs:double"/>
+					<xs:element name="unitPrice" type="xs:double"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="warehouseMaterialListType">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="warehouseMaterial" type="tns:warehouseMaterialType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="warehouseType">
+				<xs:sequence>
+					<xs:element name="id" type="xs:integer"/>
+					<xs:element name="warehouseName" type="xs:string"/>
+					<xs:element name="warehouseAddress" type="xs:string"/>
+					<xs:element name="warehouseCapacity" type="xs:double"/>
+					<xs:element name="warehouseArea" type="xs:double"/>
+					<xs:element name="warehouseMaterialList" type="tns:warehouseMaterialListType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="getMaterialRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="token" type="xs:string"/>
+						<xs:element name="id" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getMaterialResponse" type="tns:materialType"/>
+			<xs:element name="addMaterialRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="token" type="xs:string"/>
+						<xs:element name="name" type="xs:string"/>
+						<xs:element name="code" type="xs:string"/>
+						<xs:element name="composition" type="xs:string"/>
+						<xs:element name="durability" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="addMaterialResponse" type="tns:materialType"/>
+			<xs:element name="getMaterialListRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="token" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getMaterialListResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded" name="material" type="tns:materialType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getWarehouseRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="token" type="xs:string"/>
+						<xs:element name="id" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getWarehouseResponse" type="tns:warehouseType"/>
+			<xs:element name="addWarehouseRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="token" type="xs:string"/>
+						<xs:element name="warehouseName" type="xs:string"/>
+						<xs:element name="warehouseAddress" type="xs:string"/>
+						<xs:element name="warehouseCapacity" type="xs:double"/>
+						<xs:element name="warehouseArea" type="xs:double"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="addWarehouseResponse" type="tns:warehouseType"/>
+			<xs:element name="getWarehouseListRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="token" type="xs:string"/>
+						<xs:element name="warehouseName" type="xs:string"/>
+						<xs:element name="warehouseAddress" type="xs:string"/>
+						<xs:element minOccurs="0" name="hasRelatedMaterials">
+						  <xs:simpleType>
+							<xs:restriction base="xs:string">
+							  <xs:pattern value="jah|ei"/>
+							</xs:restriction>
+						  </xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getWarehouseListResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded" name="warehouse" type="tns:warehouseType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getWarehouseMaterialListRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="token" type="xs:string"/>
+						<xs:element name="warehouseId" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getWarehouseMaterialListResponse" type="tns:warehouseMaterialListType"/>
+			<xs:element name="addWarehouseMaterialRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="token" type="xs:string"/>
+						<xs:element name="warehouseId" type="xs:integer"/>
+						<xs:element name="materialId" type="xs:integer"/>
+						<xs:element name="quantity" type="xs:double"/>
+						<xs:element name="unitPrice" type="xs:double"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="addWarehouseMaterialResponse" type="tns:warehouseMaterialType"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getMaterialMessageRequest">
+		<wsdl:part name="parameter" element="tns:getMaterialRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getMaterialMessageResponse">
+		<wsdl:part name="parameter" element="tns:getMaterialResponse"/>
+	</wsdl:message>
+	<wsdl:message name="addMaterialMessageRequest">
+		<wsdl:part name="parameter" element="tns:addMaterialRequest"/>
+	</wsdl:message>
+	<wsdl:message name="addMaterialMessageResponse">
+		<wsdl:part name="parameter" element="tns:addMaterialResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getMaterialListMessageRequest">
+		<wsdl:part name="parameter" element="tns:getMaterialListRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getMaterialListMessageResponse">
+		<wsdl:part name="parameter" element="tns:getMaterialListResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getWarehouseMessageRequest">
+		<wsdl:part name="parameter" element="tns:getWarehouseRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getWarehouseMessageResponse">
+		<wsdl:part name="parameter" element="tns:getWarehouseResponse"/>
+	</wsdl:message>
+	<wsdl:message name="addWarehouseMessageRequest">
+		<wsdl:part name="parameter" element="tns:addWarehouseRequest"/>
+	</wsdl:message>
+	<wsdl:message name="addWarehouseMessageResponse">
+		<wsdl:part name="parameter" element="tns:addWarehouseResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getWarehouseListMessageRequest">
+		<wsdl:part name="parameter" element="tns:getWarehouseListRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getWarehouseListMessageResponse">
+		<wsdl:part name="parameter" element="tns:getWarehouseListResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getWarehouseMaterialListMessageRequest">
+		<wsdl:part name="parameter" element="tns:getWarehouseMaterialListRequest"/>
+	</wsdl:message>
+	<wsdl:message name="getWarehouseMaterialListMessageResponse">
+		<wsdl:part name="parameter" element="tns:getWarehouseMaterialListResponse"/>
+	</wsdl:message>
+	<wsdl:message name="addWarehouseMaterialMessageRequest">
+		<wsdl:part name="parameter" element="tns:addWarehouseMaterialRequest"/>
+	</wsdl:message>
+	<wsdl:message name="addWarehouseMaterialMessageResponse">
+		<wsdl:part name="parameter" element="tns:addWarehouseMaterialResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="WarehousePortType">
+		<wsdl:operation name="getMaterial">
+			<wsdl:input message="tns:getMaterialMessageRequest"/>
+			<wsdl:output message="tns:getMaterialMessageResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="addMaterial">
+			<wsdl:input message="tns:addMaterialMessageRequest"/>
+			<wsdl:output message="tns:addMaterialMessageResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getMaterialList">
+			<wsdl:input message="tns:getMaterialListMessageRequest"/>
+			<wsdl:output message="tns:getMaterialListMessageResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getWarehouse">
+			<wsdl:input message="tns:getWarehouseMessageRequest"/>
+			<wsdl:output message="tns:getWarehouseMessageResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="addWarehouse">
+			<wsdl:input message="tns:addWarehouseMessageRequest"/>
+			<wsdl:output message="tns:addWarehouseMessageResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getWarehouseList">
+			<wsdl:input message="tns:getWarehouseListMessageRequest"/>
+			<wsdl:output message="tns:getWarehouseListMessageResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="getWarehouseMaterialList">
+			<wsdl:input message="tns:getWarehouseMaterialListMessageRequest"/>
+			<wsdl:output message="tns:getWarehouseMaterialListMessageResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="addWarehouseMaterial">
+			<wsdl:input message="tns:addWarehouseMaterialMessageRequest"/>
+			<wsdl:output message="tns:addWarehouseMaterialMessageResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="WarehouseBinding" type="tns:WarehousePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getMaterial">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addMaterial">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getMaterialList">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getWarehouse">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addWarehouse">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getWarehouseList">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getWarehouseMaterialList">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addWarehouseMaterial">
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="WarehouseService">
+		<wsdl:port name="WarehousePort" binding="tns:WarehouseBinding">
+			<soap:address location="http://macbook-pro-denis.local:8080/Warehouse/WarehouseService"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

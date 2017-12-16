@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${libs.jaxws21.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-WarehouseService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/WarehouseService"/>
+        <property name="wsdl-WarehouseService" location="xml-resources/web-service-references/WarehouseService/wsdl/macbook-pro-denis.local_8080/Warehouse/WarehouseService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WarehouseService" destdir="${build.generated.dir}/jax-wsCache/WarehouseService" wsdl="${wsdl-WarehouseService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://macbook-pro-denis.local:8080/Warehouse/WarehouseService?wsdl" xnocompile="true" xendorsed="true" package="warehouseapplication">
+            <depends file="${wsdl-WarehouseService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/WarehouseService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/WarehouseService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-WarehouseService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/WarehouseService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/warehouseapplication"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-WarehouseService"/>
+</project>
