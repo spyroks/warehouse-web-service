@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WarehouseService", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", wsdlLocation = "file:/Users/spyrox/Desktop/Veebiteenused/Warehouse/src/conf/xml-resources/web-services/WarehouseWebService/wsdl/WarehouseService.wsdl")
+@WebServiceClient(name = "WarehouseService", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", wsdlLocation = "file:/Users/spyrox/Desktop/Veebiteenused/WarehouseWebApplication/src/conf/xml-resources/web-services/WarehouseWebService/wsdl/WarehouseService.wsdl")
 public class WarehouseService
     extends Service
 {
@@ -30,7 +30,7 @@ public class WarehouseService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/Users/spyrox/Desktop/Veebiteenused/Warehouse/src/conf/xml-resources/web-services/WarehouseWebService/wsdl/WarehouseService.wsdl");
+            url = new URL("file:/Users/spyrox/Desktop/Veebiteenused/WarehouseWebApplication/src/conf/xml-resources/web-services/WarehouseWebService/wsdl/WarehouseService.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

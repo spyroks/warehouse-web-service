@@ -172,12 +172,4 @@ public class MaterialType {
         this.durability = value;
     }
 
-    void composition(String composition) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void durability(String durability) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
