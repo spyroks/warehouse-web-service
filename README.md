@@ -8,7 +8,6 @@
 * [Teenuse põhioperatsioonid](#teenuse-põhioperatsioonid)
   - [Üldine info teenuse kohta](#Üldine-info-teenuse-kohta)
     + [API_TOKEN](#api_token)
-    + [Päringu ID](#päringu-id)
 * [SOAP API kirjeldus](#soap-api-kirjeldus)
   - [SOAP API Operatsioonid](#soap-api-operatsioonid)
   - [SOAP API Operatsioonide kirjeldused](#soap-api-operatsioonide-kirjeldused)
