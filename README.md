@@ -52,7 +52,7 @@ Teenuse materjalid võivad kuuluda ladule kuid see pole kohustuslik.
 
 
 ### Warehouse
-Teenuse piiredes võivad olla mitu ladusid. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud aadress mille kaudu seda saab leida. Teemaga on samuti seotud värv mida saab kasutajale välja näidata.
+Teenuse piiredes võivad olla mitu ladusid. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud aadress mille kaudu seda saab leida.
 
 Ladu iseloomustavad järgmised atribuudid.
 * **id** - Unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt
@@ -60,6 +60,7 @@ Ladu iseloomustavad järgmised atribuudid.
 * **warehouseAddress**  - Ladu aadress
 * **warehouseCapacity**  - Ladu ruumala
 * **warehouseArea** - Ladu pindala
+* **warehouseMaterialList** - Ladule kuuluvaid materjalid
 
 Näiteks võib olla järgnev ladu:
 * **id** - 1
@@ -67,6 +68,7 @@ Näiteks võib olla järgnev ladu:
 * **warehouseAddress**  - Kalmistu tee 26
 * **warehouseCapacity**  - 500.00 m<sup>3</sup>
 * **warehouseArea** - 1000.00 m<sup>2</sup>
+* **warehouseMaterialList** - []
 
 
 
