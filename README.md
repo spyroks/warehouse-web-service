@@ -54,13 +54,13 @@ Teenuse materjalid võivad kuuluda ladule kuid see pole kohustuslik.
 ### Warehouse
 Teenuse piiredes võivad olla mitu ladusid. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud aadress mille kaudu seda saab leida.
 
-Ladu iseloomustavad järgmised atribuudid.
-* **id** - Unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt
-* **warehouseName** - Ladu nimi
-* **warehouseAddress**  - Ladu aadress
-* **warehouseCapacity**  - Ladu ruumala
-* **warehouseArea** - Ladu pindala
-* **warehouseMaterialList** - Ladule kuuluvaid materjalid
+Ladu iseloomustavad järgmised atribuudid:
+* **id** - unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt;
+* **warehouseName** - ladu nimi;
+* **warehouseAddress**  - ladu aadress;
+* **warehouseCapacity**  - ladu ruumala;
+* **warehouseArea** - ladu pindala;
+* **warehouseMaterialList** - ladule kuuluvaid materjalid.
 
 Näiteks võib olla järgnev ladu:
 * **id** - 1
@@ -79,12 +79,12 @@ Igal materjalil on nimi ja selle koostis.
 Samuti materjalile määratakse selle tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
 Materjali kood genereeritakse loomisel ja võib! sisaldada informatsiooni.
 
-Materjali iseloomustavad järgmised atribuudid.
-* **id** - Unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt
-* **name** - Materjali nimetus 
-* **code** - Materjali kood
-* **composition** - Materjali koostis
-* **durability** - Materjali tugevus
+Materjali iseloomustavad järgmised atribuudid:
+* **id** - unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt;
+* **name** - materjali nimetus;
+* **code** - materjali kood;
+* **composition** - materjali koostis;
+* **durability** - materjali tugevus.
 
 Näiteks võib olla järgmine materjal:
 * **id** - 5
