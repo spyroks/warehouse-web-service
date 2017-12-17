@@ -129,17 +129,12 @@ Teenusel põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb
 #### API_TOKEN
 Teenus kasutab autentimiseks `API_TOKEN`-it. Et saada endale `API_TOKEN` millega saab teenust kasutada tuleb seda küsida teenuse haldurilt.
 
-
-
-#### Päringu ID
-Igal päringul on päringu id ehk `request id`. Selle abil saab vältida kogemata tekkinud topeltpäringutele reageerimist. Päringu id peab olema unikaalne iga `API_TOKEN`-i kohta.
-
 **Näide:**
-* Saadetakse materjali loomise päring `API_TOKEN` salajane ja `request id` on 1
-* Teenuses salvestatakse materjal
-* Saadetakse materjali loomise päring `API_TOKEN` salajane ja `request id` on 1
-* Uut materjali ei looda, sest request id ja api token on juba kasutatud
-* Saadetakse postituse loomise päring `API_TOKEN` salajane ja `request id` on 2
-* Teenuses salvestatakse materjal
+* Saadetakse materjali loomise päring `API_TOKEN` salajane
+* Teenuses salvestatakse materjal id-ga 1
+* Saadetakse materjali loomise päring `API_TOKEN` mittesalajane
+* Uut materjali ei looda, sest api token on ebakorrektne
+* Saadetakse postituse loomise päring `API_TOKEN` salajane
+* Teenuses salvestatakse materjal id-ga 2
 
 ***
