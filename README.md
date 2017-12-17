@@ -94,3 +94,52 @@ Näiteks võib olla järgmine materjal:
 * **durability** - Low
 
 ***
+
+
+
+
+
+## Teenuse põhioperatsioonid
+Teenusel põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb nimekiri lühikeste kirjeldustega võimalikest teenustest.
+
+* **Ladu lisamine**
+    - Saab lisada ladu
+* **Ühe ladu küsimine**
+    - Saab küsida andmeid ühe ladu kohta selle id järgi
+* **Kõikide ladude küsimine**
+    - Saab küsida andmeid kõikide ladude kohta
+* **Materjali lisamine**
+    - Saab lisada materjali
+* **Ühe materjali küsimine**
+    - Saab küsida andmeid ühe materjali kohta selle id järgi
+* **Kõikide materjalide küsimine**
+    - Saab küsida andmeid kõikide materjalide kohta
+* **Materjali ladule lisamine**
+    - Saab lisada olemasolevat materjali olemasolevasse lattu
+* **Ühe ladu kõikide materjalide küsimine**
+    - Saab küsida kõikide materjalide nimekiri ja selle andmeid ühe ladu kohta selle id järgi
+
+
+
+
+
+### Üldine info teenuse kohta
+
+
+#### API_TOKEN
+Teenus kasutab autentimiseks `API_TOKEN`-it. Et saada endale `API_TOKEN` millega saab teenust kasutada tuleb seda küsida teenuse haldurilt.
+
+
+
+#### Päringu ID
+Igal päringul on päringu id ehk `request id`. Selle abil saab vältida kogemata tekkinud topeltpäringutele reageerimist. Päringu id peab olema unikaalne iga `API_TOKEN`-i kohta.
+
+**Näide:**
+* Saadetakse materjali loomise päring `API_TOKEN` salajane ja `request id` on 1
+* Teenuses salvestatakse materjal
+* Saadetakse materjali loomise päring `API_TOKEN` salajane ja `request id` on 1
+* Uut materjali ei looda, sest request id ja api token on juba kasutatud
+* Saadetakse postituse loomise päring `API_TOKEN` salajane ja `request id` on 2
+* Teenuses salvestatakse materjal
+
+***
