@@ -63,12 +63,12 @@ Ladu iseloomustavad järgmised atribuudid:
 * **warehouseMaterialList** - ladule kuuluvaid materjalid.
 
 Näiteks võib olla järgnev ladu:
-* **id** - 1
-* **warehouseName** - Tallinn Ladu
-* **warehouseAddress**  - Kalmistu tee 26
-* **warehouseCapacity**  - 500.00 m<sup>3</sup>
-* **warehouseArea** - 1000.00 m<sup>2</sup>
-* **warehouseMaterialList** - []
+* **id** - 1;
+* **warehouseName** - Tallinn Ladu;
+* **warehouseAddress**  - Kalmistu tee 26;
+* **warehouseCapacity**  - 500.00 m<sup>3</sup>;
+* **warehouseArea** - 1000.00 m<sup>2</sup>;
+* **warehouseMaterialList** - [].
 
 
 
@@ -87,11 +87,11 @@ Materjali iseloomustavad järgmised atribuudid:
 * **durability** - materjali tugevus.
 
 Näiteks võib olla järgmine materjal:
-* **id** - 5
-* **name** - Window 
-* **code** - WIN0001TLN20LDU
-* **composition** - Glass, plastic
-* **durability** - Low
+* **id** - 5;
+* **name** - Window;
+* **code** - WIN0001TLN20LDU;
+* **composition** - Glass, plastic;
+* **durability** - Low.
 
 ***
 
@@ -103,21 +103,21 @@ Näiteks võib olla järgmine materjal:
 Teenusel põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb nimekiri lühikeste kirjeldustega võimalikest teenustest.
 
 * **Ladu lisamine**
-    - Saab lisada ladu
+    - Saab lisada ladu.
 * **Ühe ladu küsimine**
-    - Saab küsida andmeid ühe ladu kohta selle id järgi
+    - Saab küsida andmeid ühe ladu kohta selle id järgi.
 * **Kõikide ladude küsimine**
-    - Saab küsida andmeid kõikide ladude kohta
+    - Saab küsida andmeid kõikide ladude kohta.
 * **Materjali lisamine**
-    - Saab lisada materjali
+    - Saab lisada materjali.
 * **Ühe materjali küsimine**
-    - Saab küsida andmeid ühe materjali kohta selle id järgi
+    - Saab küsida andmeid ühe materjali kohta selle id järgi.
 * **Kõikide materjalide küsimine**
-    - Saab küsida andmeid kõikide materjalide kohta
+    - Saab küsida andmeid kõikide materjalide kohta.
 * **Materjali ladule lisamine**
-    - Saab lisada olemasolevat materjali olemasolevasse lattu
+    - Saab lisada olemasolevat materjali olemasolevasse lattu.
 * **Ühe ladu kõikide materjalide küsimine**
-    - Saab küsida kõikide materjalide nimekiri ja selle andmeid ühe ladu kohta selle id järgi
+    - Saab küsida kõikide materjalide nimekiri ja selle andmeid ühe ladu kohta selle id järgi.
 
 
 
@@ -129,12 +129,12 @@ Teenusel põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb
 Teenus kasutab autentimiseks `API_TOKEN`-it. Et saada endale `API_TOKEN` millega saab teenust kasutada tuleb seda küsida teenuse haldurilt.
 
 **Näide:**
-* Saadetakse materjali loomise päring `API_TOKEN` salajane
-* Teenuses salvestatakse materjal id-ga 1
-* Saadetakse materjali loomise päring `API_TOKEN` mittesalajane
-* Uut materjali ei looda, sest api token on ebakorrektne
-* Saadetakse postituse loomise päring `API_TOKEN` salajane
-* Teenuses salvestatakse materjal id-ga 2
+* Saadetakse materjali loomise päring `API_TOKEN` salajane.
+* Teenuses salvestatakse materjal id-ga 1.
+* Saadetakse materjali loomise päring `API_TOKEN` mittesalajane.
+* Uut materjali ei looda, sest api token on ebakorrektne.
+* Saadetakse postituse loomise päring `API_TOKEN` salajane.
+* Teenuses salvestatakse materjal id-ga 2.
 
 ***
 
