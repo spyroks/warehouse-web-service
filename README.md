@@ -24,7 +24,7 @@ Antud dokumentatsioonis on kirjeldatud aine Veebiteenused projekti teenust. Proj
 
 Teenus on realiseeritud kasutades [Netbeansi](https://netbeans.org) ning [Glassfishi serverit](https://glassfish.java.net). Teenuse rakendus asub kaustas `WarehouseWebApplication` ja klientrakendus asub kaustas `WarehouseApplication`.
 
-Teenust kasutades saab lisada ja vaadata ladusid ja nende materjale.
+Teenust kasutades saab lisada ja vaadata laod ja nende materjale.
 
 **Autor**: Denis Rästas 155552IAPB
 
@@ -52,7 +52,7 @@ Teenuse materjalid võivad kuuluda ladule kuid see pole kohustuslik.
 
 
 ### Warehouse
-Teenuse piiredes võivad olla mitu ladusid. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud aadress mille kaudu seda saab leida.
+Teenuse piiredes võivad olla mitu laod. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud aadress mille kaudu seda saab leida.
 
 Ladu iseloomustavad järgmised atribuudid:
 * **id** - unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt;
@@ -172,10 +172,10 @@ Ladu lisamise operatsioon. Saab lisada ladu millel on nimi ja aadress, selle ruu
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
 * `Warehouse`
-    - `warehouseName` - `string`, ladu nimi
-    - `warehouseAddress` - `string`, ladu aadress
-    - `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 3333.334 või 1500 m<sup>3</sup>)
-    - `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 615.12 või 843 m<sup>2</sup>)
+    - `warehouseName` - `string`, ladu nimi;
+    - `warehouseAddress` - `string`, ladu aadress;
+    - `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
+    - `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 3333.334 või 1500 m<sup>2</sup>).
 
 ###### Näidis SOAP päring (request)
 ~~~xml
@@ -196,12 +196,12 @@ Väljad päringus andmetüüpidega on järgnevad:
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
 * `Warehouse`
-    - `id` - `integer`, loodud ladu unikaalne identifikaator, genereeritakse süsteemi poolt
-    - `warehouseName` - `string`, loodud ladu nimi
-    - `warehouseAddress` - `string`, loodud ladu aadress
-    - `warehouseCapacity` - `double`, loodud ladu ruumala
-    - `warehouseArea` - `double`, loodud ladu pindala
-    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri
+    - `id` - `integer`, loodud ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `warehouseName` - `string`, loodud ladu nimi;
+    - `warehouseAddress` - `string`, loodud ladu aadress;
+    - `warehouseCapacity` - `double`, loodud ladu ruumala;
+    - `warehouseArea` - `double`, loodud ladu pindala;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -227,8 +227,8 @@ Väljad vastuses andmetüüpidega on järgnevad:
 Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
 ##### Sisendandmete kirjeldus
-Väljad päringus andmetüüpidega on järgnevad:
-* `id` - `integer`, küsitava ladu id
+Päringus on ainult üks väärtus:
+* `id` - `integer`, küsitava ladu id.
 
 ###### Näidis SOAP päring (request)
 ~~~xml
@@ -246,12 +246,12 @@ Väljad päringus andmetüüpidega on järgnevad:
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
 * `Warehouse`
-    - `id` - `integer`, küsitava ladu unikaalne identifikaator, genereeritakse süsteemi poolt
-    - `warehouseName` - `string`, küsitava ladu nimi
-    - `warehouseAddress` - `string`, küsitava ladu aadress
-    - `warehouseCapacity` - `double`, küsitava ladu ruumala
-    - `warehouseArea` - `double`, küsitava ladu pindala
-    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava ladu materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule
+    - `id` - `integer`, küsitava ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `warehouseName` - `string`, küsitava ladu nimi;
+    - `warehouseAddress` - `string`, küsitava ladu aadress;
+    - `warehouseCapacity` - `double`, küsitava ladu ruumala;
+    - `warehouseArea` - `double`, küsitava ladu pindala;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava ladu materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -265,6 +265,67 @@ Väljad vastuses andmetüüpidega on järgnevad:
          <warehouseArea>1000.0</warehouseArea>
          <warehouseMaterialList/>
       </getWarehouseResponse>
+   </S:Body>
+</S:Envelope>
+~~~
+
+
+
+
+
+#### getWarehouseList
+Kõikide ladude küsimise operatsioon. Operatsioonil on olemas mittekohustuslik (`optional`) päringu parameeter. See parameeter toimib nagu küsimise sorteerija. Vastuseks tagastatakse kõik laod selle parameetri järgi.
+
+##### Sisendandmete kirjeldus
+Päringus on ainult üks väärtus:
+* `hasRelatedMaterials` - `string`, küsimise sorteerija piiranguga (`restiction`). Ainus vastuvõetav väärtus on `jah` või `ei`. Pannes `jah` tagastab kõik laod millel on materjalid, `ei` - kõik tühjad laod. Kui jätta tühjaks siis sorteerimine ei toimu ning tagastatakse kõik laod.
+
+###### Näidis SOAP päring (request)
+~~~xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseListRequest>
+         <war:token>salajane</war:token>
+         <!--Optional:-->
+         <war:hasRelatedMaterials>ei</war:hasRelatedMaterials>
+      </war:getWarehouseListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+~~~
+
+##### Väljundandmete kirjeldus
+Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on järgnevad:
+* `Warehouses` - Nimekiri ladudest
+    - `Warehouse` - Üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse) vastusega
+        + `ID` - `integer`
+        + `warehouseName` - `string`
+        + `warehouseAddress` - `string`
+        + `warehouseCapacity` - `double`
+        + `warehouseArea` - `double`
+
+###### Näidis SOAP vastus (response)
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <getWarehouseListResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <warehouse>
+            <id>1</id>
+            <warehouseName>Tallinn Ladu</warehouseName>
+            <warehouseAddress>Kalmistu tee 26</warehouseAddress>
+            <warehouseCapacity>500.0</warehouseCapacity>
+            <warehouseArea>1000.0</warehouseArea>
+            <warehouseMaterialList/>
+         </warehouse>
+         <warehouse>
+            <id>2</id>
+            <warehouseName>Laki Ladu</warehouseName>
+            <warehouseAddress>Suur-Sõjamäe 33a</warehouseAddress>
+            <warehouseCapacity>615.12</warehouseCapacity>
+            <warehouseArea>3333.34</warehouseArea>
+            <warehouseMaterialList/>
+         </warehouse>
+      </getWarehouseListResponse>
    </S:Body>
 </S:Envelope>
 ~~~
