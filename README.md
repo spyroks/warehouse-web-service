@@ -7,7 +7,7 @@
   - [Material](#material)
 * [Teenuse põhioperatsioonid](#teenuse-põhioperatsioonid)
   - [Üldine info teenuse kohta](#Üldine-info-teenuse-kohta)
-    + [API_TOKEN](#api_token)
+    + [token](#token)
 * [SOAP API kirjeldus](#soap-api-kirjeldus)
   - [SOAP API Operatsioonid](#soap-api-operatsioonid)
   - [SOAP API Operatsioonide kirjeldused](#soap-api-operatsioonide-kirjeldused)
@@ -125,15 +125,15 @@ Teenusel põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb
 
 ### Üldine info teenuse kohta
 
-#### API_TOKEN
-Teenus kasutab autentimiseks `API_TOKEN`-it. Et saada endale `API_TOKEN` millega saab teenust kasutada tuleb seda küsida teenuse haldurilt.
+#### token
+Teenus kasutab autentimiseks `token`-it. Et saada endale `token` millega saab teenust kasutada tuleb seda küsida teenuse haldurilt.
 
 **Näide:**
-* Saadetakse materjali loomise päring `API_TOKEN` salajane.
+* Saadetakse materjali loomise päring `token` salajane.
 * Teenuses salvestatakse materjal id-ga 1.
-* Saadetakse materjali loomise päring `API_TOKEN` mittesalajane.
+* Saadetakse materjali loomise päring `token` mittesalajane.
 * Uut materjali ei looda, sest api token on ebakorrektne.
-* Saadetakse postituse loomise päring `API_TOKEN` salajane.
+* Saadetakse postituse loomise päring `token` salajane.
 * Teenuses salvestatakse materjal id-ga 2.
 
 ***
@@ -160,7 +160,7 @@ SOAP teenuses on võimalikud järgmised operatsioonid:
 ### SOAP API Operatsioonide kirjeldused
 Järgnevad SOAP teenuse operatsioonide kirjeldused.
 
-Iga päring peab sisaldama korrektne `API_TOKEN`.
+Iga päring peab sisaldama korrektne `token`.
 
 
 
@@ -441,7 +441,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid.
 
 ##### Sisendandmete kirjeldus
-Päringus peale `API_TOKEN`-i väärtuseid ei ole.
+Päringus peale `token`-i väärtuseid ei ole.
 
 ###### Näidis SOAP päring (request)
 ~~~xml
