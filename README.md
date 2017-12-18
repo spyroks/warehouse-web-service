@@ -33,6 +33,7 @@ Teenust kasutades saab lisada ja vaadata ladusid ja nende materjale.
 
 
 
+
 ## Teenuse põhiobjektid
 Teenuse põhiobjektid millega tegeletakse on `Warehouse` ja `Material`.
 Laos võib olla mitu materjali. Üldine struktuuri jaotus on järgnev:
@@ -124,7 +125,6 @@ Teenusel põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb
 
 ### Üldine info teenuse kohta
 
-
 #### API_TOKEN
 Teenus kasutab autentimiseks `API_TOKEN`-it. Et saada endale `API_TOKEN` millega saab teenust kasutada tuleb seda küsida teenuse haldurilt.
 
@@ -137,3 +137,84 @@ Teenus kasutab autentimiseks `API_TOKEN`-it. Et saada endale `API_TOKEN` millega
 * Teenuses salvestatakse materjal id-ga 2
 
 ***
+
+
+
+
+
+## SOAP API kirjeldus
+API on ligipääsetav aadressil `(hostname)/WarehouseWebApplication/WarehouseService`.
+API kasutatav WSDL fail asub teenuse kaustas `src/conf/xml-resources/web-services/WarehouseWebService/wsdl/WarehouseService.wsdl` ning on saadaval ka *deploy*itud rakenduse URIle lisades `?wsdl` ehk `(hostname)/WarehouseWebApplication/WarehouseService?wsdl`.
+
+### SOAP API Operatsioonid
+SOAP teenuses on võimalikud järgmised operatsioonid:
+* [addWarehouse](#addwarehouse)
+* [getWarehouse](#getwarehouse)
+* [getWarehouseList](#getwarehouselist)
+* [addMaterial](#addmaterial)
+* [getMaterial](#getmaterial)
+* [getMaterialList](#getmateriallist)
+* [addWarehouseMaterial](#addwarehousematerial)
+* [getWarehouseMaterialList](#getwarehousemateriallist)
+
+### SOAP API Operatsioonide kirjeldused
+Järgnevad SOAP teenuse operatsioonide kirjeldused.
+
+Iga päring peab sisaldama korrektne `API_TOKEN`.
+
+
+
+
+
+#### addWarehouse
+Ladu lisamise operatsioon. Saab lisada ladu millel on nimi ja aadress, selle ruumala ja pindala.
+
+##### Sisendandmete kirjeldus
+Väljad päringus andmetüüpidega on järgnevad:
+* `Warehouse`
+    - `warehouseName` - `string`, ladu nimi
+    - `warehouseAddress` - `string`, ladu aadress
+    - `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 3333.334 või 1500)
+    - `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 615.12 või 843)
+
+###### Näidis SOAP päring (request)
+~~~xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addWarehouseRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseName>Tallinn Ladu</war:warehouseName>
+         <war:warehouseAddress>Kalmistu tee 26</war:warehouseAddress>
+         <war:warehouseCapacity>500</war:warehouseCapacity>
+         <war:warehouseArea>1000</war:warehouseArea>
+      </war:addWarehouseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+~~~
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `Warehouse`
+    - `id` - `integer`, loodud ladu unikaalne identifikaator, genereeritakse süsteemi poolt
+    - `warehouseName` - `string`, loodud ladu nimi
+    - `warehouseAddress` - `string`, loodud ladu aadress
+    - `warehouseCapacity` - `double`, loodud ladu ruumala
+    - `warehouseArea` - `double`, loodud ladu pindala
+    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri
+
+###### Näidis SOAP vastus (response)
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <addWarehouseResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <id>1</id>
+         <warehouseName>Tallinn Ladu</warehouseName>
+         <warehouseAddress>Kalmistu tee 26</warehouseAddress>
+         <warehouseCapacity>500.0</warehouseCapacity>
+         <warehouseArea>1000.0</warehouseArea>
+         <warehouseMaterialList/>
+      </addWarehouseResponse>
+   </S:Body>
+</S:Envelope>
+~~~
