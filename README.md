@@ -174,8 +174,8 @@ Väljad päringus andmetüüpidega on järgnevad:
 * `Warehouse`
     - `warehouseName` - `string`, ladu nimi
     - `warehouseAddress` - `string`, ladu aadress
-    - `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 3333.334 või 1500)
-    - `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 615.12 või 843)
+    - `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 3333.334 või 1500 m<sup>3</sup>)
+    - `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 615.12 või 843 m<sup>2</sup>)
 
 ###### Näidis SOAP päring (request)
 ~~~xml
@@ -215,6 +215,56 @@ Väljad vastuses andmetüüpidega on järgnevad:
          <warehouseArea>1000.0</warehouseArea>
          <warehouseMaterialList/>
       </addWarehouseResponse>
+   </S:Body>
+</S:Envelope>
+~~~
+
+
+
+
+
+#### getWarehouse
+Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
+
+##### Sisendandmete kirjeldus
+Väljad päringus andmetüüpidega on järgnevad:
+* `id` - `integer`, küsitava ladu id
+
+###### Näidis SOAP päring (request)
+~~~xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseRequest>
+         <war:token>salajane</war:token>
+         <war:id>1</war:id>
+      </war:getWarehouseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+~~~
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `Warehouse`
+    - `id` - `integer`, küsitava ladu unikaalne identifikaator, genereeritakse süsteemi poolt
+    - `warehouseName` - `string`, küsitava ladu nimi
+    - `warehouseAddress` - `string`, küsitava ladu aadress
+    - `warehouseCapacity` - `double`, küsitava ladu ruumala
+    - `warehouseArea` - `double`, küsitava ladu pindala
+    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava ladu materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule
+
+###### Näidis SOAP vastus (response)
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <getWarehouseResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <id>1</id>
+         <warehouseName>Tallinn Ladu</warehouseName>
+         <warehouseAddress>Kalmistu tee 26</warehouseAddress>
+         <warehouseCapacity>500.0</warehouseCapacity>
+         <warehouseArea>1000.0</warehouseArea>
+         <warehouseMaterialList/>
+      </getWarehouseResponse>
    </S:Body>
 </S:Envelope>
 ~~~
