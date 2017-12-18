@@ -77,7 +77,7 @@ Näiteks võib olla järgnev ladu:
 ### Material
 Igal materjalil on nimi ja selle koostis.
 Samuti materjalile määratakse selle tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
-Materjali kood genereeritakse loomisel ja võib! sisaldada informatsiooni.
+Materjali kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni.
 
 Materjali iseloomustavad järgmised atribuudid:
 * **id** - unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt;
@@ -296,13 +296,13 @@ Päringus on ainult üks väärtus:
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on järgnevad:
-* `Warehouses` - Nimekiri ladudest
-    - `Warehouse` - Üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse) vastusega
-        + `ID` - `integer`
-        + `warehouseName` - `string`
-        + `warehouseAddress` - `string`
-        + `warehouseCapacity` - `double`
-        + `warehouseArea` - `double`
+* `Warehouses` - Nimekiri ladudest.
+    - `Warehouse` - Üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse) vastusega:
+        + `id` - `integer`;
+        + `warehouseName` - `string`;
+        + `warehouseAddress` - `string`;
+        + `warehouseCapacity` - `double`;
+        + `warehouseArea` - `double`.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -326,6 +326,165 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
             <warehouseMaterialList/>
          </warehouse>
       </getWarehouseListResponse>
+   </S:Body>
+</S:Envelope>
+~~~
+
+
+
+
+
+#### addMaterial
+Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, selle koostis ja tugevus.
+
+##### Sisendandmete kirjeldus
+Väljad päringus andmetüüpidega on järgnevad:
+* `Material`
+    - `name` - `string`, materjali nimi;
+    - `code` - `string`, materjali kood. Kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni;
+    - `composition` - `string`, materjali koostis. (näiteks, aken koosneb klaasist ja plastikust);
+    - `durability` - `string`, materjali tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
+
+###### Näidis SOAP päring (request)
+~~~xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:name>Window</war:name>
+         <war:code>WIN0001TLN20LDU</war:code>
+         <war:composition>Glass, plastic</war:composition>
+         <war:durability>Low</war:durability>
+      </war:addMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+~~~
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `Material`
+    - `id` - `integer`, loodud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `name` - `string`, loodud materjali nimi;
+    - `code` - `string`, loodud materjali kood;
+    - `composition` - `string`, loodud materjali koostis;
+    - `durability` - `string`, loodud materjali tugevus.
+
+###### Näidis SOAP vastus (response)
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <addMaterialResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <id>1</id>
+         <name>Window</name>
+         <code>WIN0001TLN20LDU</code>
+         <composition>Glass, plastic</composition>
+         <durability>Low</durability>
+      </addMaterialResponse>
+   </S:Body>
+</S:Envelope>
+~~~
+
+
+
+
+
+#### getMaterial
+Materjali küsimise operatsioon. Materjali saab otsida selle unikaalse identifikaatori ehk `id` järgi.
+
+##### Sisendandmete kirjeldus
+Päringus on ainult üks väärtus:
+* `id` - `integer`, küsitava materjali id.
+
+###### Näidis SOAP päring (request)
+~~~xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:id>1</war:id>
+      </war:getMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+~~~
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `Material`
+    - `id` - `integer`, küsitava materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `name` - `string`, küsitava materjali nimi;
+    - `code` - `string`, küsitava materjali kood;
+    - `composition` - `string`, küsitava materjali koostis;
+    - `durability` - `string`, küsitava materjali tugevus.
+
+###### Näidis SOAP vastus (response)
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <getMaterialResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <id>1</id>
+         <name>Window</name>
+         <code>WIN0001TLN20LDU</code>
+         <composition>Glass, plastic</composition>
+         <durability>Low</durability>
+      </getMaterialResponse>
+   </S:Body>
+</S:Envelope>
+~~~
+
+
+
+
+
+#### getMaterialList
+Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid.
+
+##### Sisendandmete kirjeldus
+Päringus peale `API_TOKEN`i väärtuseid ei ole.
+
+###### Näidis SOAP päring (request)
+~~~xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getMaterialListRequest>
+         <war:token>salajane</war:token>
+      </war:getMaterialListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+~~~
+
+##### Väljundandmete kirjeldus
+Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+* `Materials` - Nimekiri materjalidest.
+    - `Material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega.
+        + `id` - `integer`;
+        + `code` - `string`;
+        + `name` - `string`;
+        + `composition` - `string`;
+        + `durability` - `string`.
+
+###### Näidis SOAP vastus (response)
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <getMaterialListResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <material>
+            <id>1</id>
+            <name>Window</name>
+            <code>WIN0001TLN20LDU</code>
+            <composition>Glass, plastic</composition>
+            <durability>Low</durability>
+         </material>
+         <material>
+            <id>2</id>
+            <name>Door</name>
+            <code>DOO0001LAK33LDU</code>
+            <composition>Wood</composition>
+            <durability>Medium</durability>
+         </material>
+      </getMaterialListResponse>
    </S:Body>
 </S:Envelope>
 ~~~
