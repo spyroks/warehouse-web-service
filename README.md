@@ -342,7 +342,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 * `Material`
     - `name` - `string`, materjali nimi;
     - `code` - `string`, materjali kood. Kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni;
-    - `composition` - `string`, materjali koostis. (näiteks, aken koosneb klaasist ja plastikust);
+    - `composition` - `string`, materjali koostis (näiteks, aken koosneb klaasist ja plastikust);
     - `durability` - `string`, materjali tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
 
 ###### Näidis SOAP päring (request)
@@ -441,7 +441,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid.
 
 ##### Sisendandmete kirjeldus
-Päringus peale `API_TOKEN`i väärtuseid ei ole.
+Päringus peale `API_TOKEN`-i väärtuseid ei ole.
 
 ###### Näidis SOAP päring (request)
 ~~~xml
