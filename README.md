@@ -458,7 +458,7 @@ Päringus peale `token`-i väärtuseid ei ole.
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
 * `Materials` - Nimekiri materjalidest.
-    - `Material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega.
+    - `Material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
         + `id` - `integer`;
         + `code` - `string`;
         + `name` - `string`;
