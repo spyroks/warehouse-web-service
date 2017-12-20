@@ -651,11 +651,8 @@ Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetri
 
 #### addWarehouse
 
-##### HTTP meetod
-Meetod: `POST`
+HTTP meetod: `POST`
 
-##### Ressurss
 Ressurss: `/warehouses`
 
-##### Näidis URL
-URL: ` /warehouses/?token=salajane`
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane`
