@@ -1,5 +1,7 @@
 # Projekt aines Veebiteenused (IDU0075)
 
+***
+
 ## Sisukord
 * [Sissejuhatus](#sissejuhatus)
 * [Teenuse põhiobjektid](#teenuse-põhiobjektid)
@@ -14,6 +16,8 @@
 * [REST API kirjeldus](#rest-api-kirjeldus)
   - [REST API Operatsioonid](#rest-api-operatsioonid)
   - [REST API Operatsioonide kirjeldused](#rest-api-operatsioonide-kirjeldused)
+
+***
 
 
 
