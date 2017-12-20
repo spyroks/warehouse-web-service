@@ -650,9 +650,52 @@ Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetri
 
 
 #### addWarehouse
+Ladu lisamise operatsioon. Saab lisada ladu millel on nimi ja aadress, selle ruumala ja pindala.
 
 HTTP meetod: `POST`
 
 Ressurss: `/warehouses`
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane`
+
+##### Sisendandmete kirjeldus
+Väljad päringus andmetüüpidega on järgnevad:
+* `Warehouse`
+    - `warehouseName` - `string`, ladu nimi;
+    - `warehouseAddress` - `string`, ladu aadress;
+    - `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
+    - `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 3333.334 või 1500 m<sup>2</sup>).
+
+###### Näidis JSON päring kui POST meetod(request)
+~~~json
+{
+   "id": 1,
+   "warehouseName": "Tallinn Ladu",
+   "warehouseAddress": "Kalmistu tee 26",
+   "warehouseCapacity": 500,
+   "warehouseArea": 1000,
+   "warehouseMaterialList": {"warehouseMaterial": []}
+}
+~~~
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `Warehouse`
+    - `id` - `integer`, loodud ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `warehouseName` - `string`, loodud ladu nimi;
+    - `warehouseAddress` - `string`, loodud ladu aadress;
+    - `warehouseCapacity` - `double`, loodud ladu ruumala;
+    - `warehouseArea` - `double`, loodud ladu pindala;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri.
+
+###### Näidis JSON vastus (response)
+~~~json
+{
+   "id": 1,
+   "warehouseName": "Tallinn Ladu",
+   "warehouseAddress": "Kalmistu tee 26",
+   "warehouseCapacity": 500,
+   "warehouseArea": 1000,
+   "warehouseMaterialList": {"warehouseMaterial": []}
+}
+~~~
