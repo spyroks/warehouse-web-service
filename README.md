@@ -52,15 +52,15 @@ Teenuse materjalid võivad kuuluda ladule kuid see pole kohustuslik.
 
 
 ### Warehouse
-Teenuse piiredes võivad olla mitu laod. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud aadress mille kaudu seda saab leida.
+Teenuse piiredes võivad olla mitu ladu. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud aadress mille kaudu seda saab leida.
 
 Ladu iseloomustavad järgmised atribuudid:
 * **id** - unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt;
-* **warehouseName** - ladu nimi;
-* **warehouseAddress**  - ladu aadress;
-* **warehouseCapacity**  - ladu ruumala;
-* **warehouseArea** - ladu pindala;
-* **warehouseMaterialList** - ladule kuuluvaid materjalid.
+* **warehouseName** - lao nimi;
+* **warehouseAddress**  - lao aadress;
+* **warehouseCapacity**  - lao ruumala;
+* **warehouseArea** - lao pindala;
+* **warehouseMaterialList** - laole kuuluvaid materjalid.
 
 Näiteks võib olla järgnev ladu:
 * **id** - 1;
@@ -76,7 +76,7 @@ Näiteks võib olla järgnev ladu:
 
 ### Material
 Igal materjalil on nimi ja selle koostis.
-Samuti materjalile määratakse selle tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
+Samuti materjalile määratakse selle tugevus (näiteks, akna koostises on klaas seega tugevus - nõrk).
 Materjali kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni.
 
 Materjali iseloomustavad järgmised atribuudid:
@@ -100,14 +100,14 @@ Näiteks võib olla järgmine materjal:
 
 
 ## Teenuse põhioperatsioonid
-Teenusel põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb nimekiri lühikeste kirjeldustega võimalikest teenustest.
+Teenusel on põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb nimekiri lühikeste kirjeldustega võimalikest teenustest.
 
 * **Ladu lisamine**
     - Saab lisada ladu.
 * **Ühe ladu küsimine**
-    - Saab küsida andmeid ühe ladu kohta selle id järgi.
+    - Saab küsida andmeid ühe lao kohta selle id järgi.
 * **Kõikide ladude küsimine**
-    - Saab küsida andmeid kõikide ladude kohta.
+    - Saab küsida andmeid kõikide laode kohta.
 * **Materjali lisamine**
     - Saab lisada materjali.
 * **Ühe materjali küsimine**
@@ -117,7 +117,7 @@ Teenusel põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb
 * **Materjali ladule lisamine**
     - Saab lisada olemasolevat materjali olemasolevasse lattu.
 * **Ühe ladu kõikide materjalide küsimine**
-    - Saab küsida kõikide materjalide nimekiri ja selle andmeid ühe ladu kohta selle id järgi.
+    - Saab küsida kõikide materjalide nimekiri ja selle andmeid ühe lao kohta selle id järgi.
 
 
 
@@ -167,15 +167,15 @@ Iga päring peab sisaldama korrektne `token`.
 
 ***
 #### addWarehouse
-Ladu lisamise operatsioon. Saab lisada ladu millel on nimi ja aadress, selle ruumala ja pindala.
+Lao lisamise operatsioon. Saab lisada lao millel on nimi ja aadress, selle ruumala ja pindala.
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
 * `Warehouse`
-    - `warehouseName` - `string`, ladu nimi;
-    - `warehouseAddress` - `string`, ladu aadress;
-    - `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
-    - `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 3333.334 või 1500 m<sup>2</sup>).
+    - `warehouseName` - `string`, lao nimi;
+    - `warehouseAddress` - `string`, lao aadress;
+    - `warehouseCapacity` - `double`, valiidne lao ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
+    - `warehouseArea` - `double`, valiidne lao pindala (näiteks, 3333.334 või 1500 m<sup>2</sup>).
 
 ###### Näidis SOAP päring (request)
 ~~~xml
@@ -196,11 +196,11 @@ Väljad päringus andmetüüpidega on järgnevad:
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
 * `Warehouse`
-    - `id` - `integer`, loodud ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
-    - `warehouseName` - `string`, loodud ladu nimi;
-    - `warehouseAddress` - `string`, loodud ladu aadress;
-    - `warehouseCapacity` - `double`, loodud ladu ruumala;
-    - `warehouseArea` - `double`, loodud ladu pindala;
+    - `id` - `integer`, loodud lao unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `warehouseName` - `string`, loodud lao nimi;
+    - `warehouseAddress` - `string`, loodud lao aadress;
+    - `warehouseCapacity` - `double`, loodud lao ruumala;
+    - `warehouseArea` - `double`, loodud lao pindala;
     - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri.
 
 ###### Näidis SOAP vastus (response)
@@ -224,7 +224,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 ***
 #### getWarehouse
-Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
+Lao küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
 ##### Sisendandmete kirjeldus
 Päringus on ainult üks väärtus:
@@ -246,12 +246,12 @@ Päringus on ainult üks väärtus:
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
 * `Warehouse`
-    - `id` - `integer`, küsitava ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
-    - `warehouseName` - `string`, küsitava ladu nimi;
-    - `warehouseAddress` - `string`, küsitava ladu aadress;
-    - `warehouseCapacity` - `double`, küsitava ladu ruumala;
-    - `warehouseArea` - `double`, küsitava ladu pindala;
-    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava ladu materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
+    - `id` - `integer`, küsitava lao unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `warehouseName` - `string`, küsitava lao nimi;
+    - `warehouseAddress` - `string`, küsitava lao aadress;
+    - `warehouseCapacity` - `double`, küsitava lao ruumala;
+    - `warehouseArea` - `double`, küsitava lao pindala;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele laole.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -498,7 +498,7 @@ Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata sell
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
-* `warehouseId` - `Integer`, ladu id;
+* `warehouseId` - `Integer`, lao id;
 * `materialId` - `Integer`, materjali id;
 * `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
 * `unitPrice` - `Integer`, ühe materjali hind (näiteks, 33.33 €).
@@ -555,11 +555,11 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 ***
 #### getWarehouseMaterialList
-Määratud ladu kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
+Määratud lao kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud lao kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 
 ##### Sisendandmete kirjeldus
 Päringus on ainult üks väärtus:
-* `warehouseId` - `integer`, küsitava ladu id.
+* `warehouseId` - `integer`, küsitava lao id.
 
 ###### Näidis SOAP päring (request)
 ~~~xml
@@ -575,16 +575,16 @@ Päringus on ainult üks väärtus:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
-* `WarehouseMaterials` - nimekiri küsitava ladu materjalidest.
+Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+* `WarehouseMaterials` - nimekiri küsitava lao materjalidest.
     - `WarehouseMaterial` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
         + `id` - `integer`;
         + `code` - `string`;
         + `name` - `string`;
         + `composition` - `string`;
         + `durability` - `string`;
-    - `quantity` - `integer`, küsitava ladu antud materjali kogus;
-    - `unitPrice` - `integer`, küsitava ladu hind ühe antud materjali kohta.
+    - `quantity` - `integer`, küsitava lao antud materjali kogus;
+    - `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -649,7 +649,7 @@ Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetri
 
 ***
 #### addWarehouse
-Ladu lisamise operatsioon. Saab lisada ladu millel on nimi ja aadress, selle ruumala ja pindala.
+Ladu lisamise operatsioon. Saab lisada lao millel on nimi ja aadress, selle ruumala ja pindala.
 
 HTTP meetod: `POST`
 
@@ -659,10 +659,10 @@ Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane`
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
-* `warehouseName` - `string`, ladu nimi;
-* `warehouseAddress` - `string`, ladu aadress;
-* `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
-* `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 3333.334 või 1500 m<sup>2</sup>).
+* `warehouseName` - `string`, lao nimi;
+* `warehouseAddress` - `string`, lao aadress;
+* `warehouseCapacity` - `double`, valiidne lao ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
+* `warehouseArea` - `double`, valiidne lao pindala (näiteks, 3333.334 või 1500 m<sup>2</sup>).
 
 ###### Näidis JSON päring kui POST meetod (request)
 ~~~json
@@ -678,11 +678,11 @@ Väljad päringus andmetüüpidega on järgnevad:
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
 * `warehouse`
-    - `id` - `integer`, loodud ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
-    - `warehouseName` - `string`, loodud ladu nimi;
-    - `warehouseAddress` - `string`, loodud ladu aadress;
-    - `warehouseCapacity` - `double`, loodud ladu ruumala;
-    - `warehouseArea` - `double`, loodud ladu pindala;
+    - `id` - `integer`, loodud lao unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `warehouseName` - `string`, loodud lao nimi;
+    - `warehouseAddress` - `string`, loodud lao aadress;
+    - `warehouseCapacity` - `double`, loodud lao ruumala;
+    - `warehouseArea` - `double`, loodud lao pindala;
     - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri.
 
 ###### Näidis JSON vastus (response)
@@ -706,19 +706,19 @@ Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk
 
 HTTP meetod: `GET`
 
-Ressurss (URI): `/warehouses/{warehouse_id}`, kus `{warehouse_id}` on ladu id.
+Ressurss (URI): `/warehouses/{warehouse_id}`, kus `{warehouse_id}` on lao id.
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1?token=salajane`
 
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
 * `warehouse`
-    - `id` - `integer`, küsitava ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
-    - `warehouseName` - `string`, küsitava ladu nimi;
-    - `warehouseAddress` - `string`, küsitava ladu aadress;
-    - `warehouseCapacity` - `double`, küsitava ladu ruumala;
-    - `warehouseArea` - `double`, küsitava ladu pindala;
-    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava ladu materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
+    - `id` - `integer`, küsitava lao unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `warehouseName` - `string`, küsitava lao nimi;
+    - `warehouseAddress` - `string`, küsitava lao aadress;
+    - `warehouseCapacity` - `double`, küsitava lao ruumala;
+    - `warehouseArea` - `double`, küsitava lao pindala;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -925,13 +925,13 @@ Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata sell
 
 HTTP meetod: `POST`
 
-Ressurss (URI): `/warehouses/{warehouse_id}/add_materail/{material_id}`, kus `{warehouse_id}` on ladu id ja `{material_id}` on materjali id.
+Ressurss (URI): `/warehouses/{warehouse_id}/add_materail/{material_id}`, kus `{warehouse_id}` on lao id ja `{material_id}` on materjali id.
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/add_materail/1/?token=salajane`
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
-* `warehouseId` - `Integer`, ladu id;
+* `warehouseId` - `Integer`, lao id;
 * `materialId` - `Integer`, materjali id;
 * `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
 * `unitPrice` - `Integer`, ühe materjali hind (näiteks, 33.33 €).
@@ -962,25 +962,25 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 ***
 #### getWarehouseMaterialList
-Määratud ladu kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
+Määratud lao kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 
 HTTP meetod: `GET`
 
-Ressurss (URI): `/warehouses/{warehouse_id}/materials`, kus `{warehouse_id}` on ladu id.
+Ressurss (URI): `/warehouses/{warehouse_id}/materials`, kus `{warehouse_id}` on lao id.
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/materials/?token=salajane`
 
 ##### Väljundandmete kirjeldus
-Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
 * `warehouse_materials`
-    - `warehouse_material` - nimekiri küsitava ladu materjalidest, langeb kokku [getMaterial operatsiooni](#get-material) vastusega:
+    - `warehouse_material` - nimekiri küsitava lao materjalidest, langeb kokku [getMaterial operatsiooni](#get-material) vastusega:
         + `id` - `integer`;
         + `code` - `string`;
         + `name` - `string`;
         + `composition` - `string`;
         + `durability` - `string`;
-    - `quantity` - `integer`, küsitava ladu antud materjali kogus;
-    - `unitPrice` - `integer`, küsitava ladu hind ühe antud materjali kohta.
+    - `quantity` - `integer`, küsitava lao antud materjali kogus;
+    - `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
 
 ###### Näidis JSON vastus (response)
 ~~~json
