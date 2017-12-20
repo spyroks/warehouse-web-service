@@ -488,3 +488,132 @@ Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpide
    </S:Body>
 </S:Envelope>
 ~~~
+
+
+
+
+
+#### addWarehouseMaterial
+Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata selle hind ja kogus antud laos.
+
+##### Sisendandmete kirjeldus
+Väljad päringus andmetüüpidega on järgnevad:
+* `warehouseId` - `Integer`, ladu id;
+* `materialId` - `Integer`, materjali id;
+* `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
+* `unitPrice` - `Integer`, ühe materjali hind (näiteks, 33.33 €).
+
+
+###### Näidis SOAP päring (request)
+~~~xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:addWarehouseMaterialRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseId>1</war:warehouseId>
+         <war:materialId>1</war:materialId>
+         <war:quantity>20</war:quantity>
+         <war:unitPrice>33.33</war:unitPrice>
+      </war:addWarehouseMaterialRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+~~~
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `WarehouseMaterial`
+    - `id` - `integer`, lisatud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `name` - `string`, lisatud materjali nimi;
+    - `code` - `string`, lisatud materjali kood;
+    - `composition` - `string`, lisatud materjali koostis;
+    - `durability` - `string`, lisatud materjali tugevus;
+* `quantity` - `integer`, lisatud materjali kogus;
+* `unitPrice` - `integer`, hind ühe lisatud materjali kohta.
+
+###### Näidis SOAP vastus (response)
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <addWarehouseMaterialResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <material>
+            <id>1</id>
+            <name>Window</name>
+            <code>WIN0001TLN20LDU</code>
+            <composition>Glass, plastic</composition>
+            <durability>Low</durability>
+         </material>
+         <quantity>20.0</quantity>
+         <unitPrice>33.33</unitPrice>
+      </addWarehouseMaterialResponse>
+   </S:Body>
+</S:Envelope>
+~~~
+
+
+
+
+
+#### getWarehouseMaterialList
+Määratud ladu kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
+
+##### Sisendandmete kirjeldus
+Päringus on ainult üks väärtus:
+* `warehouseId` - `integer`, küsitava ladu id.
+
+###### Näidis SOAP päring (request)
+~~~xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <war:getWarehouseMaterialListRequest>
+         <war:token>salajane</war:token>
+         <war:warehouseId>1</war:warehouseId>
+      </war:getWarehouseMaterialListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+~~~
+
+##### Väljundandmete kirjeldus
+Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+* `WarehouseMaterials` - Nimekiri küsitava ladu materjalidest.
+    - `WarehouseMaterial` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
+        + `id` - `integer`;
+        + `code` - `string`;
+        + `name` - `string`;
+        + `composition` - `string`;
+        + `durability` - `string`;
+    - `quantity` - `integer`, küsitava ladu antud materjali kogus;
+    - `unitPrice` - `integer`, küsitava ladu hind ühe antud materjali kohta.
+
+###### Näidis SOAP vastus (response)
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <getWarehouseMaterialListResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <warehouseMaterial>
+            <material>
+               <id>1</id>
+               <name>Window</name>
+               <code>WIN0001TLN20LDU</code>
+               <composition>Glass, plastic</composition>
+               <durability>Low</durability>
+            </material>
+            <quantity>20.0</quantity>
+            <unitPrice>33.33</unitPrice>
+         </warehouseMaterial>
+         <warehouseMaterial>
+            <material>
+               <id>2</id>
+               <name>Door</name>
+               <code>DOO0001LAK33LDU</code>
+               <composition>Wood</composition>
+               <durability>Medium</durability>
+            </material>
+            <quantity>5</quantity>
+            <unitPrice>59.99</unitPrice>
+         </warehouseMaterial>
+      </getWarehouseMaterialListResponse>
+   </S:Body>
+</S:Envelope>
+~~~
