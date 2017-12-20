@@ -617,3 +617,30 @@ Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses
    </S:Body>
 </S:Envelope>
 ~~~
+
+
+
+
+
+## REST API kirjeldus
+REST API on ligipääsetav aadressil `(hostname)/WarehouseWebApplication`.
+
+
+### REST API Operatsioonid
+REST teenuses on võimalikud järgmised operatsioonid:
+* [addWarehouse](#add-warehouse)
+* [getWarehouse](#get-warehouse)
+* [getWarehouseList](#get-warehouse-list)
+* [addMaterial](#add-material)
+* [getMaterial](#get-material)
+* [getMaterialList](#get-material-list)
+* [addWarehouseMaterial](#add-warehouse-material)
+* [getWarehouseMaterialList](#get-warehouse-material-list)
+
+
+
+### REST API Operatsioonide kirjeldused
+
+Järgnevad REST teenuse operatsioonide kirjeldused.
+
+Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetritena.
