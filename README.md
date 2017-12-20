@@ -998,14 +998,14 @@ Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses
    },
       {
       "material":       {
-         "id": 3,
+         "id": 2,
          "name": "Door",
          "code": "DOO0001LAK33LDU",
          "composition": "Wood",
          "durability": "Medium"
       },
-      "quantity": 20,
-      "unitPrice": 33.33
+      "quantity": 5,
+      "unitPrice": 59.99
    }
 ]}
 ~~~
