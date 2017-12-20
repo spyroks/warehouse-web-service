@@ -15,11 +15,7 @@
   - [REST API Operatsioonid](#rest-api-operatsioonid)
   - [REST API Operatsioonide kirjeldused](#rest-api-operatsioonide-kirjeldused)
 
-*
-**
-***
-****
-*****
+
 
 
 
@@ -169,7 +165,7 @@ Iga päring peab sisaldama korrektne `token`.
 
 
 
-
+***
 #### addWarehouse
 Ladu lisamise operatsioon. Saab lisada ladu millel on nimi ja aadress, selle ruumala ja pindala.
 
@@ -226,7 +222,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getWarehouse
 Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
@@ -276,7 +272,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getWarehouseList
 Kõikide ladude küsimise operatsioon. Operatsioonil on olemas mittekohustuslik (`optional`) päringu parameeter. See parameeter toimib nagu küsimise sorteerija. Vastuseks tagastatakse kõik laod selle parameetri järgi.
 
@@ -337,7 +333,7 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
 
 
 
-
+***
 #### addMaterial
 Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, selle koostis ja tugevus.
 
@@ -392,7 +388,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getMaterial
 Materjali küsimise operatsioon. Materjali saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
@@ -440,7 +436,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getMaterialList
 Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid.
 
