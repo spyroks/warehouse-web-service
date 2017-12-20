@@ -650,3 +650,12 @@ Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetri
 
 
 #### addWarehouse
+
+##### HTTP meetod
+Meetod: `POST`
+
+##### Ressurss
+Ressurss: `/warehouses`
+
+##### Näidis URL
+URL: ` /warehouses/?token=salajane`
