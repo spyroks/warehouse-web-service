@@ -1,7 +1,5 @@
 # Projekt aines Veebiteenused (IDU0075)
 
-***
-
 ## Sisukord
 * [Sissejuhatus](#sissejuhatus)
 * [Teenuse põhiobjektid](#teenuse-põhiobjektid)
@@ -17,9 +15,11 @@
   - [REST API Operatsioonid](#rest-api-operatsioonid)
   - [REST API Operatsioonide kirjeldused](#rest-api-operatsioonide-kirjeldused)
 
+*
+**
 ***
-
-
+****
+*****
 
 
 
@@ -621,6 +621,8 @@ Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses
    </S:Body>
 </S:Envelope>
 ~~~
+
+***
 
 
 
