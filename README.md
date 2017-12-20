@@ -492,7 +492,7 @@ Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpide
 
 
 
-
+***
 #### addWarehouseMaterial
 Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata selle hind ja kogus antud laos.
 
@@ -553,7 +553,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getWarehouseMaterialList
 Määratud ladu kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 
@@ -647,7 +647,7 @@ Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetri
 
 
 
-
+***
 #### addWarehouse
 Ladu lisamise operatsioon. Saab lisada ladu millel on nimi ja aadress, selle ruumala ja pindala.
 
@@ -700,7 +700,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getWarehouse
 Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
@@ -735,7 +735,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getWarehouseList
 Kõikide ladude küsimise operatsioon. Operatsioonil on olemas mittekohustuslik (`optional`) päringu parameeter. See parameeter toimib nagu küsimise sorteerija. Vastuseks tagastatakse kõik laod selle parameetri järgi.
 
@@ -793,7 +793,7 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
 
 
 
-
+***
 #### addMaterial
 Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, selle koostis ja tugevus.
 
@@ -843,7 +843,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getMaterial
 Materjali küsimise operatsioon. Materjali saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
@@ -876,7 +876,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getMaterialList
 Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid.
 
@@ -919,7 +919,7 @@ Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpide
 
 
 
-
+***
 #### addWarehouseMaterial
 Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata selle hind ja kogus antud laos.
 
@@ -960,7 +960,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 
-
+***
 #### getWarehouseMaterialList
 Määratud ladu kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 
