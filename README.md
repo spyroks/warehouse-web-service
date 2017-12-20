@@ -457,7 +457,7 @@ Päringus peale `token`-i väärtuseid ei ole.
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
-* `Materials` - Nimekiri materjalidest.
+* `Materials` - nimekiri materjalidest.
     - `Material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
         + `id` - `integer`;
         + `code` - `string`;
@@ -576,7 +576,7 @@ Päringus on ainult üks väärtus:
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
-* `WarehouseMaterials` - Nimekiri küsitava ladu materjalidest.
+* `WarehouseMaterials` - nimekiri küsitava ladu materjalidest.
     - `WarehouseMaterial` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
         + `id` - `integer`;
         + `code` - `string`;
@@ -625,7 +625,6 @@ Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses
 ## REST API kirjeldus
 REST API on ligipääsetav aadressil `(hostname)/WarehouseWebApplication`.
 
-
 ### REST API Operatsioonid
 REST teenuses on võimalikud järgmised operatsioonid:
 * [addWarehouse](#add-warehouse)
@@ -637,13 +636,11 @@ REST teenuses on võimalikud järgmised operatsioonid:
 * [addWarehouseMaterial](#add-warehouse-material)
 * [getWarehouseMaterialList](#get-warehouse-material-list)
 
-
-
 ### REST API Operatsioonide kirjeldused
 
 Järgnevad REST teenuse operatsioonide kirjeldused.
 
-Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetritena.
+Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetritena `?token=salajane`.
 
 
 
@@ -654,22 +651,20 @@ Ladu lisamise operatsioon. Saab lisada ladu millel on nimi ja aadress, selle ruu
 
 HTTP meetod: `POST`
 
-Ressurss: `/warehouses`
+Ressurss (URI): `/warehouses`
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane`
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
-* `Warehouse`
-    - `warehouseName` - `string`, ladu nimi;
-    - `warehouseAddress` - `string`, ladu aadress;
-    - `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
-    - `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 3333.334 või 1500 m<sup>2</sup>).
+* `warehouseName` - `string`, ladu nimi;
+* `warehouseAddress` - `string`, ladu aadress;
+* `warehouseCapacity` - `double`, valiidne ladu ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
+* `warehouseArea` - `double`, valiidne ladu pindala (näiteks, 3333.334 või 1500 m<sup>2</sup>).
 
-###### Näidis JSON päring kui POST meetod(request)
+###### Näidis JSON päring kui POST meetod (request)
 ~~~json
 {
-   "id": 1,
    "warehouseName": "Tallinn Ladu",
    "warehouseAddress": "Kalmistu tee 26",
    "warehouseCapacity": 500,
@@ -680,7 +675,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
-* `Warehouse`
+* `warehouse`
     - `id` - `integer`, loodud ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `warehouseName` - `string`, loodud ladu nimi;
     - `warehouseAddress` - `string`, loodud ladu aadress;
@@ -698,4 +693,317 @@ Väljad vastuses andmetüüpidega on järgnevad:
    "warehouseArea": 1000,
    "warehouseMaterialList": {"warehouseMaterial": []}
 }
+~~~
+
+
+
+
+
+#### getWarehouse
+Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
+
+HTTP meetod: `GET`
+
+Ressurss (URI): `/warehouses/{warehouse_id}`, kus `{warehouse_id}` on ladu id.
+
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1?token=salajane`
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `warehouse`
+    - `id` - `integer`, küsitava ladu unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `warehouseName` - `string`, küsitava ladu nimi;
+    - `warehouseAddress` - `string`, küsitava ladu aadress;
+    - `warehouseCapacity` - `double`, küsitava ladu ruumala;
+    - `warehouseArea` - `double`, küsitava ladu pindala;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava ladu materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
+
+###### Näidis JSON vastus (response)
+~~~json
+{
+   "id": 1,
+   "warehouseName": "Tallinn Ladu",
+   "warehouseAddress": "Kalmistu tee 26",
+   "warehouseCapacity": 500,
+   "warehouseArea": 1000,
+   "warehouseMaterialList": {"warehouseMaterial": []}
+}
+~~~
+
+
+
+
+
+#### getWarehouseList
+Kõikide ladude küsimise operatsioon. Operatsioonil on olemas mittekohustuslik (`optional`) päringu parameeter. See parameeter toimib nagu küsimise sorteerija. Vastuseks tagastatakse kõik laod selle parameetri järgi.
+
+HTTP meetod: `GET`
+
+Ressurss (URI): `/warehouses`
+
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane&has_materials=jah`, kus `has_materials` - `string`, küsimise sorteerija piiranguga (`restiction`). Ainus vastuvõetav väärtus on `jah` või `ei`. Pannes `jah` tagastab kõik laod millel on materjalid, `ei` - kõik tühjad laod. Kui jätta tühjaks siis sorteerimine ei toimu ning tagastatakse kõik laod.
+
+##### Väljundandmete kirjeldus
+Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on järgnevad:
+* `warehouses`
+    - `warehouse` - nimekiri ladudest, langeb kokku [getWarehouse operatsiooni](#get-warehouse) vastusega:
+        + `id` - `integer`;
+        + `warehouseName` - `string`;
+        + `warehouseAddress` - `string`;
+        + `warehouseCapacity` - `double`;
+        + `warehouseArea` - `double`.
+
+###### Näidis JSON vastus (response)
+~~~json
+{"warehouse": [{
+   "id": 1,
+   "warehouseName": "Tallinn Ladu",
+   "warehouseAddress": "Kalmistu tee 26",
+   "warehouseCapacity": 500,
+   "warehouseArea": 1000,
+   "warehouseMaterialList": {"warehouseMaterial":    [
+            {
+         "material":          {
+            "id": 1,
+            "name": "Window",
+            "code": "WIN0001TLN20LDU",
+            "composition": "Glass, plastic",
+            "durability": "Low"
+         },
+         "quantity": 20,
+         "unitPrice": 33.33
+      },
+            {
+         "material":          {
+            "id": 2,
+            "name": "Door",
+            "code": "DOO0001LAK33LDU",
+            "composition": "Wood",
+            "durability": "Medium"
+         },
+         "quantity": 20,
+         "unitPrice": 33.33
+      }
+   ]}
+}]}
+~~~
+
+
+
+
+
+#### addMaterial
+Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, selle koostis ja tugevus.
+
+HTTP meetod: `POST`
+
+Ressurss (URI): `/materials`
+
+Näidis URL: `/WarehouseWebApplication/webresources/materials/?token=salajane`
+
+##### Sisendandmete kirjeldus
+Väljad päringus andmetüüpidega on järgnevad:
+* `name` - `string`, materjali nimi;
+* `code` - `string`, materjali kood. Kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni;
+* `composition` - `string`, materjali koostis (näiteks, aken koosneb klaasist ja plastikust);
+* `durability` - `string`, materjali tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
+
+###### Näidis JSON päring kui POST meetod (request)
+~~~json
+{
+   "name": "Window",
+   "code": "WIN0001TLN20LDU",
+   "composition": "Glass, plastic",
+   "durability": "Low"
+}
+~~~
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `material`
+    - `id` - `integer`, loodud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `name` - `string`, loodud materjali nimi;
+    - `code` - `string`, loodud materjali kood;
+    - `composition` - `string`, loodud materjali koostis;
+    - `durability` - `string`, loodud materjali tugevus.
+
+###### Näidis JSON vastus (response)
+~~~json
+{
+   "id": 1,
+   "name": "Window",
+   "code": "WIN0001TLN20LDU",
+   "composition": "Glass, plastic",
+   "durability": "Low"
+}
+~~~
+
+
+
+
+
+#### getMaterial
+Materjali küsimise operatsioon. Materjali saab otsida selle unikaalse identifikaatori ehk `id` järgi.
+
+HTTP meetod: `GET`
+
+Ressurss (URI): `/materials/{material_id}`, kus `{material_id}` on materjali id.
+
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1?token=salajane`
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `material`
+    - `id` - `integer`, küsitava materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `name` - `string`, küsitava materjali nimi;
+    - `code` - `string`, küsitava materjali kood;
+    - `composition` - `string`, küsitava materjali koostis;
+    - `durability` - `string`, küsitava materjali tugevus.
+
+###### Näidis JSON vastus (response)
+~~~json
+{
+   "id": 1,
+   "name": "Window",
+   "code": "WIN0001TLN20LDU",
+   "composition": "Glass, plastic",
+   "durability": "Low"
+}
+~~~
+
+
+
+
+
+#### getMaterialList
+Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid.
+
+HTTP meetod: `GET`
+
+Ressurss (URI): `/materials`
+
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane`
+
+##### Väljundandmete kirjeldus
+Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+* `materials`
+    - `material` - nimekiri materjalidest, langeb kokku [getMaterial operatsiooni](#get-material) vastusega:
+        + `id` - `integer`;
+        + `code` - `string`;
+        + `name` - `string`;
+        + `composition` - `string`;
+        + `durability` - `string`.
+
+###### Näidis JSON vastus (response)
+~~~json
+{"material": [
+      {
+      "id": 1,
+      "name": "Window",
+      "code": "WIN0001TLN20LDU",
+      "composition": "Glass, plastic",
+      "durability": "Low"
+   },
+      {
+      "id": 2,
+      "name": "Door",
+      "code": "DOO0001LAK33LDU",
+      "composition": "Wood",
+      "durability": "Medium"
+   }
+]}
+~~~
+
+
+
+
+
+#### addWarehouseMaterial
+Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata selle hind ja kogus antud laos.
+
+HTTP meetod: `POST`
+
+Ressurss (URI): `/warehouses/{warehouse_id}/add_materail/{material_id}`, kus `{warehouse_id}` on ladu id ja `{material_id}` on materjali id.
+
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/add_materail/1/?token=salajane`
+
+##### Sisendandmete kirjeldus
+Väljad päringus andmetüüpidega on järgnevad:
+* `warehouseId` - `Integer`, ladu id;
+* `materialId` - `Integer`, materjali id;
+* `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
+* `unitPrice` - `Integer`, ühe materjali hind (näiteks, 33.33 €).
+
+
+###### Näidis JSON päring kui POST meetod (request)
+~~~json
+
+~~~
+
+##### Väljundandmete kirjeldus
+Väljad vastuses andmetüüpidega on järgnevad:
+* `warehouse_material`
+    - `id` - `integer`, lisatud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
+    - `name` - `string`, lisatud materjali nimi;
+    - `code` - `string`, lisatud materjali kood;
+    - `composition` - `string`, lisatud materjali koostis;
+    - `durability` - `string`, lisatud materjali tugevus;
+* `quantity` - `integer`, lisatud materjali kogus;
+* `unitPrice` - `integer`, hind ühe lisatud materjali kohta.
+
+###### Näidis JSON vastus (response)
+~~~json
+
+~~~
+
+
+
+
+#### getWarehouseMaterialList
+Määratud ladu kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
+
+HTTP meetod: `GET`
+
+Ressurss (URI): `/warehouses/{warehouse_id}/materials`, kus `{warehouse_id}` on ladu id.
+
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/materials/?token=salajane`
+
+##### Väljundandmete kirjeldus
+Vastuseks on nimekiri küsitava ladu salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+* `warehouse_materials`
+    - `warehouse_material` - nimekiri küsitava ladu materjalidest, langeb kokku [getMaterial operatsiooni](#get-material) vastusega:
+        + `id` - `integer`;
+        + `code` - `string`;
+        + `name` - `string`;
+        + `composition` - `string`;
+        + `durability` - `string`;
+    - `quantity` - `integer`, küsitava ladu antud materjali kogus;
+    - `unitPrice` - `integer`, küsitava ladu hind ühe antud materjali kohta.
+
+###### Näidis JSON vastus (response)
+~~~json
+{"warehouseMaterial": [
+      {
+      "material":       {
+         "id": 1,
+         "name": "Window",
+         "code": "WIN0001TLN20LDU",
+         "composition": "Glass, plastic",
+         "durability": "Low"
+      },
+      "quantity": 20,
+      "unitPrice": 33.33
+   },
+      {
+      "material":       {
+         "id": 3,
+         "name": "Door",
+         "code": "DOO0001LAK33LDU",
+         "composition": "Wood",
+         "durability": "Medium"
+      },
+      "quantity": 20,
+      "unitPrice": 33.33
+   }
+]}
 ~~~
