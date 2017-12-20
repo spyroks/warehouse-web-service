@@ -644,3 +644,9 @@ REST teenuses on võimalikud järgmised operatsioonid:
 Järgnevad REST teenuse operatsioonide kirjeldused.
 
 Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetritena.
+
+
+
+
+
+#### addWarehouse
