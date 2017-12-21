@@ -18,6 +18,8 @@
 
 
 
+## Autor
+Denis Rästas 155552IAPB
 
 ## Sissejuhatus
 Antud dokumentatsioonis on kirjeldatud aine Veebiteenused projekti teenust. Projekti tulemuseks on ladu SOAP ja REST teenus (`WarehouseWebService`), klientrakendus ning dokumentatsioon.
@@ -25,8 +27,6 @@ Antud dokumentatsioonis on kirjeldatud aine Veebiteenused projekti teenust. Proj
 Teenus on realiseeritud kasutades [Netbeansi](https://netbeans.org) ning [Glassfishi serverit](https://glassfish.java.net). Teenuse rakendus asub kaustas `WarehouseWebApplication` ja klientrakendus asub kaustas `WarehouseApplication`.
 
 Teenust kasutades saab lisada ja vaadata laod ja nende materjale.
-
-**Autor**: Denis Rästas 155552IAPB
 
 ***
 
