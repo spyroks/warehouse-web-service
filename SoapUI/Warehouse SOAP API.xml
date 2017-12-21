@@ -97,7 +97,7 @@
             <xs:element minOccurs="0" name="hasRelatedMaterials">
               <xs:simpleType>
                 <xs:restriction base="xs:string">
-                  <xs:pattern value="jah|ei"/>
+                  <xs:pattern value="jah|ei|null"/>
                 </xs:restriction>
               </xs:simpleType>
             </xs:element>
@@ -304,10 +304,10 @@
    <soapenv:Body>
       <war:addWarehouseRequest>
          <war:token>salajane</war:token>
-         <war:warehouseName>Laki Ladu</war:warehouseName>
-         <war:warehouseAddress>Suur-Sõjamäe 33a</war:warehouseAddress>
-         <war:warehouseCapacity>615.12</war:warehouseCapacity>
-         <war:warehouseArea>3333.34</war:warehouseArea>
+         <war:warehouseName>Tallinn Ladu</war:warehouseName>
+         <war:warehouseAddress>Kalmistu tee 26</war:warehouseAddress>
+         <war:warehouseCapacity>500</war:warehouseCapacity>
+         <war:warehouseArea>1000</war:warehouseArea>
       </war:addWarehouseRequest>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/addWarehouseRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="667fb2b3-fcb2-4466-8bf3-4af6a76fc1cf" isOneWay="false" action="" name="addWarehouseMaterial" bindingOperationName="addWarehouseMaterial" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c1c8f749-1448-493c-8c13-e8e9769397f6" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/WarehouseWebApplication/WarehouseService?wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
@@ -317,7 +317,7 @@
          <war:token>salajane</war:token>
          <war:warehouseId>1</war:warehouseId>
          <war:materialId>1</war:materialId>
-         <war:quantity>20.50</war:quantity>
+         <war:quantity>20</war:quantity>
          <war:unitPrice>33.33</war:unitPrice>
       </war:addWarehouseMaterialRequest>
    </soapenv:Body>
@@ -350,7 +350,7 @@
       <war:getWarehouseListRequest>
          <war:token>salajane</war:token>
          <!--Optional:-->
-         <war:hasRelatedMaterials></war:hasRelatedMaterials>
+         <war:hasRelatedMaterials>jah</war:hasRelatedMaterials>
       </war:getWarehouseListRequest>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getWarehouseListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5f06b5ef-5968-41ab-a2c1-40edc11fd73e" isOneWay="false" action="" name="getWarehouseMaterialList" bindingOperationName="getWarehouseMaterialList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="82228dce-1352-45bc-8a8b-e07407dbf244" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/WarehouseWebApplication/WarehouseService?wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
@@ -449,9 +449,7 @@ declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
          <war:token>salajane</war:token>
       </war:getMaterialListRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="37009273-bfe8-481f-b5ba-49047c059be8" name="SOAP Response"/><con:assertion type="Schema Compliance" id="91af4c9c-ee88-409d-96ed-71d1b552596b" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="26466d39-7d3e-4e10-82cb-448c06b2a6f3" name="XPath Match id"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-//ware:id</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="bb3eda8f-437b-4a76-88f1-d33ee82adac5" name="XPath Match name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="37009273-bfe8-481f-b5ba-49047c059be8" name="SOAP Response"/><con:assertion type="Schema Compliance" id="91af4c9c-ee88-409d-96ed-71d1b552596b" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="bb3eda8f-437b-4a76-88f1-d33ee82adac5" name="XPath Match name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
 declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
 //ware:name</path><content>Window</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="91eb2279-d56b-4dca-9e1d-33df8f338055" name="XPath Match code"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
 declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
@@ -482,15 +480,11 @@ declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
    <soapenv:Body>
       <war:getWarehouseListRequest>
          <war:token>salajane</war:token>
-         <war:warehouseName>Tallinn Ladu</war:warehouseName>
-         <war:warehouseAddress>Kalmistu tee 26</war:warehouseAddress>
          <!--Optional:-->
-         <war:hasRelatedMaterials>ei</war:hasRelatedMaterials>
+         <war:hasRelatedMaterials>jah</war:hasRelatedMaterials>
       </war:getWarehouseListRequest>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="1d1ad69d-8c9e-4e8b-a984-cb0648753606" name="SOAP Response"/><con:assertion type="Schema Compliance" id="b4529deb-33a0-4d59-8dfe-6b54e02fd0da" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="f076bbfc-3d37-44da-871f-0b378aa9b952" name="XPath Match ei / id"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-//ware:id</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="d1faedf3-3599-4709-be2f-a98f1d16c956" name="XPath Match ei / warehouse name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="1d1ad69d-8c9e-4e8b-a984-cb0648753606" name="SOAP Response"/><con:assertion type="Schema Compliance" id="b4529deb-33a0-4d59-8dfe-6b54e02fd0da" name="Schema Compliance"><con:configuration><definition/></con:configuration></con:assertion><con:assertion type="XPath Match" id="d1faedf3-3599-4709-be2f-a98f1d16c956" name="XPath Match ei / warehouse name"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
 declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
 //ware:warehouseName</path><content>Tallinn Ladu</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="41a25072-f5e2-474f-b2c6-f10a93f5278e" name="XPath Match ei / capacity"><con:configuration><path>declare namespace ware='http://www.ttu.ee/idu0075/warehouse';
 declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
