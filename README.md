@@ -925,9 +925,9 @@ Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata sell
 
 HTTP meetod: `POST`
 
-Ressurss (URI): `/warehouses/{warehouseId}/add_materail/{materialId}`, kus `{warehouseId}` on lao id ja `{materialId}` on materjali id.
+Ressurss (URI): `/warehouses/{warehouseId}/add_material`, kus `{warehouseId}` on lao id.
 
-Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/add_materail/1/?token=salajane`
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/add_material/?token=salajane`
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
