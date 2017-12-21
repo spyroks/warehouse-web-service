@@ -931,7 +931,6 @@ Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/add_materail/1/
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
-* `warehouseId` - `Integer`, lao id;
 * `materialId` - `Integer`, materjali id;
 * `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
 * `unitPrice` - `Integer`, ühe materjali hind (näiteks, 33.33 €).
@@ -939,7 +938,11 @@ Väljad päringus andmetüüpidega on järgnevad:
 
 ###### Näidis JSON päring kui POST meetod (request)
 ~~~json
-
+{
+  "materialId": 1,
+  "quantity": 20,
+  "unitPrice": 33.33
+}
 ~~~
 
 ##### Väljundandmete kirjeldus
@@ -955,7 +958,17 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 ###### Näidis JSON vastus (response)
 ~~~json
-
+{
+   "material":    {
+      "id": 1,
+      "name": "Window",
+      "code": "WIN0001TLN20LDU",
+      "composition": "Glass, plastic",
+      "durability": "Low"
+   },
+   "quantity": 20,
+   "unitPrice": 33.33
+}
 ~~~
 
 
