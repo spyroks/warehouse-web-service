@@ -706,7 +706,7 @@ Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk
 
 HTTP meetod: `GET`
 
-Ressurss (URI): `/warehouses/{warehouse_id}`, kus `{warehouse_id}` on lao id.
+Ressurss (URI): `/warehouses/{warehouseId}`, kus `{warehouseId}` on lao id.
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1?token=salajane`
 
@@ -849,7 +849,7 @@ Materjali küsimise operatsioon. Materjali saab otsida selle unikaalse identifik
 
 HTTP meetod: `GET`
 
-Ressurss (URI): `/materials/{material_id}`, kus `{material_id}` on materjali id.
+Ressurss (URI): `/materials/{materialId}`, kus `{materialId}` on materjali id.
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1?token=salajane`
 
@@ -925,7 +925,7 @@ Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata sell
 
 HTTP meetod: `POST`
 
-Ressurss (URI): `/warehouses/{warehouse_id}/add_materail/{material_id}`, kus `{warehouse_id}` on lao id ja `{material_id}` on materjali id.
+Ressurss (URI): `/warehouses/{warehouseId}/add_materail/{materialId}`, kus `{warehouseId}` on lao id ja `{materialId}` on materjali id.
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/add_materail/1/?token=salajane`
 
@@ -966,7 +966,7 @@ Määratud lao kõikide materjalide küsimise operatsioon. Vastuseks tagastataks
 
 HTTP meetod: `GET`
 
-Ressurss (URI): `/warehouses/{warehouse_id}/materials`, kus `{warehouse_id}` on lao id.
+Ressurss (URI): `/warehouses/{warehouseId}/materials`, kus `{warehouseId}` on lao id.
 
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/materials/?token=salajane`
 
