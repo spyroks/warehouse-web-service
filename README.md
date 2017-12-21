@@ -148,14 +148,14 @@ API kasutatav WSDL fail asub teenuse kaustas `src/conf/xml-resources/web-service
 
 ### SOAP API Operatsioonid
 SOAP teenuses on võimalikud järgmised operatsioonid:
-* [addWarehouse](#addwarehouse)
-* [getWarehouse](#getwarehouse)
-* [getWarehouseList](#getwarehouselist)
-* [addMaterial](#addmaterial)
-* [getMaterial](#getmaterial)
-* [getMaterialList](#getmateriallist)
-* [addWarehouseMaterial](#addwarehousematerial)
-* [getWarehouseMaterialList](#getwarehousemateriallist)
+* [addWarehouse SOAP](#addwarehouse)
+* [getWarehouse SOAP](#getwarehouse)
+* [getWarehouseList SOAP](#getwarehouselist)
+* [addMaterial SOAP](#addmaterial)
+* [getMaterial SOAP](#getmaterial)
+* [getMaterialList SOAP](#getmateriallist)
+* [addWarehouseMaterial SOAP](#addwarehousematerial)
+* [getWarehouseMaterialList SOAP](#getwarehousemateriallist)
 
 ### SOAP API Operatsioonide kirjeldused
 Järgnevad SOAP teenuse operatsioonide kirjeldused.
@@ -166,7 +166,7 @@ Iga päring peab sisaldama korrektne `token`.
 
 
 ***
-#### addWarehouse
+#### addWarehouse SOAP
 Lao lisamise operatsioon. Saab lisada lao millel on nimi ja aadress, selle ruumala ja pindala.
 
 ##### Sisendandmete kirjeldus
@@ -223,7 +223,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getWarehouse
+#### getWarehouse SOAP
 Lao küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
 ##### Sisendandmete kirjeldus
@@ -273,7 +273,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getWarehouseList
+#### getWarehouseList SOAP
 Kõikide ladude küsimise operatsioon. Operatsioonil on olemas mittekohustuslik (`optional`) päringu parameeter. See parameeter toimib nagu küsimise sorteerija. Vastuseks tagastatakse kõik laod selle parameetri järgi.
 
 ##### Sisendandmete kirjeldus
@@ -334,7 +334,7 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
 
 
 ***
-#### addMaterial
+#### addMaterial SOAP
 Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, selle koostis ja tugevus.
 
 ##### Sisendandmete kirjeldus
@@ -389,7 +389,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getMaterial
+#### getMaterial SOAP
 Materjali küsimise operatsioon. Materjali saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
 ##### Sisendandmete kirjeldus
@@ -437,7 +437,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getMaterialList
+#### getMaterialList SOAP
 Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid.
 
 ##### Sisendandmete kirjeldus
@@ -493,7 +493,7 @@ Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpide
 
 
 ***
-#### addWarehouseMaterial
+#### addWarehouseMaterial SOAP
 Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata selle hind ja kogus antud laos.
 
 ##### Sisendandmete kirjeldus
@@ -554,7 +554,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getWarehouseMaterialList
+#### getWarehouseMaterialList SOAP
 Määratud lao kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud lao kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 
 ##### Sisendandmete kirjeldus
@@ -629,14 +629,14 @@ REST API on ligipääsetav aadressil `(hostname)/WarehouseWebApplication`.
 
 ### REST API Operatsioonid
 REST teenuses on võimalikud järgmised operatsioonid:
-* [addWarehouse](#add-warehouse)
-* [getWarehouse](#get-warehouse)
-* [getWarehouseList](#get-warehouse-list)
-* [addMaterial](#add-material)
-* [getMaterial](#get-material)
-* [getMaterialList](#get-material-list)
-* [addWarehouseMaterial](#add-warehouse-material)
-* [getWarehouseMaterialList](#get-warehouse-material-list)
+* [addWarehouse REST](#add-warehouse)
+* [getWarehouse REST](#get-warehouse)
+* [getWarehouseList REST](#get-warehouse-list)
+* [addMaterial REST](#add-material)
+* [getMaterial REST](#get-material)
+* [getMaterialList REST](#get-material-list)
+* [addWarehouseMaterial REST](#add-warehouse-material)
+* [getWarehouseMaterialList REST](#get-warehouse-material-list)
 
 ### REST API Operatsioonide kirjeldused
 
@@ -648,7 +648,7 @@ Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetri
 
 
 ***
-#### addWarehouse
+#### addWarehouse REST
 Ladu lisamise operatsioon. Saab lisada lao millel on nimi ja aadress, selle ruumala ja pindala.
 
 HTTP meetod: `POST`
@@ -701,7 +701,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getWarehouse
+#### getWarehouse REST
 Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
 HTTP meetod: `GET`
@@ -736,7 +736,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getWarehouseList
+#### getWarehouseList REST
 Kõikide ladude küsimise operatsioon. Operatsioonil on olemas mittekohustuslik (`optional`) päringu parameeter. See parameeter toimib nagu küsimise sorteerija. Vastuseks tagastatakse kõik laod selle parameetri järgi.
 
 HTTP meetod: `GET`
@@ -794,7 +794,7 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
 
 
 ***
-#### addMaterial
+#### addMaterial REST
 Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, selle koostis ja tugevus.
 
 HTTP meetod: `POST`
@@ -844,7 +844,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getMaterial
+#### getMaterial REST
 Materjali küsimise operatsioon. Materjali saab otsida selle unikaalse identifikaatori ehk `id` järgi.
 
 HTTP meetod: `GET`
@@ -877,7 +877,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getMaterialList
+#### getMaterialList REST
 Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid.
 
 HTTP meetod: `GET`
@@ -920,7 +920,7 @@ Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpide
 
 
 ***
-#### addWarehouseMaterial
+#### addWarehouseMaterial REST
 Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata selle hind ja kogus antud laos.
 
 HTTP meetod: `POST`
@@ -974,7 +974,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
 
 
 ***
-#### getWarehouseMaterialList
+#### getWarehouseMaterialList REST
 Määratud lao kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 
 HTTP meetod: `GET`
