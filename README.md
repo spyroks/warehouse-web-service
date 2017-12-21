@@ -148,14 +148,14 @@ API kasutatav WSDL fail asub teenuse kaustas `src/conf/xml-resources/web-service
 
 ### SOAP API Operatsioonid
 SOAP teenuses on võimalikud järgmised operatsioonid:
-* [addWarehouse SOAP](#addwarehouse)
-* [getWarehouse SOAP](#getwarehouse)
-* [getWarehouseList SOAP](#getwarehouselist)
-* [addMaterial SOAP](#addmaterial)
-* [getMaterial SOAP](#getmaterial)
-* [getMaterialList SOAP](#getmateriallist)
-* [addWarehouseMaterial SOAP](#addwarehousematerial)
-* [getWarehouseMaterialList SOAP](#getwarehousemateriallist)
+* [addWarehouse SOAP](#addwarehouse soap)
+* [getWarehouse SOAP](#getwarehouse soap)
+* [getWarehouseList SOAP](#getwarehouselist soap)
+* [addMaterial SOAP](#addmaterial soap)
+* [getMaterial SOAP](#getmaterial soap)
+* [getMaterialList SOAP](#getmateriallist soap)
+* [addWarehouseMaterial SOAP](#addwarehousematerial soap)
+* [getWarehouseMaterialList SOAP](#getwarehousemateriallist soap)
 
 ### SOAP API Operatsioonide kirjeldused
 Järgnevad SOAP teenuse operatsioonide kirjeldused.
