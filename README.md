@@ -148,14 +148,14 @@ API kasutatav WSDL fail asub teenuse kaustas `src/conf/xml-resources/web-service
 
 ### SOAP API Operatsioonid
 SOAP teenuses on võimalikud järgmised operatsioonid:
-* [addWarehouse SOAP](#addwarehouse soap)
-* [getWarehouse SOAP](#getwarehouse soap)
-* [getWarehouseList SOAP](#getwarehouselist soap)
-* [addMaterial SOAP](#addmaterial soap)
-* [getMaterial SOAP](#getmaterial soap)
-* [getMaterialList SOAP](#getmateriallist soap)
-* [addWarehouseMaterial SOAP](#addwarehousematerial soap)
-* [getWarehouseMaterialList SOAP](#getwarehousemateriallist soap)
+* [addWarehouse SOAP](#addwarehouse-soap)
+* [getWarehouse SOAP](#getwarehouse-soap)
+* [getWarehouseList SOAP](#getwarehouselist-soap)
+* [addMaterial SOAP](#addmaterial-soap)
+* [getMaterial SOAP](#getmaterial-soap)
+* [getMaterialList SOAP](#getmateriallist-soap)
+* [addWarehouseMaterial SOAP](#addwarehousematerial-soap)
+* [getWarehouseMaterialList SOAP](#getwarehousemateriallist-soap)
 
 ### SOAP API Operatsioonide kirjeldused
 Järgnevad SOAP teenuse operatsioonide kirjeldused.
@@ -629,14 +629,14 @@ REST API on ligipääsetav aadressil `(hostname)/WarehouseWebApplication`.
 
 ### REST API Operatsioonid
 REST teenuses on võimalikud järgmised operatsioonid:
-* [addWarehouse REST](#add-warehouse)
-* [getWarehouse REST](#get-warehouse)
-* [getWarehouseList REST](#get-warehouse-list)
-* [addMaterial REST](#add-material)
-* [getMaterial REST](#get-material)
-* [getMaterialList REST](#get-material-list)
-* [addWarehouseMaterial REST](#add-warehouse-material)
-* [getWarehouseMaterialList REST](#get-warehouse-material-list)
+* [addWarehouse REST](#addwarehouse-rest)
+* [getWarehouse REST](#getwarehouse-rest)
+* [getWarehouseList REST](#getwarehouselist-rest)
+* [addMaterial REST](#addmaterial-rest)
+* [getMaterial REST](#getmaterial-rest)
+* [getMaterialList REST](#getmateriallist-rest)
+* [addWarehouseMaterial REST](#addwarehousematerial-rest)
+* [getWarehouseMaterialList REST](#getwarehousemateriallist-rest)
 
 ### REST API Operatsioonide kirjeldused
 
