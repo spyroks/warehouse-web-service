@@ -12,9 +12,11 @@
 * [SOAP API kirjeldus](#soap-api-kirjeldus)
   - [SOAP API Operatsioonid](#soap-api-operatsioonid)
   - [SOAP API Operatsioonide kirjeldused](#soap-api-operatsioonide-kirjeldused)
+    + [Error seisundid SOAP](#error-seisundid-soap)
 * [REST API kirjeldus](#rest-api-kirjeldus)
   - [REST API Operatsioonid](#rest-api-operatsioonid)
   - [REST API Operatsioonide kirjeldused](#rest-api-operatsioonide-kirjeldused)
+    + [Error seisundid REST](#error-seisundid-rest)
 * [Seisundi koodide tähendused](#seisundi-koodide-tähendused)
 
 
@@ -218,7 +220,7 @@ Elemendid päringus andmetüüpidega on järgnevad:
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et ladu on edukalt loodud;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -278,7 +280,7 @@ Elemendid vastuses andmetüüpidega on järgnevad:
     - `warehouseArea` - `double`, küsitava lao pindala;
     - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele laole.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -333,7 +335,7 @@ Vastuseks on nimekiri salvestatud ladudest. Elemendid vastuses andmetüüpidega 
         + `warehouseCapacity` - `double`;
         + `warehouseArea` - `double`.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -376,7 +378,7 @@ Elemendid päringus andmetüüpidega on järgnevad:
     - `composition` - `string`, materjali koostis (näiteks, aken koosneb klaasist ja plastikust);
     - `durability` - `string`, materjali tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP päring (request)
 ~~~xml
@@ -407,7 +409,7 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt loodud;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -465,7 +467,7 @@ Elemendid vastuses andmetüüpidega on järgnevad:
     - `composition` - `string`, küsitava materjali koostis;
     - `durability` - `string`, küsitava materjali tugevus.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -516,7 +518,7 @@ Vastuseks on nimekiri salvestatud materjalidest. Elemendid vastuses andmetüüpi
         + `composition` - `string`;
         + `durability` - `string`.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -590,7 +592,7 @@ Elemendid päringus andmetüüpidega on järgnevad:
 
 Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisundi mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -656,7 +658,7 @@ Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Elemendid vastuse
         + `quantity` - `integer`, küsitava lao antud materjali kogus;
         + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -696,7 +698,7 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
 
 
 
-### SOAP Errorid
+### Error seisundid SOAP
 Kui mõni operatsioon ebaõnnestub tagastatakse `Error` seisundi mis kirjeldab ebaõnnestumise põhjust täpsemalt.
 
 Elemendid ebaõnnestunud päringu vastuses andmetüüpidega on järgnevad:
@@ -789,7 +791,7 @@ Elemendid päringus andmetüüpidega on järgnevad:
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
     - `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -836,7 +838,7 @@ Elemendid vastuses andmetüüpidega on järgnevad:
     - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -878,7 +880,7 @@ Vastuseks on nimekiri salvestatud ladudest. Elemendid vastuses andmetüüpidega 
         + `warehouseMaterialList` - `warehouseMaterialListType`.
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -972,7 +974,7 @@ Elemendid päringus andmetüüpidega on järgnevad:
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
     - `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1017,7 +1019,7 @@ Elemendid vastuses andmetüüpidega on järgnevad:
     - `durability` - `string`, küsitava materjali tugevus.
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1057,7 +1059,7 @@ Vastuseks on nimekiri salvestatud materjalidest. Elemendid vastuses andmetüüpi
         + `durability` - `string`.
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1130,7 +1132,7 @@ Elemendid päringus andmetüüpidega on järgnevad:
 
 Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisundi mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1183,7 +1185,7 @@ Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Elemendid vastuse
         + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1220,7 +1222,7 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
 
 
 
-### REST Errorid
+### Error seisundid REST
 Kui mõni operatsioon ebaõnnestub tagastatakse `Error` seisundi mis kirjeldab ebaõnnestumise põhjust täpsemalt.
 
 Elemendid ebaõnnestunud päringu vastuses andmetüüpidega on järgnevad:
