@@ -1240,22 +1240,22 @@ Seisundi koodide tähendused leiab [Seisundi koodide tähenduste](#seisundi-kood
 Järgnevalt on kirjeldatud seisundi koodide tähendusi:
 
 * `200` - õnnestunud päringu seisundi kood;
-          + tähendab, et ladu on edukalt loodud;
-          + tähendab, et materjal on edukalt loodud;
-          + tähendab, et materjal on edukalt lisatud ladule;
-          + tähendab, et materjal on edukalt uuendatud;
+  - tähendab, et ladu on edukalt loodud;
+  - tähendab, et materjal on edukalt loodud;
+  - tähendab, et materjal on edukalt lisatud ladule;
+  - tähendab, et materjal on edukalt uuendatud;
 
 * `401` - vale `token`;
 
 * `400` - kehtetu sisenditüüp või element puudub;
 
 * `405` - meetod ei ole lubatud;
-          + tähendab, et ladu nimekiri on tühi;
-          + tähendab, et materjali nimekiri on tühi;
+  - tähendab, et ladu nimekiri on tühi;
+  - tähendab, et materjali nimekiri on tühi;
 
 * `404` - ei leitud;
-          + tähendab, et ladu pole leitud;
-          + tähendab, et materjal pole leitud;
+  - tähendab, et ladu pole leitud;
+  - tähendab, et materjal pole leitud;
 
 * `406` - pole vastuvõetav;
-          + ainult vastuvõetavad väärtused on \ "jah \", \ "ei \" või jätta see väli tühjaks.
+  - ainult vastuvõetavad väärtused on \ "jah \", \ "ei \" või jätta see väli tühjaks.
