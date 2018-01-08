@@ -1,7 +1,6 @@
 # Projekt aines Veebiteenused (IDU0075)
 
 ## Sisukord
-* [Viited](#viited)
 * [Sissejuhatus](#sissejuhatus)
 * [Teenuse põhiobjektid](#teenuse-põhiobjektid)
   - [Warehouse](#warehouse)
@@ -19,16 +18,16 @@
   - [REST API Operatsioonide kirjeldused](#rest-api-operatsioonide-kirjeldused)
       + [Error seisundid REST](#error-seisundid-rest)
 * [Seisundi koodide tähendused](#seisundi-koodide-tähendused)
+* [Viited](#viited)
 
 
 
 ## Autor
 Denis Rästas 155552IAPB
 
-## Viited
+## Sissejuhatus
 Antud projekti struktuur oli tehtud [Joosep Alviste](https://github.com/JoosepAlviste/veebiteenused-projekt) projekti põhjal.
 
-## Sissejuhatus
 Veebiteenused aine sooritamiseks on projekti tegemine kasutades [Netbeans-i](https://netbeans.org) ning [Glassfish-i](https://glassfish.java.net). 
 
 Projekt koosneb neljast osast: dokumentatsioon, realisatsioon, testimine ning kaitsmine.
@@ -1282,3 +1281,7 @@ Kõikide seisundi koodide kirjeldused asuvad [Seisundi koodide tähenduste](#sei
 
 * `406` - pole vastuvõetav;
   - ainult vastuvõetavad väärtused on "jah", "ei" või jätta see väli tühjaks.
+
+## Viited
+Projekt aines Veebiteenused. Joosep Alviste. [WWW] [https://github.com/JoosepAlviste/veebiteenused-projekt](https://github.com/JoosepAlviste/veebiteenused-projekt) (21.11.2017)
+Veebiteenused. Tarvo Treier [WWW] [http://www.tud.ttu.ee/im/Tarvo.Treier/idu0075/2017/](http://www.tud.ttu.ee/im/Tarvo.Treier/idu0075/2017/) (21.11.2017)
