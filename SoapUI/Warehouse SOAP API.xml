@@ -3,6 +3,17 @@
 <wsdl:definitions targetNamespace="http://www.ttu.ee/idu0075/warehouse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ttu.ee/idu0075/warehouse">
   <wsdl:types>
     <xs:schema targetNamespace="http://www.ttu.ee/idu0075/warehouse" elementFormDefault="qualified">
+      <!--Web service Types-->
+      <xs:complexType name="warehouseType">
+        <xs:sequence>
+          <xs:element name="id" type="xs:integer"/>
+          <xs:element name="warehouseName" type="xs:string"/>
+          <xs:element name="warehouseAddress" type="xs:string"/>
+          <xs:element name="warehouseCapacity" type="xs:double"/>
+          <xs:element name="warehouseArea" type="xs:double"/>
+          <xs:element name="warehouseMaterialList" type="tns:warehouseMaterialListType"/>
+        </xs:sequence>
+      </xs:complexType>
       <xs:complexType name="materialType">
         <xs:sequence>
           <xs:element name="id" type="xs:integer"/>
@@ -24,51 +35,53 @@
           <xs:element minOccurs="0" maxOccurs="unbounded" name="warehouseMaterial" type="tns:warehouseMaterialType"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:complexType name="warehouseType">
+      <xs:complexType name="stateType">
         <xs:sequence>
-          <xs:element name="id" type="xs:integer"/>
-          <xs:element name="warehouseName" type="xs:string"/>
-          <xs:element name="warehouseAddress" type="xs:string"/>
-          <xs:element name="warehouseCapacity" type="xs:double"/>
-          <xs:element name="warehouseArea" type="xs:double"/>
-          <xs:element name="warehouseMaterialList" type="tns:warehouseMaterialListType"/>
+          <xs:element name="code" type="xs:integer"/>
+          <xs:element name="message" type="xs:string"/>
         </xs:sequence>
       </xs:complexType>
-      <xs:element name="getMaterialRequest">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="token" type="xs:string"/>
-            <xs:element name="id" type="xs:integer"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="getMaterialResponse" type="tns:materialType"/>
-      <xs:element name="addMaterialRequest">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="token" type="xs:string"/>
-            <xs:element name="name" type="xs:string"/>
-            <xs:element name="code" type="xs:string"/>
-            <xs:element name="composition" type="xs:string"/>
-            <xs:element name="durability" type="xs:string"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="addMaterialResponse" type="tns:materialType"/>
-      <xs:element name="getMaterialListRequest">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="token" type="xs:string"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="getMaterialListResponse">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element minOccurs="0" maxOccurs="unbounded" name="material" type="tns:materialType"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
+      <xs:complexType name="successType">
+        <xs:complexContent>
+          <xs:extension base="tns:stateType"/>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="errorType">
+        <xs:complexContent>
+          <xs:extension base="tns:stateType"/>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="updateType">
+        <xs:complexContent>
+          <xs:extension base="tns:stateType"/>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="warehouseStateType">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="success" type="tns:successType"/>
+            <xs:element name="error" type="tns:errorType"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="materialStateType">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="success" type="tns:successType"/>
+            <xs:element name="error" type="tns:errorType"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="warehouseMaterialStateType">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="success" type="tns:successType"/>
+            <xs:element name="error" type="tns:errorType"/>
+            <xs:element name="update" type="tns:updateType"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+      <!--Web service Operations-->
       <xs:element name="getWarehouseRequest">
         <xs:complexType>
           <xs:sequence>
@@ -77,7 +90,16 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="getWarehouseResponse" type="tns:warehouseType"/>
+      <xs:element name="getWarehouseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:element name="warehouse" type="tns:warehouseType"/>
+              <xs:element name="error" type="tns:errorType"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="addWarehouseRequest">
         <xs:complexType>
           <xs:sequence>
@@ -89,7 +111,16 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="addWarehouseResponse" type="tns:warehouseType"/>
+      <xs:element name="addWarehouseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:sequence>
+              <xs:element name="warehouse" type="tns:warehouseType"/>
+              <xs:element name="state" type="tns:warehouseStateType"/>
+            </xs:sequence>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="getWarehouseListRequest">
         <xs:complexType>
           <xs:sequence>
@@ -97,7 +128,7 @@
             <xs:element minOccurs="0" name="hasRelatedMaterials">
               <xs:simpleType>
                 <xs:restriction base="xs:string">
-                  <xs:pattern value="jah|ei|null"/>
+                  <xs:pattern value="jah|ei"/>
                 </xs:restriction>
               </xs:simpleType>
             </xs:element>
@@ -107,7 +138,64 @@
       <xs:element name="getWarehouseListResponse">
         <xs:complexType>
           <xs:sequence>
-            <xs:element minOccurs="0" maxOccurs="unbounded" name="warehouse" type="tns:warehouseType"/>
+            <xs:choice>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="warehouses" type="tns:warehouseType"/>
+              <xs:element name="error" type="tns:errorType"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMaterialRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="id" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMaterialResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:element name="material" type="tns:materialType"/>
+              <xs:element name="error" type="tns:errorType"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addMaterialRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="composition" type="xs:string"/>
+            <xs:element name="durability" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addMaterialResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="material" type="tns:materialType"/>
+            <xs:element name="state" type="tns:materialStateType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMaterialListRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="token" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMaterialListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="materials" type="tns:materialType"/>
+              <xs:element name="error" type="tns:errorType"/>
+            </xs:choice>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -119,7 +207,16 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="getWarehouseMaterialListResponse" type="tns:warehouseMaterialListType"/>
+      <xs:element name="getWarehouseMaterialListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:element name="warehouseMaterials" type="tns:warehouseMaterialListType"/>
+              <xs:element name="error" type="tns:errorType"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="addWarehouseMaterialRequest">
         <xs:complexType>
           <xs:sequence>
@@ -131,7 +228,14 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="addWarehouseMaterialResponse" type="tns:warehouseMaterialType"/>
+      <xs:element name="addWarehouseMaterialResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="warehouseMaterial" type="tns:warehouseMaterialType"/>
+            <xs:element name="state" type="tns:warehouseMaterialStateType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
   </wsdl:types>
   <wsdl:message name="getMaterialMessageRequest">
@@ -350,7 +454,7 @@
       <war:getWarehouseListRequest>
          <war:token>salajane</war:token>
          <!--Optional:-->
-         <war:hasRelatedMaterials>jah</war:hasRelatedMaterials>
+         <war:hasRelatedMaterials></war:hasRelatedMaterials>
       </war:getWarehouseListRequest>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/warehouse/WarehousePortType/getWarehouseListRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="5f06b5ef-5968-41ab-a2c1-40edc11fd73e" isOneWay="false" action="" name="getWarehouseMaterialList" bindingOperationName="getWarehouseMaterialList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="82228dce-1352-45bc-8a8b-e07407dbf244" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://macbook-pro-denis.local:8080/WarehouseWebApplication/WarehouseService?wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
