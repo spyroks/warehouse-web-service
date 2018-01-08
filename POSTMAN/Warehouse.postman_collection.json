@@ -1,0 +1,801 @@
+{
+	"info": {
+		"name": "Warehouse",
+		"_postman_id": "33eba9e2-eea2-41e1-f30e-ac8885e7cd30",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Material tests",
+			"description": "Here we can find tests that are supposed to check material type validity.",
+			"item": [
+				{
+					"name": "getMaterial",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c55959e-6460-479a-82d0-ad4492cf0b6c",
+								"type": "text/javascript",
+								"exec": [
+									"// Test material id",
+									"pm.test(\"Material id is 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].id).to.eql(1);",
+									"});",
+									"",
+									"// Test material name",
+									"pm.test(\"Material name is Window\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].name).to.eql(\"Window\");",
+									"});",
+									"",
+									"// Test material code",
+									"pm.test(\"Material code is WIN0001TLN20LDU\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].code).to.eql(\"WIN0001TLN20LDU\");",
+									"});",
+									"// Test material composition",
+									"pm.test(\"Material composition is Glass, plastic\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].composition).to.eql(\"Glass, plastic\");",
+									"});",
+									"",
+									"// Test material durability",
+									"pm.test(\"Material durability is Low\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].durability).to.eql(\"Low\");",
+									"});",
+									"",
+									"// Test HTTP status code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"// Test response time",
+									"tests[\"Response time is less than 300  milliseconds\"] = responseTime < 300;",
+									"",
+									"// Test content type",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://macbook-pro-denis.local:8080/WarehouseWebApplication/webresources/materials/1?token=salajane",
+							"protocol": "http",
+							"host": [
+								"macbook-pro-denis",
+								"local"
+							],
+							"port": "8080",
+							"path": [
+								"WarehouseWebApplication",
+								"webresources",
+								"materials",
+								"1"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane",
+									"equals": true
+								}
+							]
+						},
+						"description": "Materjali küsimise operatsioon. Materjali saab otsida selle unikaalse identifikaatori ehk id järgi."
+					},
+					"response": []
+				},
+				{
+					"name": "getMaterialList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef6be8cd-b92d-4da9-9ffa-753566763c15",
+								"type": "text/javascript",
+								"exec": [
+									"// Test material id",
+									"pm.test(\"Material id is 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['materials'][0].id).to.eql(1);",
+									"});",
+									"",
+									"// Test material name",
+									"pm.test(\"Material name is Window\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['materials'][0].name).to.eql(\"Window\");",
+									"});",
+									"",
+									"// Test material code",
+									"pm.test(\"Material code is WIN0001TLN20LDU\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['materials'][0].code).to.eql(\"WIN0001TLN20LDU\");",
+									"});",
+									"// Test material composition",
+									"pm.test(\"Material composition is Glass, plastic\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['materials'][0].composition).to.eql(\"Glass, plastic\");",
+									"});",
+									"",
+									"// Test material durability",
+									"pm.test(\"Material durability is Low\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['materials'][0].durability).to.eql(\"Low\");",
+									"});",
+									"",
+									"// Test HTTP status code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"// Test response time",
+									"tests[\"Response time is less than 300  milliseconds\"] = responseTime < 300;",
+									"",
+									"// Test content type",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://macbook-pro-denis.local:8080/WarehouseWebApplication/webresources/materials/?token=salajane",
+							"protocol": "http",
+							"host": [
+								"macbook-pro-denis",
+								"local"
+							],
+							"port": "8080",
+							"path": [
+								"WarehouseWebApplication",
+								"webresources",
+								"materials",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane",
+									"equals": true
+								}
+							]
+						},
+						"description": "Kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse kõik materjalid."
+					},
+					"response": []
+				},
+				{
+					"name": "addMaterial",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0cd6cedf-5abc-4e94-93ce-968676227a56",
+								"type": "text/javascript",
+								"exec": [
+									"// Test material name",
+									"pm.test(\"Material name is Window\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].name).to.eql(\"Window\");",
+									"});",
+									"",
+									"// Test material code",
+									"pm.test(\"Material code is WIN0001TLN20LDU\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].code).to.eql(\"WIN0001TLN20LDU\");",
+									"});",
+									"// Test material composition",
+									"pm.test(\"Material composition is Glass, plastic\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].composition).to.eql(\"Glass, plastic\");",
+									"});",
+									"",
+									"// Test material durability",
+									"pm.test(\"Material durability is Low\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['material'].durability).to.eql(\"Low\");",
+									"});",
+									"",
+									"// Test HTTP status code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"// Test response time",
+									"tests[\"Response time is less than 300  milliseconds\"] = responseTime < 300;",
+									"",
+									"// Test content type",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\": \"Window\",\n   \"code\": \"WIN0001TLN20LDU\",\n   \"composition\": \"Glass, plastic\",\n   \"durability\": \"Low\"\n}"
+						},
+						"url": {
+							"raw": "http://macbook-pro-denis.local:8080/WarehouseWebApplication/webresources/materials/?token=salajane",
+							"protocol": "http",
+							"host": [
+								"macbook-pro-denis",
+								"local"
+							],
+							"port": "8080",
+							"path": [
+								"WarehouseWebApplication",
+								"webresources",
+								"materials",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane",
+									"equals": true
+								}
+							]
+						},
+						"description": "Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, selle koostis ja tugevus."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4d6bcba0-0425-45e5-9fac-7bfefb998c06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "faa195a3-7b96-492a-9e35-a64f7ae733bb",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"Material tests scripts\");"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Warehouse tests",
+			"description": "Here we can find tests that are supposed to check warehouse type validity.",
+			"item": [
+				{
+					"name": "getWarehouse",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5cc8749f-193a-4bf7-a850-ef09d84c8ecf",
+								"type": "text/javascript",
+								"exec": [
+									"// Test warehouse id",
+									"pm.test(\"Warehouse id is 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].id).to.eql(1);",
+									"});",
+									"",
+									"// Test warehouse name",
+									"pm.test(\"Warehouse name is Tallinn Ladu\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].warehouseName).to.eql(\"Tallinn Ladu\");",
+									"});",
+									"",
+									"// Test warehouse address",
+									"pm.test(\"Warehouse address is Kalmistu tee 26\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].warehouseAddress).to.eql(\"Kalmistu tee 26\");",
+									"});",
+									"",
+									"// Test warehouse capacity",
+									"pm.test(\"Warehouse capacity is 500.00\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].warehouseCapacity).to.eql(500.00);",
+									"});",
+									"",
+									"// Test warehouse area",
+									"pm.test(\"Warehouse area is 1000.00\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].warehouseArea).to.eql(1000.00);",
+									"});",
+									"",
+									"// Test HTTP status code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"// Test response time",
+									"tests[\"Response time is less than 300  milliseconds\"] = responseTime < 300;",
+									"",
+									"// Test content type",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://macbook-pro-denis.local:8080/WarehouseWebApplication/webresources/warehouses/1?token=salajane",
+							"protocol": "http",
+							"host": [
+								"macbook-pro-denis",
+								"local"
+							],
+							"port": "8080",
+							"path": [
+								"WarehouseWebApplication",
+								"webresources",
+								"warehouses",
+								"1"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane",
+									"equals": true
+								}
+							]
+						},
+						"description": "Ladu küsimise operatsioon. Ladu saab otsida selle unikaalse identifikaatori ehk id järgi."
+					},
+					"response": []
+				},
+				{
+					"name": "getWarehouseList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5ebec39f-9268-4104-9735-47ddd1e40ff8",
+								"type": "text/javascript",
+								"exec": [
+									"// Test warehouse name",
+									"pm.test(\"Warehouse name is Tallinn Ladu\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData);",
+									"    pm.expect(jsonData['warehouses'][0].warehouseName).to.eql(\"Tallinn Ladu\");",
+									"});",
+									"",
+									"// Test warehouse address",
+									"pm.test(\"Warehouse address is Kalmistu tee 26\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouses'][0].warehouseAddress).to.eql(\"Kalmistu tee 26\");",
+									"});",
+									"",
+									"// Test warehouse capacity",
+									"pm.test(\"Warehouse capacity is 500.00\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouses'][0].warehouseCapacity).to.eql(500.00);",
+									"});",
+									"",
+									"// Test warehouse area",
+									"pm.test(\"Warehouse area is 1000.00\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouses'][0].warehouseArea).to.eql(1000.00);",
+									"});",
+									"",
+									"// Test HTTP status code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"// Test response time",
+									"tests[\"Response time is less than 300  milliseconds\"] = responseTime < 300;",
+									"",
+									"// Test content type",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://macbook-pro-denis.local:8080/WarehouseWebApplication/webresources/warehouses/?token=salajane&has_materials=ei",
+							"protocol": "http",
+							"host": [
+								"macbook-pro-denis",
+								"local"
+							],
+							"port": "8080",
+							"path": [
+								"WarehouseWebApplication",
+								"webresources",
+								"warehouses",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane",
+									"equals": true
+								},
+								{
+									"key": "has_materials",
+									"value": "ei",
+									"equals": true
+								}
+							]
+						},
+						"description": "Kõikide ladude küsimise operatsioon. Operatsioonil on olemas mittekohustuslik (optional) päringu parameeter. See parameeter toimib nagu küsimise sorteerija. Vastuseks tagastatakse kõik laod selle parameetri järgi.\n\nhas_materials - string, küsimise sorteerija piiranguga (restiction). Ainus vastuvõetav väärtus on jah või ei. Pannes jah tagastab kõik laod millel on materjalid, ei - kõik tühjad laod. Kui jätta tühjaks siis sorteerimine ei toimu ning tagastatakse kõik laod."
+					},
+					"response": []
+				},
+				{
+					"name": "getWarehouseMaterialList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "05f37f72-a23b-4dcf-8218-2cee93fb29d0",
+								"type": "text/javascript",
+								"exec": [
+									"// Test material name",
+									"pm.test(\"Material name is Window\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterials']['warehouseMaterial'][0]['material'].name).to.eql(\"Window\");",
+									"});",
+									"",
+									"// Test material code",
+									"pm.test(\"Material code is WIN0001TLN20LDU\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterials']['warehouseMaterial'][0]['material'].code).to.eql(\"WIN0001TLN20LDU\");",
+									"});",
+									"",
+									"// Test material composition",
+									"pm.test(\"Material composition is Glass, plastic\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterials']['warehouseMaterial'][0]['material'].composition).to.eql(\"Glass, plastic\");",
+									"});",
+									"",
+									"// Test material durability",
+									"pm.test(\"Material durability is Low\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterials']['warehouseMaterial'][0]['material'].durability).to.eql(\"Low\");",
+									"});",
+									"",
+									"// Test material quantity",
+									"pm.test(\"Material quantity is 20\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterials']['warehouseMaterial'][0].quantity).to.eql(20);",
+									"});",
+									"",
+									"// Test material unit price",
+									"pm.test(\"Material unit price is 33.33\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterials']['warehouseMaterial'][0].unitPrice).to.eql(33.33);",
+									"});",
+									"// Test HTTP status code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"// Test response time",
+									"tests[\"Response time is less than 300  milliseconds\"] = responseTime < 300;",
+									"",
+									"// Test content type",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://macbook-pro-denis.local:8080/WarehouseWebApplication/webresources/warehouses/1/materials/?token=salajane",
+							"protocol": "http",
+							"host": [
+								"macbook-pro-denis",
+								"local"
+							],
+							"port": "8080",
+							"path": [
+								"WarehouseWebApplication",
+								"webresources",
+								"warehouses",
+								"1",
+								"materials",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane",
+									"equals": true
+								}
+							]
+						},
+						"description": "Määratud lao kõikide materjalide küsimise operatsioon. Vastuseks tagastatakse määratud ladu kõik materjalid. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule."
+					},
+					"response": []
+				},
+				{
+					"name": "addWarehouse",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed98c356-12ad-4af4-9b5d-2b538f29a218",
+								"type": "text/javascript",
+								"exec": [
+									"// Test warehouse name",
+									"pm.test(\"Warehouse name is Tallinn Ladu\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].warehouseName).to.eql(\"Tallinn Ladu\");",
+									"});",
+									"",
+									"// Test warehouse address",
+									"pm.test(\"Warehouse address is Kalmistu tee 26\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].warehouseAddress).to.eql(\"Kalmistu tee 26\");",
+									"});",
+									"",
+									"// Test warehouse capacity",
+									"pm.test(\"Warehouse capacity is 500.00\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].warehouseCapacity).to.eql(500.00);",
+									"});",
+									"",
+									"// Test warehouse area",
+									"pm.test(\"Warehouse area is 1000.00\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouse'].warehouseArea).to.eql(1000.00);",
+									"});",
+									"",
+									"// Test HTTP status code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"// Test response time",
+									"tests[\"Response time is less than 300  milliseconds\"] = responseTime < 300;",
+									"",
+									"// Test content type",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"warehouseName\": \"Tallinn Ladu\",\n   \"warehouseAddress\": \"Kalmistu tee 26\",\n   \"warehouseCapacity\": 500,\n   \"warehouseArea\": 1000,\n   \"warehouseMaterialList\": {\"warehouseMaterial\": []}\n}"
+						},
+						"url": {
+							"raw": "http://macbook-pro-denis.local:8080/WarehouseWebApplication/webresources/warehouses/?token=salajane",
+							"protocol": "http",
+							"host": [
+								"macbook-pro-denis",
+								"local"
+							],
+							"port": "8080",
+							"path": [
+								"WarehouseWebApplication",
+								"webresources",
+								"warehouses",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane",
+									"equals": true
+								}
+							]
+						},
+						"description": "Ladu lisamise operatsioon. Saab lisada lao millel on nimi ja aadress, selle ruumala ja pindala."
+					},
+					"response": []
+				},
+				{
+					"name": "addWarehouseMaterial",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "31757f6b-9890-47c2-8843-c9ec4418b50c",
+								"type": "text/javascript",
+								"exec": [
+									"// Test material name",
+									"pm.test(\"Material name is Window\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterial']['material'].name).to.eql(\"Window\");",
+									"});",
+									"",
+									"// Test material code",
+									"pm.test(\"Material code is WIN0001TLN20LDU\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterial']['material'].code).to.eql(\"WIN0001TLN20LDU\");",
+									"});",
+									"",
+									"// Test material composition",
+									"pm.test(\"Material composition is Glass, plastic\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterial']['material'].composition).to.eql(\"Glass, plastic\");",
+									"});",
+									"",
+									"// Test material durability",
+									"pm.test(\"Material durability is Low\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterial']['material'].durability).to.eql(\"Low\");",
+									"});",
+									"",
+									"// Test material quantity",
+									"pm.test(\"Material quantity is 20\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterial'].quantity).to.eql(20);",
+									"});",
+									"",
+									"// Test material unit price",
+									"pm.test(\"Material unit price is 33.33\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData['warehouseMaterial'].unitPrice).to.eql(33.33);",
+									"});",
+									"",
+									"// Test HTTP status code",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"// Test response time",
+									"tests[\"Response time is less than 300  milliseconds\"] = responseTime < 300;",
+									"",
+									"// Test content type",
+									"var contentTypeHeaderExists = responseHeaders.hasOwnProperty(\"Content-Type\");",
+									"tests[\"Has Content-Type\"] = contentTypeHeaderExists;",
+									"if (contentTypeHeaderExists) {",
+									"    tests[\"Content-Type is application/json\"] = ",
+									"      responseHeaders[\"Content-Type\"].has(\"application/json\");",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"materialId\": 1,\n  \"quantity\": 20,\n  \"unitPrice\": 33.33\n}"
+						},
+						"url": {
+							"raw": "http://macbook-pro-denis.local:8080/WarehouseWebApplication/webresources/warehouses/1/add_material/?token=salajane",
+							"protocol": "http",
+							"host": [
+								"macbook-pro-denis",
+								"local"
+							],
+							"port": "8080",
+							"path": [
+								"WarehouseWebApplication",
+								"webresources",
+								"warehouses",
+								"1",
+								"add_material",
+								""
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "salajane",
+									"equals": true
+								}
+							]
+						},
+						"description": "Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata selle hind ja kogus antud laos."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7dcd0c4f-7243-4022-b4aa-cdcd0b5bce1a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd900121-e569-47d5-8508-0c60f421f931",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"Warehouse tests scripts\");"
+						]
+					}
+				}
+			]
+		}
+	]
+}
