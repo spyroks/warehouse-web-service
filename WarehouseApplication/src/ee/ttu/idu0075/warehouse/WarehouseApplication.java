@@ -6,14 +6,13 @@
 package ee.ttu.idu0075.warehouse;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import warehouseapplication.AddMaterialRequest;
+import warehouseapplication.AddMaterialResponse;
 import warehouseapplication.GetMaterialListRequest;
 import warehouseapplication.GetMaterialListResponse;
 import warehouseapplication.GetMaterialRequest;
-import warehouseapplication.MaterialType;
+import warehouseapplication.GetMaterialResponse;
 import warehouseapplication.WarehousePortType;
 import warehouseapplication.WarehouseService;
 
@@ -24,8 +23,6 @@ import warehouseapplication.WarehouseService;
 public class WarehouseApplication {
 
     private static final String API_TOKEN = "salajane";
-    private static int nextMaterialId = 1;
-    private static final List<MaterialType> materialList = new ArrayList<>();
 
     /**
      * @param args the command line arguments
@@ -39,17 +36,19 @@ public class WarehouseApplication {
         String id;
         boolean isDone = true;
 
-        System.out.println("Possible operations to choose");
+        System.out.println("Possible operations to choose:");
         System.out.println("'1' - addMaterial operation");
         System.out.println("'2' - getMaterial operation");
         System.out.println("'3' - getMaterialList operation");
+        System.out.println("Type 'quit' to finish");
         while (isDone) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter operation number: ");
             String temp = scanner.nextLine();
             if (temp.trim().equals("1")
-                || temp.trim().equals("2")
-                || temp.trim().equals("3")) {
+                    || temp.trim().equals("2")
+                    || temp.trim().equals("3")
+                    || temp.trim().equals("quit")) {
                 number = temp.trim();
                 System.out.println(getOperation(number) + " operation selected!");
             } else {
@@ -62,7 +61,7 @@ public class WarehouseApplication {
                     System.out.println("Enter material name: ");
                     name = scanner.nextLine();
                     System.out.println("Enter material code: ");
-                    code = scanner.nextLine();    
+                    code = scanner.nextLine();
                     System.out.println("Enter material composition (glass, metal, wood, plastic): ");
                     composition = scanner.nextLine();
                     System.out.println("Enter material durability (low/medium/high): ");
@@ -73,10 +72,15 @@ public class WarehouseApplication {
                     amr.setCode(code);
                     amr.setComposition(composition);
                     amr.setDurability(durability);
-                    addMaterial(amr);
-                    System.out.println("Material successfully added!");
-                    isDone = false;
-                    break;
+                    AddMaterialResponse amre = addMaterial(amr);
+                    if (amre.getMaterial() != null) {
+                        System.out.println("Material successfully added!");
+                        isDone = false;
+                        break;
+                    } else {
+                        System.out.println(amre.getState().getError().getMessage());
+                        break;
+                    }
                 case "2":
                     System.out.println("Enter material id: ");
                     String check = scanner.nextLine().trim();
@@ -85,27 +89,28 @@ public class WarehouseApplication {
                         GetMaterialRequest gmr = new GetMaterialRequest();
                         gmr.setToken(API_TOKEN);
                         gmr.setId(BigInteger.valueOf(Integer.valueOf(id)));
-                        MaterialType mt = getMaterial(gmr);
-                        if (mt != null) {
-                        System.out.println("Material id: " + mt.getId()
-                                + "\n Material name: " + mt.getName()
-                                + "\n Material code: " + mt.getCode()
-                                + "\n Material composition: " + mt.getComposition()
-                                + "\n Material durability: " + mt.getDurability());
+                        GetMaterialResponse gmre = getMaterial(gmr);
+                        if (gmre.getMaterial() != null) {
+                            System.out.println("Material id: " + gmre.getMaterial().getId()
+                                    + "\n Material name: " + gmre.getMaterial().getName()
+                                    + "\n Material code: " + gmre.getMaterial().getCode()
+                                    + "\n Material composition: " + gmre.getMaterial().getComposition()
+                                    + "\n Material durability: " + gmre.getMaterial().getDurability());
                         } else {
                             System.out.println("Materail with such id does not exist.");
-                            isDone = false;
                             break;
                         }
+                    } else {
+                        System.out.println("Invalid input!");
+                        break;
                     }
-                    System.out.println("Invalid input!");
                     isDone = false;
                     break;
                 case "3":
                     GetMaterialListRequest gmlr = new GetMaterialListRequest();
                     gmlr.setToken(API_TOKEN);
-                    getMaterialList(gmlr).getMaterial().forEach((material) -> {
-                        System.out.println("Id: " + material.getId() 
+                    getMaterialList(gmlr).getMaterials().forEach((material) -> {
+                        System.out.println("id: " + material.getId()
                                 + "  Name: " + material.getName()
                                 + "  Code: " + material.getCode()
                                 + "  Composition: " + material.getComposition()
@@ -113,8 +118,7 @@ public class WarehouseApplication {
                     });
                     isDone = false;
                     break;
-                default:
-                    System.out.println("Invalid operation number! Number must be in range [1...3]");
+                case "quit":
                     isDone = false;
                     break;
             }
@@ -126,7 +130,7 @@ public class WarehouseApplication {
      * @param parameter
      * @return add material
      */
-    private static MaterialType addMaterial(AddMaterialRequest parameter) {
+    private static AddMaterialResponse addMaterial(AddMaterialRequest parameter) {
         WarehouseService service = new WarehouseService();
         WarehousePortType port = service.getWarehousePort();
         return port.addMaterial(parameter);
@@ -137,7 +141,7 @@ public class WarehouseApplication {
      * @param parameter
      * @return single material
      */
-    private static MaterialType getMaterial(GetMaterialRequest parameter) {
+    private static GetMaterialResponse getMaterial(GetMaterialRequest parameter) {
         WarehouseService service = new WarehouseService();
         WarehousePortType port = service.getWarehousePort();
         return port.getMaterial(parameter);
@@ -156,17 +160,23 @@ public class WarehouseApplication {
 
     /**
      * Current operation checker
-     * @param number
+     *
+     * @param input
      * @return operation name
      */
-    private static String getOperation(String number) {
-        switch (number) {
-            case "1":
-                return "addMaterial";
-            case "2":
-                return "getMaterial";
-            default:
-                return "getMaterialList";
+    private static String getOperation(String input) {
+        if (input != null) {
+            switch (input) {
+                case "1":
+                    return "addMaterial";
+                case "2":
+                    return "getMaterial";
+                case "3":
+                    return "getMaterialList";
+                case "quit":
+                    return "Exit";
+            }
         }
+        return null;
     }
 }

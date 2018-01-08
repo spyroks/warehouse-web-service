@@ -19,7 +19,7 @@
     <target name="wsimport-client-WarehouseService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/WarehouseService"/>
         <property name="wsdl-WarehouseService" location="xml-resources/web-service-references/WarehouseService/wsdl/macbook-pro-denis.local_8080/Warehouse/WarehouseService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WarehouseService" destdir="${build.generated.dir}/jax-wsCache/WarehouseService" wsdl="${wsdl-WarehouseService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://macbook-pro-denis.local:8080/Warehouse/WarehouseService?wsdl" xnocompile="true" xendorsed="true" package="warehouseapplication">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WarehouseService" destdir="${build.generated.dir}/jax-wsCache/WarehouseService" wsdl="${wsdl-WarehouseService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://macbook-pro-denis.local:8080/WarehouseWebApplication/WarehouseService?wsdl" xnocompile="true" xendorsed="true" package="warehouseapplication">
             <depends file="${wsdl-WarehouseService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/WarehouseService"/>
         </wsimport>

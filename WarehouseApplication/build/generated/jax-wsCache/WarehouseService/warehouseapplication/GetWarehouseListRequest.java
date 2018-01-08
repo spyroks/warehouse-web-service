@@ -19,8 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="token" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="warehouseName" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="warehouseAddress" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="hasRelatedMaterials" minOccurs="0">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
@@ -39,8 +37,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "token",
-    "warehouseName",
-    "warehouseAddress",
     "hasRelatedMaterials"
 })
 @XmlRootElement(name = "getWarehouseListRequest")
@@ -48,10 +44,6 @@ public class GetWarehouseListRequest {
 
     @XmlElement(required = true)
     protected String token;
-    @XmlElement(required = true)
-    protected String warehouseName;
-    @XmlElement(required = true)
-    protected String warehouseAddress;
     protected String hasRelatedMaterials;
 
     /**
@@ -76,54 +68,6 @@ public class GetWarehouseListRequest {
      */
     public void setToken(String value) {
         this.token = value;
-    }
-
-    /**
-     * Gets the value of the warehouseName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getWarehouseName() {
-        return warehouseName;
-    }
-
-    /**
-     * Sets the value of the warehouseName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setWarehouseName(String value) {
-        this.warehouseName = value;
-    }
-
-    /**
-     * Gets the value of the warehouseAddress property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getWarehouseAddress() {
-        return warehouseAddress;
-    }
-
-    /**
-     * Sets the value of the warehouseAddress property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setWarehouseAddress(String value) {
-        this.warehouseAddress = value;
     }
 
     /**

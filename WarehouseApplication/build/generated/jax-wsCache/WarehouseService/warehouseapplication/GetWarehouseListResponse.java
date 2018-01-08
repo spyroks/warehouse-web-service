@@ -19,7 +19,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="warehouse" type="{http://www.ttu.ee/idu0075/warehouse}warehouseType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;choice>
+ *           &lt;element name="warehouses" type="{http://www.ttu.ee/idu0075/warehouse}warehouseType" maxOccurs="unbounded" minOccurs="0"/>
+ *           &lt;element name="error" type="{http://www.ttu.ee/idu0075/warehouse}errorType"/>
+ *         &lt;/choice>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,26 +33,28 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "warehouse"
+    "warehouses",
+    "error"
 })
 @XmlRootElement(name = "getWarehouseListResponse")
 public class GetWarehouseListResponse {
 
-    protected List<WarehouseType> warehouse;
+    protected List<WarehouseType> warehouses;
+    protected ErrorType error;
 
     /**
-     * Gets the value of the warehouse property.
+     * Gets the value of the warehouses property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the warehouse property.
+     * This is why there is not a <CODE>set</CODE> method for the warehouses property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getWarehouse().add(newItem);
+     *    getWarehouses().add(newItem);
      * </pre>
      * 
      * 
@@ -59,11 +64,35 @@ public class GetWarehouseListResponse {
      * 
      * 
      */
-    public List<WarehouseType> getWarehouse() {
-        if (warehouse == null) {
-            warehouse = new ArrayList<WarehouseType>();
+    public List<WarehouseType> getWarehouses() {
+        if (warehouses == null) {
+            warehouses = new ArrayList<WarehouseType>();
         }
-        return this.warehouse;
+        return this.warehouses;
+    }
+
+    /**
+     * Gets the value of the error property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ErrorType }
+     *     
+     */
+    public ErrorType getError() {
+        return error;
+    }
+
+    /**
+     * Sets the value of the error property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ErrorType }
+     *     
+     */
+    public void setError(ErrorType value) {
+        this.error = value;
     }
 
 }
