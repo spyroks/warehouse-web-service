@@ -205,9 +205,9 @@ Väljad päringus andmetüüpidega on järgnevad:
     - `warehouseAddress` - `string`, loodud lao aadress;
     - `warehouseCapacity` - `double`, loodud lao ruumala;
     - `warehouseArea` - `double`, loodud lao pindala;
-    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri;
-* `state` - `stateType`, päringu seisund;
-    - `success` - `successType`, - õnnestunud päringu seisundi element;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri.
+* `state` - `stateType`, päringu seisund.
+    - `success` - `successType`, - õnnestunud päringu seisundi element.
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et ladu on edukalt loodud;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
@@ -394,9 +394,9 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
     - `name` - `string`, loodud materjali nimi;
     - `code` - `string`, loodud materjali kood;
     - `composition` - `string`, loodud materjali koostis;
-    - `durability` - `string`, loodud materjali tugevus;
-* `state` - `stateType`, päringu seisund;
-    - `success` - `successType`, - õnnestunud päringu seisundi element;
+    - `durability` - `string`, loodud materjali tugevus.
+* `state` - `stateType`, päringu seisund.
+    - `success` - `successType`, - õnnestunud päringu seisundi element.
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt loodud;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
@@ -573,11 +573,11 @@ Väljad päringus andmetüüpidega on järgnevad:
         + `name` - `string`;
         + `code` - `string`;
         + `composition` - `string`;
-        + `durability` - `string`;
+        + `durability` - `string`.
     - `quantity` - `integer`, lisatud materjali kogus;
-    - `unitPrice` - `integer`, hind ühe lisatud materjali kohta;
-* `state`- `stateType`, päringu seisund;
-    - `success` - `successType`, õnnestunud päringu seisundi element;
+    - `unitPrice` - `integer`, hind ühe lisatud materjali kohta.
+* `state`- `stateType`, päringu seisund.
+    - `success` - `successType`, õnnestunud päringu seisundi element.
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt lisatud ladule;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
@@ -645,7 +645,7 @@ Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses 
             + `code` - `string`;
             + `name` - `string`;
             + `composition` - `string`;
-            + `durability` - `string`;
+            + `durability` - `string`.
         + `quantity` - `integer`, küsitava lao antud materjali kogus;
         + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
 
@@ -777,11 +777,11 @@ Väljad päringus andmetüüpidega on järgnevad:
     - `warehouseAddress` - `string`, loodud lao aadress;
     - `warehouseCapacity` - `double`, loodud lao ruumala;
     - `warehouseArea` - `double`, loodud lao pindala;
-    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri;
-* `state` - `stateType`, päringu seisund;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri.
+* `state` - `stateType`, päringu seisund.
     - `success` - `successType`, - õnnestunud päringu seisundi element;
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et ladu on edukalt loodud;
-        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
     - `error` - `errorType`, null.
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
@@ -828,7 +828,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `warehouseAddress` - `string`, küsitava lao aadress;
     - `warehouseCapacity` - `double`, küsitava lao ruumala;
     - `warehouseArea` - `double`, küsitava lao pindala;
-    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule;
+    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
 * `error` - `errorType`, null.
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
@@ -870,7 +870,7 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
         + `warehouseAddress` - `string`;
         + `warehouseCapacity` - `double`;
         + `warehouseArea` - `double`;
-        + `warehouseMaterialList` - `warehouseMaterialListType`;
+        + `warehouseMaterialList` - `warehouseMaterialListType`.
 * `error` - `errorType`, null.
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
@@ -960,11 +960,11 @@ Väljad päringus andmetüüpidega on järgnevad:
     - `name` - `string`, loodud materjali nimi;
     - `code` - `string`, loodud materjali kood;
     - `composition` - `string`, loodud materjali koostis;
-    - `durability` - `string`, loodud materjali tugevus;
-* `state` - `stateType`, päringu seisund;
+    - `durability` - `string`, loodud materjali tugevus.
+* `state` - `stateType`, päringu seisund.
     - `success` - `successType`, - õnnestunud päringu seisundi element;
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt loodud;
-        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
     - `error` - `errorType`, null.
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
@@ -1009,7 +1009,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `name` - `string`, küsitava materjali nimi;
     - `code` - `string`, küsitava materjali kood;
     - `composition` - `string`, küsitava materjali koostis;
-    - `durability` - `string`, küsitava materjali tugevus;
+    - `durability` - `string`, küsitava materjali tugevus.
 * `error` - `errorType`, null.
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
@@ -1113,13 +1113,13 @@ Väljad päringus andmetüüpidega on järgnevad:
         + `name` - `string`;
         + `code` - `string`;
         + `composition` - `string`;
-        + `durability` - `string`;
+        + `durability` - `string`.
     - `quantity` - `integer`, lisatud materjali kogus;
-    - `unitPrice` - `integer`, hind ühe lisatud materjali kohta;
-* `state`- `stateType`, päringu seisund;
+    - `unitPrice` - `integer`, hind ühe lisatud materjali kohta.
+* `state`- `stateType`, päringu seisund.
     - `success` - `successType`, õnnestunud päringu seisundi element;
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt lisatud ladule;
-        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
     - `error` - `errorType`, null;
     - `update` - `updateType`, null.
 
@@ -1173,9 +1173,9 @@ Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses 
             + `code` - `string`;
             + `name` - `string`;
             + `composition` - `string`;
-            + `durability` - `string`;
+            + `durability` - `string`.
         + `quantity` - `integer`, küsitava lao antud materjali kogus;
-        + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta;
+        + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
 * `error` - `errorType`, null.
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
@@ -1244,9 +1244,11 @@ Järgnevalt on kirjeldatud seisundi koodide tähendusi:
 
 * `200` - õnnestunud päringu seisundi kood;
   - tähendab, et ladu on edukalt loodud;
+  - tähendab, et ladu sellega nimega on juba loodud;
   - tähendab, et materjal on edukalt loodud;
+  - tähendab, et materjal sellega nimega ja/või koodiga on juba loodud;
   - tähendab, et materjal on edukalt lisatud ladule;
-  - tähendab, et materjal on edukalt uuendatud;
+  - tähendab, et materjal on edukalt uuendatud.
 
 * `401` - vale `token`;
 
@@ -1254,11 +1256,11 @@ Järgnevalt on kirjeldatud seisundi koodide tähendusi:
 
 * `405` - meetod ei ole lubatud;
   - tähendab, et ladu nimekiri on tühi;
-  - tähendab, et materjali nimekiri on tühi;
+  - tähendab, et materjali nimekiri on tühi.
 
 * `404` - ei leitud;
   - tähendab, et ladu pole leitud;
-  - tähendab, et materjal pole leitud;
+  - tähendab, et materjal pole leitud.
 
 * `406` - pole vastuvõetav;
   - ainult vastuvõetavad väärtused on "jah", "ei" või jätta see väli tühjaks.
