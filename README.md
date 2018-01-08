@@ -171,7 +171,7 @@ Lao lisamise operatsioon. Saab lisada lao millel on nimi ja aadress, selle ruuma
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
-* `Warehouse`
+* `warehouse`
     - `warehouseName` - `string`, lao nimi;
     - `warehouseAddress` - `string`, lao aadress;
     - `warehouseCapacity` - `double`, valiidne lao ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
@@ -194,26 +194,40 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
-* `Warehouse`
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+* `warehouse`
     - `id` - `integer`, loodud lao unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `warehouseName` - `string`, loodud lao nimi;
     - `warehouseAddress` - `string`, loodud lao aadress;
     - `warehouseCapacity` - `double`, loodud lao ruumala;
     - `warehouseArea` - `double`, loodud lao pindala;
-    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri.
+    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri;
+* `state`
+    - `success` - õnnestunud päringu seisundi element;
+        + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et ladu on edukalt loodud;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
    <S:Body>
       <addWarehouseResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
-         <id>1</id>
-         <warehouseName>Tallinn Ladu</warehouseName>
-         <warehouseAddress>Kalmistu tee 26</warehouseAddress>
-         <warehouseCapacity>500.0</warehouseCapacity>
-         <warehouseArea>1000.0</warehouseArea>
-         <warehouseMaterialList/>
+         <warehouse>
+            <id>1</id>
+            <warehouseName>Tallinn Ladu</warehouseName>
+            <warehouseAddress>Kalmistu tee 26</warehouseAddress>
+            <warehouseCapacity>500.0</warehouseCapacity>
+            <warehouseArea>1000.0</warehouseArea>
+            <warehouseMaterialList/>
+         </warehouse>
+         <state>
+            <success>
+               <code>200</code>
+               <message>OK. Warehouse successfully added!</message>
+            </success>
+         </state>
       </addWarehouseResponse>
    </S:Body>
 </S:Envelope>
@@ -245,25 +259,29 @@ Päringus on ainult üks väärtus:
 
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
-* `Warehouse`
+* `warehouse`
     - `id` - `integer`, küsitava lao unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `warehouseName` - `string`, küsitava lao nimi;
     - `warehouseAddress` - `string`, küsitava lao aadress;
     - `warehouseCapacity` - `double`, küsitava lao ruumala;
     - `warehouseArea` - `double`, küsitava lao pindala;
     - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele laole.
+    
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
    <S:Body>
       <getWarehouseResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
-         <id>1</id>
-         <warehouseName>Tallinn Ladu</warehouseName>
-         <warehouseAddress>Kalmistu tee 26</warehouseAddress>
-         <warehouseCapacity>500.0</warehouseCapacity>
-         <warehouseArea>1000.0</warehouseArea>
-         <warehouseMaterialList/>
+         <warehouse>
+            <id>1</id>
+            <warehouseName>Tallinn Ladu</warehouseName>
+            <warehouseAddress>Kalmistu tee 26</warehouseAddress>
+            <warehouseCapacity>500.0</warehouseCapacity>
+            <warehouseArea>1000.0</warehouseArea>
+            <warehouseMaterialList/>
+         </warehouse>
       </getWarehouseResponse>
    </S:Body>
 </S:Envelope>
@@ -296,8 +314,8 @@ Päringus on ainult üks väärtus:
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on järgnevad:
-* `Warehouses` - Nimekiri ladudest.
-    - `Warehouse` - Üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse) vastusega:
+* `warehouses` - Nimekiri ladudest.
+    - `warehouse` - Üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse) vastusega:
         + `id` - `integer`;
         + `warehouseName` - `string`;
         + `warehouseAddress` - `string`;
@@ -309,22 +327,22 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
    <S:Body>
       <getWarehouseListResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
-         <warehouse>
+         <warehouses>
             <id>1</id>
             <warehouseName>Tallinn Ladu</warehouseName>
             <warehouseAddress>Kalmistu tee 26</warehouseAddress>
             <warehouseCapacity>500.0</warehouseCapacity>
             <warehouseArea>1000.0</warehouseArea>
             <warehouseMaterialList/>
-         </warehouse>
-         <warehouse>
+         </warehouses>
+         <warehouses>
             <id>2</id>
             <warehouseName>Laki Ladu</warehouseName>
             <warehouseAddress>Suur-Sõjamäe 33a</warehouseAddress>
             <warehouseCapacity>615.12</warehouseCapacity>
             <warehouseArea>3333.34</warehouseArea>
             <warehouseMaterialList/>
-         </warehouse>
+         </warehouses>
       </getWarehouseListResponse>
    </S:Body>
 </S:Envelope>
@@ -339,11 +357,13 @@ Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, se
 
 ##### Sisendandmete kirjeldus
 Väljad päringus andmetüüpidega on järgnevad:
-* `Material`
+* `material`
     - `name` - `string`, materjali nimi;
     - `code` - `string`, materjali kood. Kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni;
     - `composition` - `string`, materjali koostis (näiteks, aken koosneb klaasist ja plastikust);
     - `durability` - `string`, materjali tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP päring (request)
 ~~~xml
@@ -362,24 +382,38 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
-* `Material`
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+* `material`
     - `id` - `integer`, loodud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `name` - `string`, loodud materjali nimi;
     - `code` - `string`, loodud materjali kood;
     - `composition` - `string`, loodud materjali koostis;
-    - `durability` - `string`, loodud materjali tugevus.
+    - `durability` - `string`, loodud materjali tugevus;
+* `state`
+    - `success` - õnnestunud päringu seisundi element;
+        + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt loodud;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
    <S:Body>
       <addMaterialResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
-         <id>1</id>
-         <name>Window</name>
-         <code>WIN0001TLN20LDU</code>
-         <composition>Glass, plastic</composition>
-         <durability>Low</durability>
+         <material>
+            <id>1</id>
+            <name>Window</name>
+            <code>WIN0001TLN20LDU</code>
+            <composition>Glass, plastic</composition>
+            <durability>Low</durability>
+         </material>
+         <state>
+            <success>
+               <code>200</code>
+               <message>OK. Material successfully added!</message>
+            </success>
+         </state>
       </addMaterialResponse>
    </S:Body>
 </S:Envelope>
@@ -411,23 +445,27 @@ Päringus on ainult üks väärtus:
 
 ##### Väljundandmete kirjeldus
 Väljad vastuses andmetüüpidega on järgnevad:
-* `Material`
+* `material`
     - `id` - `integer`, küsitava materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `name` - `string`, küsitava materjali nimi;
     - `code` - `string`, küsitava materjali kood;
     - `composition` - `string`, küsitava materjali koostis;
     - `durability` - `string`, küsitava materjali tugevus.
+    
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
    <S:Body>
       <getMaterialResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
-         <id>1</id>
-         <name>Window</name>
-         <code>WIN0001TLN20LDU</code>
-         <composition>Glass, plastic</composition>
-         <durability>Low</durability>
+         <material>
+            <id>1</id>
+            <name>Window</name>
+            <code>WIN0001TLN20LDU</code>
+            <composition>Glass, plastic</composition>
+            <durability>Low</durability>
+         </material>
       </getMaterialResponse>
    </S:Body>
 </S:Envelope>
@@ -457,33 +495,35 @@ Päringus peale `token`-i väärtuseid ei ole.
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
-* `Materials` - nimekiri materjalidest.
-    - `Material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
+* `materials` - nimekiri materjalidest.
+    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
         + `id` - `integer`;
         + `code` - `string`;
         + `name` - `string`;
         + `composition` - `string`;
         + `durability` - `string`.
 
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
    <S:Body>
       <getMaterialListResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
-         <material>
+         <materials>
             <id>1</id>
             <name>Window</name>
             <code>WIN0001TLN20LDU</code>
             <composition>Glass, plastic</composition>
             <durability>Low</durability>
-         </material>
-         <material>
+         </materials>
+         <materials>
             <id>2</id>
             <name>Door</name>
             <code>DOO0001LAK33LDU</code>
             <composition>Wood</composition>
             <durability>Medium</durability>
-         </material>
+         </materials>
       </getMaterialListResponse>
    </S:Body>
 </S:Envelope>
@@ -503,7 +543,6 @@ Väljad päringus andmetüüpidega on järgnevad:
 * `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
 * `unitPrice` - `Integer`, ühe materjali hind (näiteks, 33.33 €).
 
-
 ###### Näidis SOAP päring (request)
 ~~~xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:war="http://www.ttu.ee/idu0075/warehouse">
@@ -521,30 +560,46 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
-* `WarehouseMaterial`
-    - `id` - `integer`, lisatud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
-    - `name` - `string`, lisatud materjali nimi;
-    - `code` - `string`, lisatud materjali kood;
-    - `composition` - `string`, lisatud materjali koostis;
-    - `durability` - `string`, lisatud materjali tugevus;
-* `quantity` - `integer`, lisatud materjali kogus;
-* `unitPrice` - `integer`, hind ühe lisatud materjali kohta.
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+* `warehouseMaterial`
+    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
+        + `id` - `integer`,
+        + `name` - `string`,
+        + `code` - `string`,
+        + `composition` - `string`,
+        + `durability` - `string`,
+    - `quantity` - `integer`, lisatud materjali kogus;
+    - `unitPrice` - `integer`, hind ühe lisatud materjali kohta;
+* `state`
+    - `success` - õnnestunud päringu seisundi element;
+        + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt lisatud ladule;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
+
+Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisund mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
    <S:Body>
       <addWarehouseMaterialResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
-         <material>
-            <id>1</id>
-            <name>Window</name>
-            <code>WIN0001TLN20LDU</code>
-            <composition>Glass, plastic</composition>
-            <durability>Low</durability>
-         </material>
-         <quantity>20.0</quantity>
-         <unitPrice>33.33</unitPrice>
+         <warehouseMaterial>
+            <material>
+               <id>1</id>
+               <name>Window</name>
+               <code>WIN0001TLN20LDU</code>
+               <composition>Glass, plastic</composition>
+               <durability>Low</durability>
+            </material>
+            <quantity>20.0</quantity>
+            <unitPrice>33.33</unitPrice>
+         </warehouseMaterial>
+         <state>
+            <success>
+               <code>200</code>
+               <message>OK. WarehouseMaterial successfully added!</message>
+            </success>
+         </state>
       </addWarehouseMaterialResponse>
    </S:Body>
 </S:Envelope>
@@ -576,43 +631,48 @@ Päringus on ainult üks väärtus:
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
-* `WarehouseMaterials` - nimekiri küsitava lao materjalidest.
-    - `WarehouseMaterial` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
-        + `id` - `integer`;
-        + `code` - `string`;
-        + `name` - `string`;
-        + `composition` - `string`;
-        + `durability` - `string`;
-    - `quantity` - `integer`, küsitava lao antud materjali kogus;
-    - `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
+* `warehouseMaterials` - nimekiri küsitava lao materjalidest.
+    - `warehouseMaterial`
+        + `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
+            + `id` - `integer`;
+            + `code` - `string`;
+            + `name` - `string`;
+            + `composition` - `string`;
+            + `durability` - `string`;
+        + `quantity` - `integer`, küsitava lao antud materjali kogus;
+        + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
    <S:Body>
       <getWarehouseMaterialListResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
-         <warehouseMaterial>
-            <material>
-               <id>1</id>
-               <name>Window</name>
-               <code>WIN0001TLN20LDU</code>
-               <composition>Glass, plastic</composition>
-               <durability>Low</durability>
-            </material>
-            <quantity>20.0</quantity>
-            <unitPrice>33.33</unitPrice>
-         </warehouseMaterial>
-         <warehouseMaterial>
-            <material>
-               <id>2</id>
-               <name>Door</name>
-               <code>DOO0001LAK33LDU</code>
-               <composition>Wood</composition>
-               <durability>Medium</durability>
-            </material>
-            <quantity>5</quantity>
-            <unitPrice>59.99</unitPrice>
-         </warehouseMaterial>
+         <warehouseMaterials>
+            <warehouseMaterial>
+               <material>
+                  <id>1</id>
+                  <name>Window</name>
+                  <code>WIN0001TLN20LDU</code>
+                  <composition>Glass, plastic</composition>
+                  <durability>Low</durability>
+               </material>
+               <quantity>20.0</quantity>
+               <unitPrice>33.33</unitPrice>
+            </warehouseMaterial>
+            <warehouseMaterial>
+               <material>
+                  <id>2</id>
+                  <name>Door</name>
+                  <code>DOO0001LAK33LDU</code>
+                  <composition>Wood</composition>
+                  <durability>Medium</durability>
+               </material>
+               <quantity>20.0</quantity>
+               <unitPrice>33.33</unitPrice>
+            </warehouseMaterial>
+         </warehouseMaterials>
       </getWarehouseMaterialListResponse>
    </S:Body>
 </S:Envelope>
