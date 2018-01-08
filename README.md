@@ -26,7 +26,7 @@
 Denis Rästas 155552IAPB
 
 ## Sissejuhatus
-Antud projekti struktuur oli tehtud [Joosep Alviste](https://github.com/JoosepAlviste/veebiteenused-projekt) projekti põhjal.
+Antud dokumentatsiooni struktuur oli tehtud [Joosep Alviste](https://github.com/JoosepAlviste/veebiteenused-projekt) dokumentatsiooni põhjal.
 
 Veebiteenused aine sooritamiseks on projekti tegemine kasutades [Netbeans-i](https://netbeans.org) ning [Glassfish-i](https://glassfish.java.net). 
 
@@ -1284,4 +1284,4 @@ Kõikide seisundi koodide kirjeldused asuvad [Seisundi koodide tähenduste](#sei
 
 ## Viited
 Projekt aines Veebiteenused. Joosep Alviste. [WWW] [https://github.com/JoosepAlviste/veebiteenused-projekt](https://github.com/JoosepAlviste/veebiteenused-projekt) (21.11.2017)
-Veebiteenused. Tarvo Treier [WWW] [http://www.tud.ttu.ee/im/Tarvo.Treier/idu0075/2017/](http://www.tud.ttu.ee/im/Tarvo.Treier/idu0075/2017/) (21.11.2017)
+Veebiteenused. Tarvo Treier. [WWW] [http://www.tud.ttu.ee/im/Tarvo.Treier/idu0075/2017/](http://www.tud.ttu.ee/im/Tarvo.Treier/idu0075/2017/) (21.11.2017)
