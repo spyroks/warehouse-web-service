@@ -26,9 +26,15 @@ Denis Rästas 155552IAPB
 Antud projekti struktuur oli tehtud [Joosep Alviste](https://github.com/JoosepAlviste/veebiteenused-projekt) projekti põhjal.
 
 ## Sissejuhatus
-Antud dokumentatsioonis on kirjeldatud aine Veebiteenused projekti teenust. Projekti tulemuseks on ladu SOAP ja REST teenus (`WarehouseWebService`), klientrakendus ning dokumentatsioon.
+Veebiteenused aine sooritamiseks on projekti tegemine kasutades [Netbeansi](https://netbeans.org) ning [Glassfishi serverit](https://glassfish.java.net). 
 
-Teenus on realiseeritud kasutades [Netbeansi](https://netbeans.org) ning [Glassfishi serverit](https://glassfish.java.net). Teenuse rakendus asub kaustas `WarehouseWebApplication` ja klientrakendus asub kaustas `WarehouseApplication`.
+Projekt koosneb neljast osast: dokumentatsioon, realisatsioon, testimine ning kaitsmine.
+
+Dokumentatsiooni eesmärgiks anda ülevaade tehtud projekti teenusele ja selle SOAP API-le ja REST API-le.
+
+Realisatsiooni tulemuseks on ladu SOAP API ja REST API teenus (`WarehouseWebService`) ning klientrakendus (`WarehouseApplication`) millega on võimalik SOAP API funktsionaalsust osaliselt katsetada.
+
+Testimine toimub [SoapUI](https://www.soapui.org) ning [Postmani](https://www.getpostman.com) kaudu.
 
 Teenust kasutades saab lisada ja vaadata laod ja nende materjale.
 
