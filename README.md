@@ -14,6 +14,7 @@
 * [REST API kirjeldus](#rest-api-kirjeldus)
   - [REST API Operatsioonid](#rest-api-operatsioonid)
   - [REST API Operatsioonide kirjeldused](#rest-api-operatsioonide-kirjeldused)
+* [Seisundi koodide tähendused](#seisundi-koodide-tähendused)
 
 
 
@@ -681,6 +682,33 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
 </S:Envelope>
 ~~~
 
+
+
+
+
+### SOAP Errorid
+Kui mõni operatsioon ebaõnnestub tagastatakse `Error` seisundi mis kirjeldab ebaõnnestumise põhjust täpsemalt.
+
+Error vastuse struktuur on järgnev:
+* `error`
+    - `code` - `integer`, ebaõnnestunud päringu seisundi kood;
+    - `message` - `string`, lisainformatsioon operatsiooni seisundi kohta mis kirjeldab ebaõnnestumise põhjust.
+
+Näiteks vale `token` kasutamisel tuleb vastuseks järgnev error:
+~~~xml
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <getMaterialResponse xmlns="http://www.ttu.ee/idu0075/warehouse">
+         <error>
+            <code>401</code>
+            <message>Unauthorized. Token is wrong!</message>
+         </error>
+      </getMaterialResponse>
+   </S:Body>
+</S:Envelope>
+~~~
+
+Seisundi koodide tähendused leiab [Seisundi koodide tähenduste](#seisundi-koodide-tähendused) peatükist.
 ***
 
 
@@ -753,7 +781,7 @@ Väljad päringus andmetüüpidega on järgnevad:
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
     - `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -800,7 +828,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule;
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -842,7 +870,7 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
         + `warehouseMaterialList` - `warehouseMaterialListType`;
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -936,7 +964,7 @@ Väljad päringus andmetüüpidega on järgnevad:
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
     - `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -981,7 +1009,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `durability` - `string`, küsitava materjali tugevus;
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1021,7 +1049,7 @@ Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpide
         + `durability` - `string`.
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1094,7 +1122,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 
 Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisundi mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1147,7 +1175,7 @@ Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses 
         + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta;
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [REST Errorite](#rest-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1179,3 +1207,55 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
    "error": null
 }
 ~~~
+
+
+
+
+
+### REST Errorid
+Kui mõni operatsioon ebaõnnestub tagastatakse `Error` seisundi mis kirjeldab ebaõnnestumise põhjust täpsemalt.
+
+Error vastuse struktuur on järgnev:
+* `error`
+    - `code` - `integer`, ebaõnnestunud päringu seisundi kood;
+    - `message` - `string`, lisainformatsioon operatsiooni seisundi kohta mis kirjeldab ebaõnnestumise põhjust.
+
+Näiteks vale `token` kasutamisel tuleb vastuseks järgnev error:
+~~~json
+{
+   "error":    {
+      "code": 401,
+      "message": "Unauthorized. Token is wrong!"
+   }
+}
+~~~
+
+Seisundi koodide tähendused leiab [Seisundi koodide tähenduste](#seisundi-koodide-tähendused) peatükist.
+
+
+
+
+
+## Seisundi koodide tähendused
+Järgnevalt on kirjeldatud seisundi koodide tähendusi:
+
+* `200` - õnnestunud päringu seisundi kood;
+          + tähendab, et ladu on edukalt loodud;
+          + tähendab, et materjal on edukalt loodud;
+          + tähendab, et materjal on edukalt lisatud ladule;
+          + tähendab, et materjal on edukalt uuendatud;
+
+* `401` - vale `token`;
+
+* `400` - kehtetu sisenditüüp või element puudub;
+
+* `405` - meetod ei ole lubatud;
+          + tähendab, et ladu nimekiri on tühi;
+          + tähendab, et materjali nimekiri on tühi;
+
+* `404` - ei leitud;
+          + tähendab, et ladu pole leitud;
+          + tähendab, et materjal pole leitud;
+
+* `406` - pole vastuvõetav;
+          + ainult vastuvõetavad väärtused on \ "jah \", \ "ei \" või jätta see väli tühjaks.
