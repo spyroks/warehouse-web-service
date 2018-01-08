@@ -69,6 +69,15 @@ public class WarehouseWebService {
                 && parameter.getWarehouseCapacity() != 0
                 && parameter.getWarehouseArea() != 0) {
             if (parameter.getToken().equalsIgnoreCase("salajane")) {
+                for (int i = 0; i < WAREHOUSES.size(); i++) {
+                    if (WAREHOUSES.get(i).getWarehouseName().equals(parameter.getWarehouseName())) {
+                        wt = WAREHOUSES.get(i);
+                        awr.setWarehouse(wt);
+                        wst.setSuccess(Success.getExistingWarehouseSuccess());
+                        awr.setState(wst);
+                        return awr;
+                    }
+                }
                 if (!parameter.getWarehouseName().trim().equals("")
                         && !parameter.getWarehouseAddress().trim().equals("")
                         && !String.valueOf(parameter.getWarehouseCapacity()).trim().equals("")
@@ -103,15 +112,16 @@ public class WarehouseWebService {
 
     public GetWarehouseListResponse getWarehouseList(GetWarehouseListRequest parameter) {
         GetWarehouseListResponse gwlr = new GetWarehouseListResponse();
-        if (parameter.getToken() != null && parameter.getHasRelatedMaterials() != null) {
-            if (parameter.getHasRelatedMaterials().equals("jah")
+        if (parameter.getToken() != null) {
+            if (parameter.hasRelatedMaterials == null
+                    || parameter.getHasRelatedMaterials().equals("jah")
                     || parameter.getHasRelatedMaterials().equals("ei")
                     || parameter.getHasRelatedMaterials().equals("")) {
                 if (parameter.getToken().equalsIgnoreCase("salajane")) {
                     if (WAREHOUSES.size() > 0) {
                         WAREHOUSES.forEach((warehouseType) -> {
                             String hasRelatedMaterials = parameter.getHasRelatedMaterials();
-                            if (hasRelatedMaterials.equals("")) {
+                            if (hasRelatedMaterials == null || hasRelatedMaterials.equals("")) {
                                 gwlr.getWarehouses().add(warehouseType);
                             } else if (hasRelatedMaterials.equalsIgnoreCase("jah")) {
                                 if (!isWarehouseEmpty(warehouseType)) {
@@ -195,6 +205,16 @@ public class WarehouseWebService {
                 && parameter.getComposition() != null
                 && parameter.getDurability() != null) {
             if (parameter.getToken().equalsIgnoreCase("salajane")) {
+                for (int i = 0; i < MATERIALS.size(); i++) {
+                    if (MATERIALS.get(i).getName().equals(parameter.getName())
+                            || MATERIALS.get(i).getCode().equals(parameter.getCode())) {
+                        mt = MATERIALS.get(i);
+                        amr.setMaterial(mt);
+                        mst.setSuccess(Success.getExistingMaterialSuccess());
+                        amr.setState(mst);
+                        return amr;
+                    }
+                }
                 if (!parameter.getName().trim().equals("") && !parameter.getCode().trim().equals("")
                         && !parameter.getComposition().trim().equals("")
                         && !parameter.getDurability().trim().equals("")) {

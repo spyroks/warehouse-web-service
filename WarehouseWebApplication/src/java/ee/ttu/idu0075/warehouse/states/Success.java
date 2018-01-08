@@ -20,11 +20,25 @@ public class Success {
         success.setMessage("OK. Warehouse successfully added!");
         return success;
     }
+    
+    public static SuccessType getExistingWarehouseSuccess() {
+        SuccessType success = new SuccessType();
+        success.setCode(BigInteger.valueOf(200));
+        success.setMessage("OK. Warehouse with such name already exists!");
+        return success;
+    }
 
     public static SuccessType getMaterialSuccess() {
         SuccessType success = new SuccessType();
         success.setCode(BigInteger.valueOf(200));
         success.setMessage("OK. Material successfully added!");
+        return success;
+    }
+    
+    public static SuccessType getExistingMaterialSuccess() {
+        SuccessType success = new SuccessType();
+        success.setCode(BigInteger.valueOf(200));
+        success.setMessage("OK. Material with such name or code already exists!");
         return success;
     }
 
@@ -33,5 +47,5 @@ public class Success {
         success.setCode(BigInteger.valueOf(200));
         success.setMessage("OK. WarehouseMaterial successfully added!");
         return success;
-    }  
+    }
 }
