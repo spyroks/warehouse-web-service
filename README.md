@@ -23,7 +23,7 @@
 Denis Rästas 155552IAPB
 
 ## Viited
-Selle projekti struktuur oli tehtud [Joosep Alviste](https://github.com/JoosepAlviste/veebiteenused-projekt) projekti alusel.
+Antud projekti struktuur oli tehtud [Joosep Alviste](https://github.com/JoosepAlviste/veebiteenused-projekt) projekti põhjal.
 
 ## Sissejuhatus
 Antud dokumentatsioonis on kirjeldatud aine Veebiteenused projekti teenust. Projekti tulemuseks on ladu SOAP ja REST teenus (`WarehouseWebService`), klientrakendus ning dokumentatsioon.
