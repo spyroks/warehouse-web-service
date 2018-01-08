@@ -202,8 +202,8 @@ Väljad päringus andmetüüpidega on järgnevad:
     - `warehouseCapacity` - `double`, loodud lao ruumala;
     - `warehouseArea` - `double`, loodud lao pindala;
     - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri;
-* `state`
-    - `success` - õnnestunud päringu seisundi element;
+* `state` - `stateType`, päringu seisund;
+    - `success` - `successType`, - õnnestunud päringu seisundi element;
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et ladu on edukalt loodud;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
@@ -266,7 +266,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `warehouseCapacity` - `double`, küsitava lao ruumala;
     - `warehouseArea` - `double`, küsitava lao pindala;
     - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele laole.
-    
+
 Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
@@ -315,7 +315,7 @@ Päringus on ainult üks väärtus:
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on järgnevad:
 * `warehouses` - Nimekiri ladudest.
-    - `warehouse` - Üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse) vastusega:
+    - `warehouse` - üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse-soap) vastusega:
         + `id` - `integer`;
         + `warehouseName` - `string`;
         + `warehouseAddress` - `string`;
@@ -389,8 +389,8 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem i
     - `code` - `string`, loodud materjali kood;
     - `composition` - `string`, loodud materjali koostis;
     - `durability` - `string`, loodud materjali tugevus;
-* `state`
-    - `success` - õnnestunud päringu seisundi element;
+* `state` - `stateType`, päringu seisund;
+    - `success` - `successType`, - õnnestunud päringu seisundi element;
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt loodud;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
@@ -451,7 +451,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `code` - `string`, küsitava materjali kood;
     - `composition` - `string`, küsitava materjali koostis;
     - `durability` - `string`, küsitava materjali tugevus.
-    
+
 Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
@@ -570,12 +570,13 @@ Väljad päringus andmetüüpidega on järgnevad:
         + `durability` - `string`,
     - `quantity` - `integer`, lisatud materjali kogus;
     - `unitPrice` - `integer`, hind ühe lisatud materjali kohta;
-* `state`
-    - `success` - õnnestunud päringu seisundi element;
+* `state`- `stateType`, päringu seisund;
+    - `success` - `successType`, õnnestunud päringu seisundi element;
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt lisatud ladule;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
 Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisund mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
+
 Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
@@ -633,7 +634,7 @@ Päringus on ainult üks väärtus:
 Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
 * `warehouseMaterials` - nimekiri küsitava lao materjalidest.
     - `warehouseMaterial`
-        + `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
+        + `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-soap) vastusega:
             + `id` - `integer`;
             + `code` - `string`;
             + `name` - `string`;
@@ -743,17 +744,33 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `warehouseAddress` - `string`, loodud lao aadress;
     - `warehouseCapacity` - `double`, loodud lao ruumala;
     - `warehouseArea` - `double`, loodud lao pindala;
-    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri.
+    - `warehouseMaterialList` - `warehouseMaterialListType`, tühi materjalide nimekiri;
+* `state` - `stateType`, päringu seisund;
+    - `success` - `successType`, - õnnestunud päringu seisundi element;
+        + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et ladu on edukalt loodud;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
+    - `error` - `errorType`, null.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
 {
-   "id": 1,
-   "warehouseName": "Tallinn Ladu",
-   "warehouseAddress": "Kalmistu tee 26",
-   "warehouseCapacity": 500,
-   "warehouseArea": 1000,
-   "warehouseMaterialList": {"warehouseMaterial": []}
+   "warehouse":    {
+      "id": 1,
+      "warehouseName": "Tallinn Ladu",
+      "warehouseAddress": "Kalmistu tee 26",
+      "warehouseCapacity": 500,
+      "warehouseArea": 1000,
+      "warehouseMaterialList": {"warehouseMaterial": []}
+   },
+   "state":    {
+      "success":       {
+         "code": 200,
+         "message": "OK. Warehouse successfully added!"
+      },
+      "error": null
+   }
 }
 ~~~
 
@@ -778,17 +795,23 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `warehouseAddress` - `string`, küsitava lao aadress;
     - `warehouseCapacity` - `double`, küsitava lao ruumala;
     - `warehouseArea` - `double`, küsitava lao pindala;
-    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule.
+    - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule;
+* `error` - `errorType`, null.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
 {
-   "id": 1,
-   "warehouseName": "Tallinn Ladu",
-   "warehouseAddress": "Kalmistu tee 26",
-   "warehouseCapacity": 500,
-   "warehouseArea": 1000,
-   "warehouseMaterialList": {"warehouseMaterial": []}
+   "warehouse":    {
+      "id": 1,
+      "warehouseName": "Tallinn Ladu",
+      "warehouseAddress": "Kalmistu tee 26",
+      "warehouseCapacity": 500,
+      "warehouseArea": 1000,
+      "warehouseMaterialList": {"warehouseMaterial": []}
+   },
+   "error": null
 }
 ~~~
 
@@ -803,51 +826,68 @@ HTTP meetod: `GET`
 
 Ressurss (URI): `/warehouses`
 
-Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane&has_materials=jah`, kus `has_materials` - `string`, küsimise sorteerija piiranguga (`restiction`). Ainus vastuvõetav väärtus on `jah` või `ei`. Pannes `jah` tagastab kõik laod millel on materjalid, `ei` - kõik tühjad laod. Kui jätta tühjaks siis sorteerimine ei toimu ning tagastatakse kõik laod.
+Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane&has_materials=`, kus `has_materials` - `string`, küsimise sorteerija piiranguga (`restiction`). Ainus vastuvõetav väärtus on `jah` või `ei`. Pannes `jah` tagastab kõik laod millel on materjalid, `ei` - kõik tühjad laod. Kui jätta tühjaks siis sorteerimine ei toimu ning tagastatakse kõik laod.
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on järgnevad:
-* `warehouses`
-    - `warehouse` - nimekiri ladudest, langeb kokku [getWarehouse operatsiooni](#get-warehouse) vastusega:
+* `warehouses` - nimekiri ladudest,
+    - `warehouse` Üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse-rest) vastusega:
         + `id` - `integer`;
         + `warehouseName` - `string`;
         + `warehouseAddress` - `string`;
         + `warehouseCapacity` - `double`;
-        + `warehouseArea` - `double`.
+        + `warehouseArea` - `double`;
+        + `warehouseMaterialList` - `warehouseMaterialListType`;
+* `error` - `errorType`, null.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
-{"warehouse": [{
-   "id": 1,
-   "warehouseName": "Tallinn Ladu",
-   "warehouseAddress": "Kalmistu tee 26",
-   "warehouseCapacity": 500,
-   "warehouseArea": 1000,
-   "warehouseMaterialList": {"warehouseMaterial":    [
+{
+   "warehouses":    [
             {
-         "material":          {
-            "id": 1,
-            "name": "Window",
-            "code": "WIN0001TLN20LDU",
-            "composition": "Glass, plastic",
-            "durability": "Low"
-         },
-         "quantity": 20,
-         "unitPrice": 33.33
+         "id": 1,
+         "warehouseName": "Tallinn Ladu",
+         "warehouseAddress": "Kalmistu tee 26",
+         "warehouseCapacity": 500,
+         "warehouseArea": 1000,
+         "warehouseMaterialList": {"warehouseMaterial":          [
+                        {
+               "material":                {
+                  "id": 1,
+                  "name": "Window",
+                  "code": "WIN0001TLN20LDU",
+                  "composition": "Glass, plastic",
+                  "durability": "Low"
+               },
+               "quantity": 20,
+               "unitPrice": 33.33
+            },
+                        {
+               "material":                {
+                  "id": 2,
+                  "name": "Door",
+                  "code": "DOO0001LAK33LDU",
+                  "composition": "Wood",
+                  "durability": "Medium"
+               },
+               "quantity": 11,
+               "unitPrice": 59.99
+            }
+         ]}
       },
             {
-         "material":          {
-            "id": 2,
-            "name": "Door",
-            "code": "DOO0001LAK33LDU",
-            "composition": "Wood",
-            "durability": "Medium"
-         },
-         "quantity": 20,
-         "unitPrice": 33.33
+         "id": 2,
+         "warehouseName": "Laki Ladu",
+         "warehouseAddress": "Suur-Sõjamäe 33a",
+         "warehouseCapacity": 615.12,
+         "warehouseArea": 3333.34,
+         "warehouseMaterialList": {"warehouseMaterial": []}
       }
-   ]}
-}]}
+   ],
+   "error": null
+}
 ~~~
 
 
@@ -887,16 +927,32 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `name` - `string`, loodud materjali nimi;
     - `code` - `string`, loodud materjali kood;
     - `composition` - `string`, loodud materjali koostis;
-    - `durability` - `string`, loodud materjali tugevus.
+    - `durability` - `string`, loodud materjali tugevus;
+* `state` - `stateType`, päringu seisund;
+    - `success` - `successType`, - õnnestunud päringu seisundi element;
+        + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt loodud;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
+    - `error` - `errorType`, null.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
 {
-   "id": 1,
-   "name": "Window",
-   "code": "WIN0001TLN20LDU",
-   "composition": "Glass, plastic",
-   "durability": "Low"
+   "material":    {
+      "id": 1,
+      "name": "Window",
+      "code": "WIN0001TLN20LDU",
+      "composition": "Glass, plastic",
+      "durability": "Low"
+   },
+   "state":    {
+      "success":       {
+         "code": 200,
+         "message": "OK. Material successfully added!"
+      },
+      "error": null
+   }
 }
 ~~~
 
@@ -920,16 +976,22 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `name` - `string`, küsitava materjali nimi;
     - `code` - `string`, küsitava materjali kood;
     - `composition` - `string`, küsitava materjali koostis;
-    - `durability` - `string`, küsitava materjali tugevus.
+    - `durability` - `string`, küsitava materjali tugevus;
+* `error` - `errorType`, null.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
 {
-   "id": 1,
-   "name": "Window",
-   "code": "WIN0001TLN20LDU",
-   "composition": "Glass, plastic",
-   "durability": "Low"
+   "material":    {
+      "id": 1,
+      "name": "Window",
+      "code": "WIN0001TLN20LDU",
+      "composition": "Glass, plastic",
+      "durability": "Low"
+   },
+   "error": null
 }
 ~~~
 
@@ -948,32 +1010,38 @@ Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane`
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
-* `materials`
-    - `material` - nimekiri materjalidest, langeb kokku [getMaterial operatsiooni](#get-material) vastusega:
+* `materials` - nimekiri materjalidest,
+    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-rest) vastusega:
         + `id` - `integer`;
         + `code` - `string`;
         + `name` - `string`;
         + `composition` - `string`;
         + `durability` - `string`.
+* `error` - `errorType`, null.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
-{"material": [
-      {
-      "id": 1,
-      "name": "Window",
-      "code": "WIN0001TLN20LDU",
-      "composition": "Glass, plastic",
-      "durability": "Low"
-   },
-      {
-      "id": 2,
-      "name": "Door",
-      "code": "DOO0001LAK33LDU",
-      "composition": "Wood",
-      "durability": "Medium"
-   }
-]}
+{
+   "materials":    [
+            {
+         "id": 1,
+         "name": "Window",
+         "code": "WIN0001TLN20LDU",
+         "composition": "Glass, plastic",
+         "durability": "Low"
+      },
+            {
+         "id": 2,
+         "name": "Door",
+         "code": "DOO0001LAK33LDU",
+         "composition": "Wood",
+         "durability": "Medium"
+      }
+   ],
+   "error": null
+}
 ~~~
 
 
@@ -995,7 +1063,6 @@ Väljad päringus andmetüüpidega on järgnevad:
 * `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
 * `unitPrice` - `Integer`, ühe materjali hind (näiteks, 33.33 €).
 
-
 ###### Näidis JSON päring kui POST meetod (request)
 ~~~json
 {
@@ -1006,28 +1073,49 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
-* `warehouse_material`
-    - `id` - `integer`, lisatud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
-    - `name` - `string`, lisatud materjali nimi;
-    - `code` - `string`, lisatud materjali kood;
-    - `composition` - `string`, lisatud materjali koostis;
-    - `durability` - `string`, lisatud materjali tugevus;
-* `quantity` - `integer`, lisatud materjali kogus;
-* `unitPrice` - `integer`, hind ühe lisatud materjali kohta.
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+* `warehouseMaterial`
+    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
+        + `id` - `integer`,
+        + `name` - `string`,
+        + `code` - `string`,
+        + `composition` - `string`,
+        + `durability` - `string`,
+    - `quantity` - `integer`, lisatud materjali kogus;
+    - `unitPrice` - `integer`, hind ühe lisatud materjali kohta;
+* `state`- `stateType`, päringu seisund;
+    - `success` - `successType`, õnnestunud päringu seisundi element;
+        + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt lisatud ladule;
+        + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
+    - `error` - `errorType`, null.
+    - `update` - `updateType`, null.
+
+Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisund mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
 {
-   "material":    {
-      "id": 1,
-      "name": "Window",
-      "code": "WIN0001TLN20LDU",
-      "composition": "Glass, plastic",
-      "durability": "Low"
+   "warehouseMaterial":    {
+      "material":       {
+         "id": 1,
+         "name": "Window",
+         "code": "WIN0001TLN20LDU",
+         "composition": "Glass, plastic",
+         "durability": "Low"
+      },
+      "quantity": 20,
+      "unitPrice": 33.33
    },
-   "quantity": 20,
-   "unitPrice": 33.33
+   "state":    {
+      "success":       {
+         "code": 200,
+         "message": "OK. WarehouseMaterial successfully added!"
+      },
+      "error": null,
+      "update": null
+   }
 }
 ~~~
 
@@ -1045,40 +1133,47 @@ Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/materials/?toke
 
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
-* `warehouse_materials`
-    - `warehouse_material` - nimekiri küsitava lao materjalidest, langeb kokku [getMaterial operatsiooni](#get-material) vastusega:
-        + `id` - `integer`;
-        + `code` - `string`;
-        + `name` - `string`;
-        + `composition` - `string`;
-        + `durability` - `string`;
-    - `quantity` - `integer`, küsitava lao antud materjali kogus;
-    - `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
+* `warehouseMaterials` - nimekiri küsitava lao materjalidest.
+    - `warehouseMaterial`
+        + `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-rest) vastusega:
+            + `id` - `integer`;
+            + `code` - `string`;
+            + `name` - `string`;
+            + `composition` - `string`;
+            + `durability` - `string`;
+        + `quantity` - `integer`, küsitava lao antud materjali kogus;
+        + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta;
+* `error` - `errorType`, null.
+
+Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
-{"warehouseMaterial": [
-      {
-      "material":       {
-         "id": 1,
-         "name": "Window",
-         "code": "WIN0001TLN20LDU",
-         "composition": "Glass, plastic",
-         "durability": "Low"
+{
+   "warehouseMaterials": {"warehouseMaterial":    [
+            {
+         "material":          {
+            "id": 1,
+            "name": "Window",
+            "code": "WIN0001TLN20LDU",
+            "composition": "Glass, plastic",
+            "durability": "Low"
+         },
+         "quantity": 20,
+         "unitPrice": 33.33
       },
-      "quantity": 20,
-      "unitPrice": 33.33
-   },
-      {
-      "material":       {
-         "id": 2,
-         "name": "Door",
-         "code": "DOO0001LAK33LDU",
-         "composition": "Wood",
-         "durability": "Medium"
-      },
-      "quantity": 5,
-      "unitPrice": 59.99
-   }
-]}
+            {
+         "material":          {
+            "id": 2,
+            "name": "Door",
+            "code": "DOO0001LAK33LDU",
+            "composition": "Wood",
+            "durability": "Medium"
+         },
+         "quantity": 11,
+         "unitPrice": 59.99
+      }
+   ]},
+   "error": null
+}
 ~~~
