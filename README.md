@@ -7,7 +7,7 @@
   - [Warehouse](#warehouse)
   - [Material](#material)
 * [Teenuse põhioperatsioonid](#teenuse-põhioperatsioonid)
-  - [Üldine info teenuse kohta](#Üldine-info-teenuse-kohta)
+  - [Üldine informatsioon teenuse kohta](#Üldine-informatsioon-teenuse-kohta)
     + [token](#token)
 * [SOAP API kirjeldus](#soap-api-kirjeldus)
   - [SOAP API Operatsioonid](#soap-api-operatsioonid)
@@ -26,13 +26,13 @@ Denis Rästas 155552IAPB
 Antud projekti struktuur oli tehtud [Joosep Alviste](https://github.com/JoosepAlviste/veebiteenused-projekt) projekti põhjal.
 
 ## Sissejuhatus
-Veebiteenused aine sooritamiseks on projekti tegemine kasutades [Netbeansi](https://netbeans.org) ning [Glassfishi serverit](https://glassfish.java.net). 
+Veebiteenused aine sooritamiseks on projekti tegemine kasutades [Netbeans-i](https://netbeans.org) ning [Glassfish-i](https://glassfish.java.net). 
 
 Projekt koosneb neljast osast: dokumentatsioon, realisatsioon, testimine ning kaitsmine.
 
-Dokumentatsiooni eesmärgiks anda ülevaade tehtud projekti teenusele ja selle SOAP API-le ja REST API-le.
+Dokumentatsiooni eesmärgiks anda ülevaade tehtud projekti teenusele ja selle SOAP ja REST API-dele.
 Realisatsiooni tulemuseks on ladu SOAP API ja REST API teenus (`WarehouseWebService`) ning klientrakendus (`WarehouseApplication`) millega on võimalik SOAP API funktsionaalsust osaliselt katsetada.
-Testimine toimub [SoapUI](https://www.soapui.org) ning [Postmani](https://www.getpostman.com) kaudu.
+Testimine toimub [SoapUI](https://www.soapui.org) ning [Postman-i](https://www.getpostman.com) kaudu.
 
 Teenust kasutades saab lisada ja vaadata laod ja nende materjale.
 
@@ -43,9 +43,12 @@ Teenust kasutades saab lisada ja vaadata laod ja nende materjale.
 
 
 ## Teenuse põhiobjektid
-Teenuse põhiobjektid millega tegeletakse on `Warehouse` ja `Material`.
-Laos võib olla mitu materjali. Üldine struktuuri jaotus on järgnev:
+Antud teenuse põhiobjektid on `Warehouse` ja `Material`.
+Iga ladu ja materjal on unikaalne ehk teenusel ei tohi olla kaks või mitu sama nimega (või materjali puhul - koodiga) objekti.
+Laos võib olla mitu materjali. Materjalid võivad kuuluda ladule aga see pole kohustuslik.
+Kui ladule lisada sama materjali kaks korda toimub ülekirjutamine mis tähendab, et viimane jääb teenusel.
 
+Üldine struktuuri jaotus on järgnev:
 ~~~
 Service
 ├── Warehouse
@@ -53,16 +56,16 @@ Service
 └── Material
 ~~~
 
-Teenuse materjalid võivad kuuluda ladule kuid see pole kohustuslik.
+
 
 
 
 
 
 ### Warehouse
-Teenuse piiredes võivad olla mitu ladu. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud aadress mille kaudu seda saab leida.
+Teenuse piiredes võivad olla mitu ladu. Ladule võivad kuuluda mitu materjali. Laoga on ka seotud nimi ja aadress mille kaudu seda saab leida. Samuti määratakse selle ruumala ja pindala.
 
-Ladu iseloomustavad järgmised atribuudid:
+Ladu kirjeldavad järgmised atribuudid:
 * **id** - unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt;
 * **warehouseName** - lao nimi;
 * **warehouseAddress**  - lao aadress;
@@ -70,7 +73,7 @@ Ladu iseloomustavad järgmised atribuudid:
 * **warehouseArea** - lao pindala;
 * **warehouseMaterialList** - laole kuuluvaid materjalid.
 
-Näiteks võib olla järgnev ladu:
+Üks võimalikest ladudest:
 * **id** - 1;
 * **warehouseName** - Tallinn Ladu;
 * **warehouseAddress**  - Kalmistu tee 26;
@@ -83,18 +86,18 @@ Näiteks võib olla järgnev ladu:
 
 
 ### Material
-Igal materjalil on nimi ja selle koostis.
+Teenuse piiredes võivad olla mitu materjale. Igal materjalil on nimi ja selle koostis.
 Samuti materjalile määratakse selle tugevus (näiteks, akna koostises on klaas seega tugevus - nõrk).
 Materjali kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni.
 
-Materjali iseloomustavad järgmised atribuudid:
+Materjali kirjeldavad järgmised atribuudid:
 * **id** - unikaalne numbriline identifikaator, genereeritakse automaatselt süsteemi poolt;
 * **name** - materjali nimetus;
 * **code** - materjali kood;
 * **composition** - materjali koostis;
 * **durability** - materjali tugevus.
 
-Näiteks võib olla järgmine materjal:
+Üks võimalikest materjalidest:
 * **id** - 5;
 * **name** - Window;
 * **code** - WIN0001TLN20LDU;
@@ -108,7 +111,8 @@ Näiteks võib olla järgmine materjal:
 
 
 ## Teenuse põhioperatsioonid
-Teenusel on põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järgneb nimekiri lühikeste kirjeldustega võimalikest teenustest.
+Mõlemad API-d pakuvad liidest ühele ja samale teenusele. See tähendab, et mõlema API-de operatsioonid on sarnased.
+Olemasolevate operatsioonide nimekiri ja nende kirjeldus (mida sellega saab teha).
 
 * **Ladu lisamine**
     - Saab lisada ladu.
@@ -131,17 +135,18 @@ Teenusel on põhioperatsioonid mis on nii REST kui SOAP teenusel sarnased. Järg
 
 
 
-### Üldine info teenuse kohta
+### Üldine informatsioon teenuse kohta
 
 #### token
-Teenus kasutab autentimiseks `token`-it. Et saada endale `token` millega saab teenust kasutada tuleb seda küsida teenuse haldurilt.
+Realiseeritud projektis API-d kasutavad `token` autentimine.
+Operatsiooni päringu tegemiseks kasutaja peab sisesta õige `token`-it.
 
 **Näide:**
-* Saadetakse materjali loomise päring `token` salajane.
+* Kasutaja saadab materjali loomise päringut kasutades `token`-i salajane.
 * Teenuses salvestatakse materjal id-ga 1.
-* Saadetakse materjali loomise päring `token` mittesalajane.
-* Uut materjali ei looda, sest api token on ebakorrektne.
-* Saadetakse postituse loomise päring `token` salajane.
+* Kasutaja saadab materjali loomise päringut kasutades `token` hapukapsas.
+* Uut materjali ei looda, sest token on ebakorrektne.
+* Kasutaja saadab materjali loomise päringut kasutades `token`-i salajane.
 * Teenuses salvestatakse materjal id-ga 2.
 
 ***
@@ -151,11 +156,11 @@ Teenus kasutab autentimiseks `token`-it. Et saada endale `token` millega saab te
 
 
 ## SOAP API kirjeldus
-API on ligipääsetav aadressil `(hostname)/WarehouseWebApplication/WarehouseService`.
+API on saadaval lingina `(hostname)/WarehouseWebApplication/WarehouseService`.
 API kasutatav WSDL fail asub teenuse kaustas `src/conf/xml-resources/web-services/WarehouseWebService/wsdl/WarehouseService.wsdl` ning on saadaval ka *deploy*itud rakenduse URIle lisades `?wsdl` ehk `(hostname)/WarehouseWebApplication/WarehouseService?wsdl`.
 
 ### SOAP API Operatsioonid
-SOAP teenuses on võimalikud järgmised operatsioonid:
+SOAP API teenuses on võimalikud järgmised operatsioonid:
 * [addWarehouse SOAP](#addwarehouse-soap)
 * [getWarehouse SOAP](#getwarehouse-soap)
 * [getWarehouseList SOAP](#getwarehouselist-soap)
@@ -166,8 +171,6 @@ SOAP teenuses on võimalikud järgmised operatsioonid:
 * [getWarehouseMaterialList SOAP](#getwarehousemateriallist-soap)
 
 ### SOAP API Operatsioonide kirjeldused
-Järgnevad SOAP teenuse operatsioonide kirjeldused.
-
 Iga päring peab sisaldama korrektne `token`.
 
 
@@ -178,7 +181,7 @@ Iga päring peab sisaldama korrektne `token`.
 Lao lisamise operatsioon. Saab lisada lao millel on nimi ja aadress, selle ruumala ja pindala.
 
 ##### Sisendandmete kirjeldus
-Väljad päringus andmetüüpidega on järgnevad:
+Elemendid päringus andmetüüpidega on järgnevad:
 * `warehouse`
     - `warehouseName` - `string`, lao nimi;
     - `warehouseAddress` - `string`, lao aadress;
@@ -202,7 +205,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouse`
     - `id` - `integer`, loodud lao unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `warehouseName` - `string`, loodud lao nimi;
@@ -266,7 +269,7 @@ Päringus on ainult üks väärtus:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
+Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouse`
     - `id` - `integer`, küsitava lao unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `warehouseName` - `string`, küsitava lao nimi;
@@ -321,7 +324,7 @@ Päringus on ainult üks väärtus:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on järgnevad:
+Vastuseks on nimekiri salvestatud ladudest. Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouses` - Nimekiri ladudest.
     - `warehouse` - üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse-soap) vastusega:
         + `id` - `integer`;
@@ -366,7 +369,7 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
 Materjali lisamise operatsioon. Saab lisada materjali millel on nimi ja kood, selle koostis ja tugevus.
 
 ##### Sisendandmete kirjeldus
-Väljad päringus andmetüüpidega on järgnevad:
+Elemendid päringus andmetüüpidega on järgnevad:
 * `material`
     - `name` - `string`, materjali nimi;
     - `code` - `string`, materjali kood. Kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni;
@@ -392,7 +395,7 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
 ~~~
 
 ##### Väljundandmete kirjeldus
-Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Elemendid vastuses andmetüüpidega on järgnevad:
 * `material`
     - `id` - `integer`, loodud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `name` - `string`, loodud materjali nimi;
@@ -454,7 +457,7 @@ Päringus on ainult üks väärtus:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
+Elemendid vastuses andmetüüpidega on järgnevad:
 * `material`
     - `id` - `integer`, küsitava materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `name` - `string`, küsitava materjali nimi;
@@ -504,7 +507,7 @@ Päringus peale `token`-i väärtuseid ei ole.
 ~~~
 
 ##### Väljundandmete kirjeldus
-Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+Vastuseks on nimekiri salvestatud materjalidest. Elemendid vastuses andmetüüpidega on järgnevad:
 * `materials` - nimekiri materjalidest.
     - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-soap) vastusega:
         + `id` - `integer`;
@@ -547,7 +550,7 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
 Materjali ladule lisamise operatsioon. Saab lisada materjali ning määrata selle hind ja kogus antud laos.
 
 ##### Sisendandmete kirjeldus
-Väljad päringus andmetüüpidega on järgnevad:
+Elemendid päringus andmetüüpidega on järgnevad:
 * `warehouseId` - `Integer`, lao id;
 * `materialId` - `Integer`, materjali id;
 * `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
@@ -570,7 +573,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouseMaterial`
     - `material` - materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-soap) vastusega:
         + `id` - `integer`;
@@ -641,7 +644,7 @@ Päringus on ainult üks väärtus:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouseMaterials` - nimekiri küsitava lao materjalidest.
     - `warehouseMaterial`
         + `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-soap) vastusega:
@@ -696,8 +699,8 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
 ### SOAP Errorid
 Kui mõni operatsioon ebaõnnestub tagastatakse `Error` seisundi mis kirjeldab ebaõnnestumise põhjust täpsemalt.
 
-Error vastuse struktuur on järgnev:
-* `error`
+Elemendid ebaõnnestunud päringu vastuses andmetüüpidega on järgnevad:
+* `error` - `errorType`.
     - `code` - `integer`, ebaõnnestunud päringu seisundi kood;
     - `message` - `string`, lisainformatsioon operatsiooni seisundi kohta mis kirjeldab ebaõnnestumise põhjust.
 
@@ -723,7 +726,7 @@ Seisundi koodide tähendused leiab [Seisundi koodide tähenduste](#seisundi-kood
 
 
 ## REST API kirjeldus
-REST API on ligipääsetav aadressil `(hostname)/WarehouseWebApplication`.
+REST API on saadaval lingina `(hostname)/WarehouseWebApplication`.
 
 ### REST API Operatsioonid
 REST teenuses on võimalikud järgmised operatsioonid:
@@ -737,10 +740,8 @@ REST teenuses on võimalikud järgmised operatsioonid:
 * [getWarehouseMaterialList REST](#getwarehousemateriallist-rest)
 
 ### REST API Operatsioonide kirjeldused
-
-Järgnevad REST teenuse operatsioonide kirjeldused.
-
 Iga päring peab sisaldama korrektne `token`. Seda tuleb lisada query parameetritena `?token=salajane`.
+
 
 
 
@@ -756,7 +757,7 @@ Ressurss (URI): `/warehouses`
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane`
 
 ##### Sisendandmete kirjeldus
-Väljad päringus andmetüüpidega on järgnevad:
+Elemendid päringus andmetüüpidega on järgnevad:
 * `warehouseName` - `string`, lao nimi;
 * `warehouseAddress` - `string`, lao aadress;
 * `warehouseCapacity` - `double`, valiidne lao ruumala (näiteks, 615.12 või 843 m<sup>3</sup>);
@@ -774,7 +775,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouse`
     - `id` - `integer`, loodud lao unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `warehouseName` - `string`, loodud lao nimi;
@@ -825,7 +826,7 @@ Ressurss (URI): `/warehouses/{warehouseId}`, kus `{warehouseId}` on lao id.
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1?token=salajane`
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
+Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouse`
     - `id` - `integer`, küsitava lao unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `warehouseName` - `string`, küsitava lao nimi;
@@ -866,7 +867,7 @@ Ressurss (URI): `/warehouses`
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane&has_materials=`, kus `has_materials` - `string`, küsimise sorteerija piiranguga (`restiction`). Ainus vastuvõetav väärtus on `jah` või `ei`. Pannes `jah` tagastab kõik laod millel on materjalid, `ei` - kõik tühjad laod. Kui jätta tühjaks siis sorteerimine ei toimu ning tagastatakse kõik laod.
 
 ##### Väljundandmete kirjeldus
-Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on järgnevad:
+Vastuseks on nimekiri salvestatud ladudest. Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouses` - nimekiri ladudest,
     - `warehouse` Üks ladu, langeb kokku [getWarehouse operatsiooni](#getwarehouse-rest) vastusega:
         + `id` - `integer`;
@@ -941,7 +942,7 @@ Ressurss (URI): `/materials`
 Näidis URL: `/WarehouseWebApplication/webresources/materials/?token=salajane`
 
 ##### Sisendandmete kirjeldus
-Väljad päringus andmetüüpidega on järgnevad:
+Elemendid päringus andmetüüpidega on järgnevad:
 * `name` - `string`, materjali nimi;
 * `code` - `string`, materjali kood. Kood genereeritakse loomisel tehases ja *võib!* sisaldada informatsiooni;
 * `composition` - `string`, materjali koostis (näiteks, aken koosneb klaasist ja plastikust);
@@ -958,7 +959,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Elemendid vastuses andmetüüpidega on järgnevad:
 * `material`
     - `id` - `integer`, loodud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `name` - `string`, loodud materjali nimi;
@@ -1007,7 +1008,7 @@ Ressurss (URI): `/materials/{materialId}`, kus `{materialId}` on materjali id.
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1?token=salajane`
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
+Elemendid vastuses andmetüüpidega on järgnevad:
 * `material`
     - `id` - `integer`, küsitava materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `name` - `string`, küsitava materjali nimi;
@@ -1046,7 +1047,7 @@ Ressurss (URI): `/materials`
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/?token=salajane`
 
 ##### Väljundandmete kirjeldus
-Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+Vastuseks on nimekiri salvestatud materjalidest. Elemendid vastuses andmetüüpidega on järgnevad:
 * `materials` - nimekiri materjalidest,
     - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-rest) vastusega:
         + `id` - `integer`;
@@ -1095,7 +1096,7 @@ Ressurss (URI): `/warehouses/{warehouseId}/add_material`, kus `{warehouseId}` on
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/add_material/?token=salajane`
 
 ##### Sisendandmete kirjeldus
-Väljad päringus andmetüüpidega on järgnevad:
+Elemendid päringus andmetüüpidega on järgnevad:
 * `materialId` - `Integer`, materjali id;
 * `quantity` - `Integer`, materjali kogus antud laos (näiteks, 20 tk.);
 * `unitPrice` - `Integer`, ühe materjali hind (näiteks, 33.33 €).
@@ -1110,7 +1111,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouseMaterial`
     - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-rest) vastusega:
         + `id` - `integer`;
@@ -1169,7 +1170,7 @@ Ressurss (URI): `/warehouses/{warehouseId}/materials`, kus `{warehouseId}` on la
 Näidis URL: `/WarehouseWebApplication/webresources/warehouses/1/materials/?token=salajane`
 
 ##### Väljundandmete kirjeldus
-Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
+Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Elemendid vastuses andmetüüpidega on järgnevad:
 * `warehouseMaterials` - nimekiri küsitava lao materjalidest.
     - `warehouseMaterial`
         + `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-rest) vastusega:
@@ -1222,8 +1223,8 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem 
 ### REST Errorid
 Kui mõni operatsioon ebaõnnestub tagastatakse `Error` seisundi mis kirjeldab ebaõnnestumise põhjust täpsemalt.
 
-Error vastuse struktuur on järgnev:
-* `error`
+Elemendid ebaõnnestunud päringu vastuses andmetüüpidega on järgnevad:
+* `error` - `errorType`.
     - `code` - `integer`, ebaõnnestunud päringu seisundi kood;
     - `message` - `string`, lisainformatsioon operatsiooni seisundi kohta mis kirjeldab ebaõnnestumise põhjust.
 
