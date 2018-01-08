@@ -6,11 +6,13 @@
 package ee.ttu.idu0075.warehouse;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.core.Application;
 
 /**
  *
- * @author derast
+ * @author spyrox
  */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
@@ -22,7 +24,7 @@ public class ApplicationConfig extends Application {
             Class jsonProvider = Class.forName("org.glassfish.jersey.jackson.JacksonFeature");
             resources.add(jsonProvider);
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(getClass().getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }   
         addRestResourceClasses(resources);
         return resources;

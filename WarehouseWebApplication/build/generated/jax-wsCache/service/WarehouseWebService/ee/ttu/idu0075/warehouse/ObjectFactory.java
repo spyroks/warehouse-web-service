@@ -1,10 +1,7 @@
 
 package ee.ttu.idu0075.warehouse;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 
 /**
@@ -24,58 +21,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetMaterialResponse_QNAME = new QName("http://www.ttu.ee/idu0075/warehouse", "getMaterialResponse");
-    private final static QName _AddMaterialResponse_QNAME = new QName("http://www.ttu.ee/idu0075/warehouse", "addMaterialResponse");
-    private final static QName _GetWarehouseResponse_QNAME = new QName("http://www.ttu.ee/idu0075/warehouse", "getWarehouseResponse");
-    private final static QName _AddWarehouseResponse_QNAME = new QName("http://www.ttu.ee/idu0075/warehouse", "addWarehouseResponse");
-    private final static QName _GetWarehouseMaterialListResponse_QNAME = new QName("http://www.ttu.ee/idu0075/warehouse", "getWarehouseMaterialListResponse");
-    private final static QName _AddWarehouseMaterialResponse_QNAME = new QName("http://www.ttu.ee/idu0075/warehouse", "addWarehouseMaterialResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: ee.ttu.idu0075.warehouse
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link GetMaterialRequest }
-     * 
-     */
-    public GetMaterialRequest createGetMaterialRequest() {
-        return new GetMaterialRequest();
-    }
-
-    /**
-     * Create an instance of {@link MaterialType }
-     * 
-     */
-    public MaterialType createMaterialType() {
-        return new MaterialType();
-    }
-
-    /**
-     * Create an instance of {@link AddMaterialRequest }
-     * 
-     */
-    public AddMaterialRequest createAddMaterialRequest() {
-        return new AddMaterialRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetMaterialListRequest }
-     * 
-     */
-    public GetMaterialListRequest createGetMaterialListRequest() {
-        return new GetMaterialListRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetMaterialListResponse }
-     * 
-     */
-    public GetMaterialListResponse createGetMaterialListResponse() {
-        return new GetMaterialListResponse();
     }
 
     /**
@@ -87,6 +38,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetWarehouseResponse }
+     * 
+     */
+    public GetWarehouseResponse createGetWarehouseResponse() {
+        return new GetWarehouseResponse();
+    }
+
+    /**
      * Create an instance of {@link WarehouseType }
      * 
      */
@@ -95,11 +54,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ErrorType }
+     * 
+     */
+    public ErrorType createErrorType() {
+        return new ErrorType();
+    }
+
+    /**
      * Create an instance of {@link AddWarehouseRequest }
      * 
      */
     public AddWarehouseRequest createAddWarehouseRequest() {
         return new AddWarehouseRequest();
+    }
+
+    /**
+     * Create an instance of {@link AddWarehouseResponse }
+     * 
+     */
+    public AddWarehouseResponse createAddWarehouseResponse() {
+        return new AddWarehouseResponse();
+    }
+
+    /**
+     * Create an instance of {@link WarehouseStateType }
+     * 
+     */
+    public WarehouseStateType createWarehouseStateType() {
+        return new WarehouseStateType();
     }
 
     /**
@@ -119,11 +102,83 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetMaterialRequest }
+     * 
+     */
+    public GetMaterialRequest createGetMaterialRequest() {
+        return new GetMaterialRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetMaterialResponse }
+     * 
+     */
+    public GetMaterialResponse createGetMaterialResponse() {
+        return new GetMaterialResponse();
+    }
+
+    /**
+     * Create an instance of {@link MaterialType }
+     * 
+     */
+    public MaterialType createMaterialType() {
+        return new MaterialType();
+    }
+
+    /**
+     * Create an instance of {@link AddMaterialRequest }
+     * 
+     */
+    public AddMaterialRequest createAddMaterialRequest() {
+        return new AddMaterialRequest();
+    }
+
+    /**
+     * Create an instance of {@link AddMaterialResponse }
+     * 
+     */
+    public AddMaterialResponse createAddMaterialResponse() {
+        return new AddMaterialResponse();
+    }
+
+    /**
+     * Create an instance of {@link MaterialStateType }
+     * 
+     */
+    public MaterialStateType createMaterialStateType() {
+        return new MaterialStateType();
+    }
+
+    /**
+     * Create an instance of {@link GetMaterialListRequest }
+     * 
+     */
+    public GetMaterialListRequest createGetMaterialListRequest() {
+        return new GetMaterialListRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetMaterialListResponse }
+     * 
+     */
+    public GetMaterialListResponse createGetMaterialListResponse() {
+        return new GetMaterialListResponse();
+    }
+
+    /**
      * Create an instance of {@link GetWarehouseMaterialListRequest }
      * 
      */
     public GetWarehouseMaterialListRequest createGetWarehouseMaterialListRequest() {
         return new GetWarehouseMaterialListRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetWarehouseMaterialListResponse }
+     * 
+     */
+    public GetWarehouseMaterialListResponse createGetWarehouseMaterialListResponse() {
+        return new GetWarehouseMaterialListResponse();
     }
 
     /**
@@ -143,6 +198,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddWarehouseMaterialResponse }
+     * 
+     */
+    public AddWarehouseMaterialResponse createAddWarehouseMaterialResponse() {
+        return new AddWarehouseMaterialResponse();
+    }
+
+    /**
      * Create an instance of {@link WarehouseMaterialType }
      * 
      */
@@ -151,57 +214,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MaterialType }{@code >}}
+     * Create an instance of {@link WarehouseMaterialStateType }
      * 
      */
-    @XmlElementDecl(namespace = "http://www.ttu.ee/idu0075/warehouse", name = "getMaterialResponse")
-    public JAXBElement<MaterialType> createGetMaterialResponse(MaterialType value) {
-        return new JAXBElement<MaterialType>(_GetMaterialResponse_QNAME, MaterialType.class, null, value);
+    public WarehouseMaterialStateType createWarehouseMaterialStateType() {
+        return new WarehouseMaterialStateType();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MaterialType }{@code >}}
+     * Create an instance of {@link StateType }
      * 
      */
-    @XmlElementDecl(namespace = "http://www.ttu.ee/idu0075/warehouse", name = "addMaterialResponse")
-    public JAXBElement<MaterialType> createAddMaterialResponse(MaterialType value) {
-        return new JAXBElement<MaterialType>(_AddMaterialResponse_QNAME, MaterialType.class, null, value);
+    public StateType createStateType() {
+        return new StateType();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link WarehouseType }{@code >}}
+     * Create an instance of {@link SuccessType }
      * 
      */
-    @XmlElementDecl(namespace = "http://www.ttu.ee/idu0075/warehouse", name = "getWarehouseResponse")
-    public JAXBElement<WarehouseType> createGetWarehouseResponse(WarehouseType value) {
-        return new JAXBElement<WarehouseType>(_GetWarehouseResponse_QNAME, WarehouseType.class, null, value);
+    public SuccessType createSuccessType() {
+        return new SuccessType();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link WarehouseType }{@code >}}
+     * Create an instance of {@link UpdateType }
      * 
      */
-    @XmlElementDecl(namespace = "http://www.ttu.ee/idu0075/warehouse", name = "addWarehouseResponse")
-    public JAXBElement<WarehouseType> createAddWarehouseResponse(WarehouseType value) {
-        return new JAXBElement<WarehouseType>(_AddWarehouseResponse_QNAME, WarehouseType.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link WarehouseMaterialListType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ttu.ee/idu0075/warehouse", name = "getWarehouseMaterialListResponse")
-    public JAXBElement<WarehouseMaterialListType> createGetWarehouseMaterialListResponse(WarehouseMaterialListType value) {
-        return new JAXBElement<WarehouseMaterialListType>(_GetWarehouseMaterialListResponse_QNAME, WarehouseMaterialListType.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link WarehouseMaterialType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.ttu.ee/idu0075/warehouse", name = "addWarehouseMaterialResponse")
-    public JAXBElement<WarehouseMaterialType> createAddWarehouseMaterialResponse(WarehouseMaterialType value) {
-        return new JAXBElement<WarehouseMaterialType>(_AddWarehouseMaterialResponse_QNAME, WarehouseMaterialType.class, null, value);
+    public UpdateType createUpdateType() {
+        return new UpdateType();
     }
 
 }

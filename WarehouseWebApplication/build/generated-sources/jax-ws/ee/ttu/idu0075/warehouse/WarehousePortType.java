@@ -27,11 +27,11 @@ public interface WarehousePortType {
      * 
      * @param parameter
      * @return
-     *     returns ee.ttu.idu0075.warehouse.MaterialType
+     *     returns ee.ttu.idu0075.warehouse.GetMaterialResponse
      */
     @WebMethod
     @WebResult(name = "getMaterialResponse", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
-    public MaterialType getMaterial(
+    public GetMaterialResponse getMaterial(
         @WebParam(name = "getMaterialRequest", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
         GetMaterialRequest parameter);
 
@@ -39,11 +39,11 @@ public interface WarehousePortType {
      * 
      * @param parameter
      * @return
-     *     returns ee.ttu.idu0075.warehouse.MaterialType
+     *     returns ee.ttu.idu0075.warehouse.AddMaterialResponse
      */
     @WebMethod
     @WebResult(name = "addMaterialResponse", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
-    public MaterialType addMaterial(
+    public AddMaterialResponse addMaterial(
         @WebParam(name = "addMaterialRequest", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
         AddMaterialRequest parameter);
 
@@ -63,11 +63,11 @@ public interface WarehousePortType {
      * 
      * @param parameter
      * @return
-     *     returns ee.ttu.idu0075.warehouse.WarehouseType
+     *     returns ee.ttu.idu0075.warehouse.GetWarehouseResponse
      */
     @WebMethod
     @WebResult(name = "getWarehouseResponse", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
-    public WarehouseType getWarehouse(
+    public GetWarehouseResponse getWarehouse(
         @WebParam(name = "getWarehouseRequest", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
         GetWarehouseRequest parameter);
 
@@ -75,11 +75,11 @@ public interface WarehousePortType {
      * 
      * @param parameter
      * @return
-     *     returns ee.ttu.idu0075.warehouse.WarehouseType
+     *     returns ee.ttu.idu0075.warehouse.AddWarehouseResponse
      */
     @WebMethod
     @WebResult(name = "addWarehouseResponse", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
-    public WarehouseType addWarehouse(
+    public AddWarehouseResponse addWarehouse(
         @WebParam(name = "addWarehouseRequest", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
         AddWarehouseRequest parameter);
 
@@ -99,11 +99,11 @@ public interface WarehousePortType {
      * 
      * @param parameter
      * @return
-     *     returns ee.ttu.idu0075.warehouse.WarehouseMaterialListType
+     *     returns ee.ttu.idu0075.warehouse.GetWarehouseMaterialListResponse
      */
     @WebMethod
     @WebResult(name = "getWarehouseMaterialListResponse", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
-    public WarehouseMaterialListType getWarehouseMaterialList(
+    public GetWarehouseMaterialListResponse getWarehouseMaterialList(
         @WebParam(name = "getWarehouseMaterialListRequest", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
         GetWarehouseMaterialListRequest parameter);
 
@@ -111,11 +111,11 @@ public interface WarehousePortType {
      * 
      * @param parameter
      * @return
-     *     returns ee.ttu.idu0075.warehouse.WarehouseMaterialType
+     *     returns ee.ttu.idu0075.warehouse.AddWarehouseMaterialResponse
      */
     @WebMethod
     @WebResult(name = "addWarehouseMaterialResponse", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
-    public WarehouseMaterialType addWarehouseMaterial(
+    public AddWarehouseMaterialResponse addWarehouseMaterial(
         @WebParam(name = "addWarehouseMaterialRequest", targetNamespace = "http://www.ttu.ee/idu0075/warehouse", partName = "parameter")
         AddWarehouseMaterialRequest parameter);
 

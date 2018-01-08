@@ -20,8 +20,8 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * REST Web Service
- *
- * @author derast
+ * Materials
+ * @author spyrox
  */
 @Path("materials")
 public class MaterialsResource {
@@ -41,7 +41,7 @@ public class MaterialsResource {
     /**
      * Retrieves representation of an instance of MaterialsResource
      * @param token
-     * @return an instance of MaterialType
+     * @return an instance of GetMaterialListResponse
      */
     @GET
     @Produces("application/json")
@@ -55,12 +55,12 @@ public class MaterialsResource {
      * Retrieves representation of an instance of MaterialsResource
      * @param id
      * @param token
-     * @return an instance of MaterialType
+     * @return an instance of GetMaterialResponse
      */
     @GET
     @Path("{id : \\d+}")
     @Produces("application/json")
-    public MaterialType getMaterial(@PathParam("id") String id,
+    public GetMaterialResponse getMaterial(@PathParam("id") String id,
             @QueryParam("token") String token) {
         GetMaterialRequest request = new GetMaterialRequest();
         request.setId(BigInteger.valueOf(Integer.parseInt(id)));
@@ -72,12 +72,12 @@ public class MaterialsResource {
      * Retrieves representation of an instance of MaterialsResource
      * @param content
      * @param token
-     * @return an instance of MaterialType
+     * @return an instance of AddMaterialResponse
      */
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public MaterialType addMaterial(MaterialType content, 
+    public AddMaterialResponse addMaterial(MaterialType content, 
                                 @QueryParam("token") String token) {
         AddMaterialRequest request = new AddMaterialRequest();
         request.setCode(content.getCode());

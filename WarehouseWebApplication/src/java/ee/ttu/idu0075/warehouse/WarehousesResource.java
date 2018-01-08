@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * REST Web Service
- *
+ * Warehouses
  * @author spyrox
  */
 @Path("warehouses")
@@ -29,7 +29,7 @@ public class WarehousesResource {
     @Context
     private UriInfo context;
 
-    private WarehouseWebService ws;
+    private final WarehouseWebService ws;
 
     /**
      * Creates a new instance of WarehousesResource
@@ -42,12 +42,12 @@ public class WarehousesResource {
      * Retrieves representation of an instance of WarehousesResource
      * @param token
      * @param hasRelatedMaterials
-     * @return an instance of WarehouseType
+     * @return an instance of GetWarehouseListResponse
      */
     @GET
     @Produces("application/json")
     public GetWarehouseListResponse getWarehouseList(@QueryParam("token") String token,
-            @QueryParam("materials") String hasRelatedMaterials) {
+            @QueryParam("has_materials") String hasRelatedMaterials) {
         GetWarehouseListRequest request = new GetWarehouseListRequest();
         request.setToken(token);
         request.setHasRelatedMaterials(hasRelatedMaterials);
@@ -58,12 +58,12 @@ public class WarehousesResource {
      * Retrieves representation of an instance of WarehousesResource
      * @param id
      * @param token
-     * @return an instance of WarehouseType
+     * @return an instance of GetWarehouseResponse
      */
     @GET
     @Path("{id : \\d+}")
     @Produces("application/json")
-    public WarehouseType getWarehouse(@PathParam("id") String id,
+    public GetWarehouseResponse getWarehouse(@PathParam("id") String id,
             @QueryParam("token") String token) {
         GetWarehouseRequest request = new GetWarehouseRequest();
         request.setId(BigInteger.valueOf(Integer.parseInt(id)));
@@ -75,12 +75,12 @@ public class WarehousesResource {
      * Retrieves representation of an instance of WarehousesResource
      * @param content
      * @param token
-     * @return an instance of WarehouseType
+     * @return an instance of AddWarehouseResponse
      */
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public WarehouseType addWarehouse(WarehouseType content,
+    public AddWarehouseResponse addWarehouse(WarehouseType content,
             @QueryParam("token") String token) {
         AddWarehouseRequest request = new AddWarehouseRequest();
         request.setToken(token);
@@ -95,12 +95,12 @@ public class WarehousesResource {
      * Retrieves representation of an instance of WarehousesResource
      * @param id
      * @param token
-     * @return an instance of WarehouseMaterialListType
+     * @return an instance of GetWarehouseMaterialListResponse
      */
     @GET
-    @Path("{id : \\d+}/products")
+    @Path("{id : \\d+}/materials")
     @Produces("application/json")
-    public WarehouseMaterialListType getWarehouseMaterialList(@PathParam("id") String id,
+    public GetWarehouseMaterialListResponse getWarehouseMaterialList(@PathParam("id") String id,
             @QueryParam("token") String token) {
         GetWarehouseMaterialListRequest request = new GetWarehouseMaterialListRequest();
         request.setWarehouseId(BigInteger.valueOf(Integer.parseInt(id)));
@@ -113,13 +113,13 @@ public class WarehousesResource {
      * @param content
      * @param token
      * @param id
-     * @return an instance of WarehouseMaterialType
+     * @return an instance of AddWarehouseMaterialResponse
      */
     @POST
-    @Path("{id : \\d+}/products")
+    @Path("{id : \\d+}/add_material")
     @Consumes("application/json")
     @Produces("application/json")
-    public WarehouseMaterialType addWarehouseMaterial(AddWarehouseMaterialRequest content,
+    public AddWarehouseMaterialResponse addWarehouseMaterial(AddWarehouseMaterialRequest content,
             @QueryParam("token") String token,
             @PathParam("id") String id) {
         AddWarehouseMaterialRequest request = new AddWarehouseMaterialRequest();
@@ -128,7 +128,7 @@ public class WarehousesResource {
         request.setMaterialId(content.getMaterialId());
         request.setQuantity(content.getQuantity());
         request.setUnitPrice(content.getUnitPrice());
-        return ws.addWarehouseMaterial(request);    
+        return ws.addWarehouseMaterial(request);
     }
 
     /**
