@@ -13,11 +13,11 @@
 * [SOAP API kirjeldus](#soap-api-kirjeldus)
   - [SOAP API Operatsioonid](#soap-api-operatsioonid)
   - [SOAP API Operatsioonide kirjeldused](#soap-api-operatsioonide-kirjeldused)
-    + [Error seisundid SOAP](#error-seisundid-soap)
+      + [Error seisundid SOAP](#error-seisundid-soap)
 * [REST API kirjeldus](#rest-api-kirjeldus)
   - [REST API Operatsioonid](#rest-api-operatsioonid)
   - [REST API Operatsioonide kirjeldused](#rest-api-operatsioonide-kirjeldused)
-    + [Error seisundid REST](#error-seisundid-rest)
+      + [Error seisundid REST](#error-seisundid-rest)
 * [Seisundi koodide tähendused](#seisundi-koodide-tähendused)
 
 
@@ -225,6 +225,8 @@ Elemendid päringus andmetüüpidega on järgnevad:
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap).
 
+Oluline ka see, et topelt saadetud päringud tagastavad juba loodud ladu. 
+
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
@@ -413,6 +415,8 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioo
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite SOAP-is](#error-seisundid-soap).
+
+Oluline ka see, et topelt saadetud päringud tagastavad juba loodud materjalit. 
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -844,6 +848,8 @@ Elemendid vastuses andmetüüpidega on järgnevad:
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest).
 
+Oluline ka see, et topelt saadetud päringud tagastavad juba loodud ladu. 
+
 ###### Näidis JSON vastus (response)
 ~~~json
 {
@@ -979,6 +985,8 @@ Elemendid päringus andmetüüpidega on järgnevad:
     - `error` - `errorType`, null.
 
 Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta informatsioon asub [Error seisundite REST-is](#error-seisundid-rest).
+
+Oluline ka see, et topelt saadetud päringud tagastavad juba loodud materjalit. 
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1251,7 +1259,6 @@ Kõikide seisundi koodide kirjeldused asuvad [Seisundi koodide tähenduste](#sei
 
 
 ## Seisundi koodide tähendused
-Järgnevalt on kirjeldatud seisundi koodide tähendusi:
 
 * `200` - õnnestunud päringu seisundi kood;
   - tähendab, et ladu on edukalt loodud;
