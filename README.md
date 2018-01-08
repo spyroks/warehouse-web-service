@@ -1258,4 +1258,4 @@ Järgnevalt on kirjeldatud seisundi koodide tähendusi:
   - tähendab, et materjal pole leitud;
 
 * `406` - pole vastuvõetav;
-  - ainult vastuvõetavad väärtused on \ "jah \", \ "ei \" või jätta see väli tühjaks.
+  - ainult vastuvõetavad väärtused on "jah", "ei" või jätta see väli tühjaks.
