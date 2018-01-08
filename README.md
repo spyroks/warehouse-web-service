@@ -31,9 +31,7 @@ Veebiteenused aine sooritamiseks on projekti tegemine kasutades [Netbeansi](http
 Projekt koosneb neljast osast: dokumentatsioon, realisatsioon, testimine ning kaitsmine.
 
 Dokumentatsiooni eesmärgiks anda ülevaade tehtud projekti teenusele ja selle SOAP API-le ja REST API-le.
-
 Realisatsiooni tulemuseks on ladu SOAP API ja REST API teenus (`WarehouseWebService`) ning klientrakendus (`WarehouseApplication`) millega on võimalik SOAP API funktsionaalsust osaliselt katsetada.
-
 Testimine toimub [SoapUI](https://www.soapui.org) ning [Postmani](https://www.getpostman.com) kaudu.
 
 Teenust kasutades saab lisada ja vaadata laod ja nende materjale.
