@@ -1,6 +1,7 @@
 # Projekt aines Veebiteenused (IDU0075)
 
 ## Sisukord
+* [Viided] (#viided)
 * [Sissejuhatus](#sissejuhatus)
 * [Teenuse põhiobjektid](#teenuse-põhiobjektid)
   - [Warehouse](#warehouse)
@@ -18,9 +19,11 @@
 
 
 
-
 ## Autor
 Denis Rästas 155552IAPB
+
+## Viided
+Selle projekti ülesehitus ja struktuur oli tehtud [Joosep Alviste](https://github.com/JoosepAlviste/veebiteenused-projekt) projekti alusel.
 
 ## Sissejuhatus
 Antud dokumentatsioonis on kirjeldatud aine Veebiteenused projekti teenust. Projekti tulemuseks on ladu SOAP ja REST teenus (`WarehouseWebService`), klientrakendus ning dokumentatsioon.
