@@ -207,7 +207,7 @@ Väljad päringus andmetüüpidega on järgnevad:
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et ladu on edukalt loodud;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -267,7 +267,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `warehouseArea` - `double`, küsitava lao pindala;
     - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele laole.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -322,6 +322,8 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
         + `warehouseCapacity` - `double`;
         + `warehouseArea` - `double`.
 
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+
 ###### Näidis SOAP vastus (response)
 ~~~xml
 <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
@@ -363,7 +365,7 @@ Väljad päringus andmetüüpidega on järgnevad:
     - `composition` - `string`, materjali koostis (näiteks, aken koosneb klaasist ja plastikust);
     - `durability` - `string`, materjali tugevus (näiteks, akna koostises on klaas seega tugeves - nõrk).
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP päring (request)
 ~~~xml
@@ -394,7 +396,7 @@ Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem i
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt loodud;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -452,7 +454,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `composition` - `string`, küsitava materjali koostis;
     - `durability` - `string`, küsitava materjali tugevus.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -496,14 +498,14 @@ Päringus peale `token`-i väärtuseid ei ole.
 ##### Väljundandmete kirjeldus
 Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpidega on järgnevad:
 * `materials` - nimekiri materjalidest.
-    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
+    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-soap) vastusega:
         + `id` - `integer`;
         + `code` - `string`;
         + `name` - `string`;
         + `composition` - `string`;
         + `durability` - `string`.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -562,12 +564,12 @@ Väljad päringus andmetüüpidega on järgnevad:
 ##### Väljundandmete kirjeldus
 Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
 * `warehouseMaterial`
-    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
-        + `id` - `integer`,
-        + `name` - `string`,
-        + `code` - `string`,
-        + `composition` - `string`,
-        + `durability` - `string`,
+    - `material` - materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-soap) vastusega:
+        + `id` - `integer`;
+        + `name` - `string`;
+        + `code` - `string`;
+        + `composition` - `string`;
+        + `durability` - `string`;
     - `quantity` - `integer`, lisatud materjali kogus;
     - `unitPrice` - `integer`, hind ühe lisatud materjali kohta;
 * `state`- `stateType`, päringu seisund;
@@ -575,9 +577,9 @@ Väljad päringus andmetüüpidega on järgnevad:
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt lisatud ladule;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta.
 
-Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisund mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
+Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisundi mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -643,7 +645,7 @@ Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses 
         + `quantity` - `integer`, küsitava lao antud materjali kogus;
         + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis SOAP vastus (response)
 ~~~xml
@@ -737,7 +739,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
 * `warehouse`
     - `id` - `integer`, loodud lao unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `warehouseName` - `string`, loodud lao nimi;
@@ -751,7 +753,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
     - `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -798,7 +800,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `warehouseMaterialList` - `warehouseMaterialListType`, küsitava lao materjalide nimekiri. Kui laos pole materjale siis see on tühi, vastupidisel juhul tagastab materjale mis kuuluvad sellele ladule;
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -840,7 +842,7 @@ Vastuseks on nimekiri salvestatud ladudest. Väljad vastuses andmetüüpidega on
         + `warehouseMaterialList` - `warehouseMaterialListType`;
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -921,7 +923,7 @@ Väljad päringus andmetüüpidega on järgnevad:
 ~~~
 
 ##### Väljundandmete kirjeldus
-Väljad vastuses andmetüüpidega on järgnevad:
+Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
 * `material`
     - `id` - `integer`, loodud materjali unikaalne identifikaator, genereeritakse süsteemi poolt;
     - `name` - `string`, loodud materjali nimi;
@@ -934,7 +936,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
     - `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -979,7 +981,7 @@ Väljad vastuses andmetüüpidega on järgnevad:
     - `durability` - `string`, küsitava materjali tugevus;
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1019,7 +1021,7 @@ Vastuseks on nimekiri salvestatud materjalidest. Väljad vastuses andmetüüpide
         + `durability` - `string`.
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1075,24 +1077,24 @@ Väljad päringus andmetüüpidega on järgnevad:
 ##### Väljundandmete kirjeldus
 Õnnestunud päringu vastus ehk päringu `Success` seisund. Väljad vastuses andmetüüpidega on järgnevad:
 * `warehouseMaterial`
-    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial) vastusega:
-        + `id` - `integer`,
-        + `name` - `string`,
-        + `code` - `string`,
-        + `composition` - `string`,
-        + `durability` - `string`,
+    - `material` - Üks materjal, langeb kokku [getMaterial operatsiooni](#getmaterial-rest) vastusega:
+        + `id` - `integer`;
+        + `name` - `string`;
+        + `code` - `string`;
+        + `composition` - `string`;
+        + `durability` - `string`;
     - `quantity` - `integer`, lisatud materjali kogus;
     - `unitPrice` - `integer`, hind ühe lisatud materjali kohta;
 * `state`- `stateType`, päringu seisund;
     - `success` - `successType`, õnnestunud päringu seisundi element;
         + `code` - `integer`, õnnestunud päringu seisundi kood. `200` tähendab, et materjal on edukalt lisatud ladule;
         + `message` - `string`, lisainformatsioon operatsiooni seisundi kohta;
-    - `error` - `errorType`, null.
+    - `error` - `errorType`, null;
     - `update` - `updateType`, null.
 
-Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisund mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
+Kui selle identifikaatoriga materjal on juba olemas siis tagastatakse `Update` seisundi mis on sarnane `Success` seisundiga ja toimub vana materjali ülekirjutamine.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
@@ -1145,7 +1147,7 @@ Vastuseks on nimekiri küsitava lao salvestatud materjalidest. Väljad vastuses 
         + `unitPrice` - `integer`, küsitava lao hind ühe antud materjali kohta;
 * `error` - `errorType`, null.
 
-Kui päring ebaõnnestub, tagastatakse `Error` seisund mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
+Kui päring ebaõnnestub, tagastatakse `Error` seisundi mille kohta saab rohkem infot [SOAP Errorite](#soap-errorid) peatükis.
 
 ###### Näidis JSON vastus (response)
 ~~~json
