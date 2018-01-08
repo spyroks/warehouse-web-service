@@ -1,7 +1,7 @@
 # Projekt aines Veebiteenused (IDU0075)
 
 ## Sisukord
-* [Viided] (#viided)
+* [Viided](#viided)
 * [Sissejuhatus](#sissejuhatus)
 * [Teenuse põhiobjektid](#teenuse-põhiobjektid)
   - [Warehouse](#warehouse)
