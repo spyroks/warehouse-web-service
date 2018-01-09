@@ -152,7 +152,7 @@ Operatsiooni päringu tegemiseks kasutaja peab sisestama õige `token`-it.
 * Teenuses salvestatakse materjal id-ga 2.
 
 #### WSDL
-API-dega kasutatava WSDL faili tee `src/conf/xml-resources/web-services/WarehouseWebService/wsdl/WarehouseService.wsdl` mis samuti on saadaval ka *deploy*itud rakenduse põhjal lihsalt lisades URL-ile `?wsdl` ehk `(hostname)/WarehouseWebApplication/WarehouseService?wsdl`.
+API-dega kasutatava WSDL [faili tee](https://github.com/spyroks/warehouse-web-service/tree/master/WarehouseWebApplication/src/conf/xml-resources/web-services/WarehouseWebService/wsdl) mis samuti on saadaval ka *deploy*itud rakenduse põhjal lihsalt lisades URL-ile `?wsdl` ehk `(hostname)/WarehouseWebApplication/WarehouseService?wsdl`.
 
 ***
 
